@@ -1,17 +1,13 @@
+####   Instituto Tecnológico de Costa Rica
 
-Instituto Tecnológico de Costa Rica
+####  Escuela de Computación
 
-Escuela de Computación
+####  Diseño de software
 
-Curso: Diseño Humano
+#### Comercio electrónico de muebleria
 
-Profesor: Alicia
-
-Tarea: Furniture-ecomerce
-
-Integrantes:
-
-Victor Camacho Artavia - 2018099581
-Bernold Abarca Zúñiga - 2018113109
-Jorge Arturo Vásquez Rojas - 2018102354
+####Integrantes:
+- Victor Camacho Artavia - 2018099581
+- Bernold Abarca Zúñiga - 2018113109
+- Jorge Arturo Vásquez Rojas - 2018102354
 
