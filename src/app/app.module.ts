@@ -5,16 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatCardModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatCardModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+
+import { VistaGGComponent } from './vista-gg/vista-gg.component';
+import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
+import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
+import { RangoSalariosComponent } from './rango-salarios/rango-salarios.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BrowseComponent,
-    MainNavComponent
+    MainNavComponent,
+    AppComponent,
+    VistaGGComponent,
+    ReportesGeneralesComponent,
+    VerEmpleadosComponent,
+    RangoSalariosComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +39,8 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     LayoutModule,
-    MatListModule
+    MatListModule,
+    MatDividerModule 
     
   ],
   providers: [],
