@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Furniture-ecomerce';
+  page:String = '';
+  constructor(){}
+
+  public pageSet(nombre:String) {
+    this.page=nombre;
+    
+  }
 }

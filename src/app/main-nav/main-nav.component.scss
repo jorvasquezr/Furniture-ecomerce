@@ -1,0 +1,39 @@
+.sidenav-container {
+  height: 100%;
+}
+.divheight {
+  height: max;
+  min-height: 800px;
+  margin-bottom: 50px;
+
+
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav-content {
+  height: auto;
+  position:static ;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.spacer {
+  flex:1;
+}
+.button {
+  position: absolute;
+  left: 1;
+  right: 0;
+
+  
+}
