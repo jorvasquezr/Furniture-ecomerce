@@ -14,6 +14,7 @@ import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
 import { RangoSalariosComponent } from './rango-salarios/rango-salarios.component';
+import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RangoSalariosComponent } from './rango-salarios/rango-salarios.componen
     VistaGGComponent,
     ReportesGeneralesComponent,
     VerEmpleadosComponent,
-    RangoSalariosComponent
+    RangoSalariosComponent,
+    VistaGerenteComponent
   ],
   imports: [
     BrowserModule,
