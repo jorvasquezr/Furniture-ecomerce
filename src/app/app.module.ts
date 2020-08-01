@@ -9,6 +9,8 @@ import { MatCardModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarM
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
@@ -42,7 +44,9 @@ import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
-    MatDividerModule 
+    MatDividerModule,
+    MatTableModule,
+    MatSortModule 
     
   ],
   providers: [],
