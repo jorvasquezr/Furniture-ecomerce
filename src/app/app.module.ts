@@ -48,12 +48,9 @@ import {FlexLayoutModule} from '@angular/flex-layout'
     LayoutModule,
     MatListModule,
     MatDividerModule,
-<<<<<<< Updated upstream
     MatTableModule,
-    MatSortModule 
-=======
+    MatSortModule,
     MatPaginatorModule
->>>>>>> Stashed changes
     
   ],
   providers: [],
