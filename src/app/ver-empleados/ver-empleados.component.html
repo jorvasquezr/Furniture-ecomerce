@@ -17,8 +17,8 @@
 <div class = "bg">
   <div class = "content">
     <mat-card-title> Lista de todos los empleados</mat-card-title>
-    
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <div class = "tabla">
+      <table mat-table [dataSource]="dataSource" matSort class = "tabla">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -50,6 +50,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+
+    </div>
   
   </div>
 

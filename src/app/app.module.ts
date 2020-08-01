@@ -11,6 +11,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
@@ -24,6 +25,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
 import { VistaSalarioComponent } from './vista-salario/vista-salario.component';
 import { VistaVentaComponent } from './vista-venta/vista-venta.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { VistaVentaComponent } from './vista-venta/vista-venta.component';
     MatDividerModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule,
+    MatSliderModule
     
   ],
   providers: [],

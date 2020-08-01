@@ -15,14 +15,94 @@
 
 
 <div class = "bg">
+    <div class = "content">
+      <mat-card-title> Lista de puestos y rango de salarios</mat-card-title>
+      <p> Presione un valor para ajustarlo</p>
+        <table mat-table [dataSource]="dataSource" matSort class = "tabla">
+  
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+          <!-- Position Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let empleado"> {{empleado.nombre}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="salarioMin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario Minimo </th>
+            <td mat-cell *matCellDef="let empleado"> 
+              
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{empleado.salarioMin}} $ 
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  
+                  <div>Cambiar salario minimo: 
+                    <mat-slider
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    tickInterval="1"
+                    min="1"
+                    max= {{empleado.salarioMax}} 
+                    [(ngModel)]="value" >
+                  </mat-slider>
+                  <button mat-icon-button (click)="hacerCambios(empleado.nombre , value , empleado.salarioMax)">
+                    <mat-icon>build</mat-icon>
+                  </button>
 
-    <mat-list>
-        <mat-list-item>Item 1</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 2</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
+                  </div>
+                  
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                </mat-expansion-panel>
+              </mat-accordion>
+            </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="salarioMax">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario Maximo </th>
+            <td mat-cell *matCellDef="let empleado"> 
+              
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{empleado.salarioMax}} $ 
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  
+                  <div>Cambiar salario maximo: 
+                    <mat-slider
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    tickInterval="1"
+                    min= {{empleado.salarioMin}}
+                    max= "500" 
+                    [(ngModel)]="value" >
+                  </mat-slider>
+                  <button mat-icon-button (click)="hacerCambios(empleado.nombre , empleado.salarioMin ,value )">
+                    <mat-icon>build</mat-icon>
+                  </button>
+
+                  </div>
+                  
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                </mat-expansion-panel>
+              </mat-accordion>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     
-
-</div>
+    </div>

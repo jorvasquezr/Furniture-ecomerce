@@ -16,7 +16,7 @@ export interface trabajador {
 })
 export class VerEmpleadosComponent implements OnInit {
 
-  public empleados : trabajador[] = [
+  private empleados : trabajador[] = [
 
     {
       nombre: "Pedro",
@@ -53,6 +53,36 @@ export class VerEmpleadosComponent implements OnInit {
       puesto: "Vendedor",
       salario: "10",
       sucursal: "San Jose"
+    },
+    {
+      nombre: "Maria",
+      puesto: "Vendedor",
+      salario: "18",
+      sucursal: "San Jose"
+    },
+    {
+      nombre: "Astolfo",
+      puesto: "Gerente",
+      salario: "10",
+      sucursal: "San Jose"
+    },
+    {
+      nombre: "Luz",
+      puesto: "Cajero",
+      salario: "12",
+      sucursal: "San Jose"
+    },
+    {
+      nombre: "Manuela",
+      puesto: "Gerente",
+      salario: "75",
+      sucursal: "San Carlos"
+    },
+    {
+      nombre: "Estefania",
+      puesto: "Vendedor",
+      salario: "15",
+      sucursal: "San Carlos"
     },
 
   ]
