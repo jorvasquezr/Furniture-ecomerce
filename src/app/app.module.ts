@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatCardModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
+import { MatCardModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -17,7 +17,8 @@ import { ReportesGeneralesComponent } from './reportes-generales/reportes-genera
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
 import { RangoSalariosComponent } from './rango-salarios/rango-salarios.component';
 import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
-
+import { ProductCardComponent } from './product-card/product-card.component';
+import {FlexLayoutModule} from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
     ReportesGeneralesComponent,
     VerEmpleadosComponent,
     RangoSalariosComponent,
-    VistaGerenteComponent
+    VistaGerenteComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
     MatMenuModule,
     MatTabsModule,
     MatToolbarModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
@@ -45,8 +48,12 @@ import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
     LayoutModule,
     MatListModule,
     MatDividerModule,
+<<<<<<< Updated upstream
     MatTableModule,
     MatSortModule 
+=======
+    MatPaginatorModule
+>>>>>>> Stashed changes
     
   ],
   providers: [],

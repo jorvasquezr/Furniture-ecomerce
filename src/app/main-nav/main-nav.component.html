@@ -12,6 +12,7 @@
   </mat-sidenav>
   <mat-sidenav-content class = "sidenav-content" >
     <mat-toolbar color="secundary">
+      <mat-toolbar-row>
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -22,7 +23,7 @@
         <mat-icon aria-label="Side nav toggle icon">chevron_right</mat-icon>
       </button>
   
-      <div class ="spacer"></div>
+      <div class="spacer"></div>
       <button class = "button" mat-button [matMenuTriggerFor]="beforeMenu">
         Ordenar Por
         <mat-icon aria-label="Side nav toggle icon">expand_more</mat-icon>
@@ -30,14 +31,26 @@
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <button mat-menu-item>Item 1</button>
           <button mat-menu-item>Item 2</button>
-        </mat-menu>
- 
-      <button mat-button>
-
-
-      </button>
-  
+        </mat-menu >
+      </mat-toolbar-row>
     </mat-toolbar>
+    <mat-toolbar class="customPaginator">
+      <div class="spacer"></div>
+        <mat-paginator class= "customPaginator"[length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+      </mat-toolbar>
+
+
+  
+<div class="cardList">
+  <ng-container *ngFor="let _ of [1,2,3,4,5,6,1,1,1,1,1,1,1]">
+    <app-product-card ></app-product-card>
+    <mat-divider></mat-divider>
+  </ng-container>
+</div>
+
 
 
   </mat-sidenav-content>
