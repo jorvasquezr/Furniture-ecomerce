@@ -21,6 +21,9 @@ import { VistaLoginComponent } from './vista-login/vista-login.component';
 import { VistaRegisterComponent } from './vista-register/vista-register.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
+import { VistaSalarioComponent } from './vista-salario/vista-salario.component';
+import { VistaVentaComponent } from './vista-venta/vista-venta.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     VistaGerenteComponent,
     VistaLoginComponent,
     VistaRegisterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    VistaEmpleadoComponent,
+    VistaSalarioComponent,
+    VistaVentaComponent
   ],
   imports: [
     BrowserModule,

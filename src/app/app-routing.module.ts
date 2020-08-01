@@ -8,6 +8,7 @@ import {VerEmpleadosComponent} from './ver-empleados/ver-empleados.component'
 import {VistaGerenteComponent} from './vista-gerente/vista-gerente.component'
 import {VistaLoginComponent} from './vista-login/vista-login.component'
 import {VistaRegisterComponent} from './vista-register/vista-register.component'
+import {VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
 const routes: Routes = [
   {
     path: 'vista-gg',
@@ -37,6 +38,10 @@ const routes: Routes = [
    {
     path: 'vista-register',
     component:VistaRegisterComponent
+   },
+   {
+    path: 'vista-empleado',
+    component: VistaEmpleadoComponent
    }
 ];
 
