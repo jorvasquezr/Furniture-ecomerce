@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Furniture-ecomerce';
-  page:String = '';
+  page:String = 'Tienda';
   constructor(){}
 
   public pageSet(nombre:String) {

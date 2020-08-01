@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatCardModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
+import { MatCardModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -19,7 +19,8 @@ import { RangoSalariosComponent } from './rango-salarios/rango-salarios.componen
 import { VistaGerenteComponent } from './vista-gerente/vista-gerente.component';
 import { VistaLoginComponent } from './vista-login/vista-login.component';
 import { VistaRegisterComponent } from './vista-register/vista-register.component';
-
+import { ProductCardComponent } from './product-card/product-card.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { VistaRegisterComponent } from './vista-register/vista-register.componen
     RangoSalariosComponent,
     VistaGerenteComponent,
     VistaLoginComponent,
-    VistaRegisterComponent
+    VistaRegisterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { VistaRegisterComponent } from './vista-register/vista-register.componen
     MatMenuModule,
     MatTabsModule,
     MatToolbarModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
@@ -50,7 +53,8 @@ import { VistaRegisterComponent } from './vista-register/vista-register.componen
     MatListModule,
     MatDividerModule,
     MatTableModule,
-    MatSortModule 
+    MatSortModule,
+    MatPaginatorModule
     
   ],
   providers: [],

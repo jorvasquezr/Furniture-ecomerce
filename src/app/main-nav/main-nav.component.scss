@@ -10,7 +10,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 18em;
 }
 
 .sidenav-content {
@@ -31,9 +31,25 @@
   flex:1;
 }
 .button {
-  position: absolute;
+  position: relative;
   left: 1;
   right: 0;
+}
+.customPaginator {
+  background:rgba($color: #000000, $alpha: 0);
+}
 
-  
+.cardList {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+/* Row Gap */
+.cardList > *:not(:last-child) {
+  margin-bottom: 0px;
+}
+.productCard{
+
+  margin-bottom: 0%;
 }
