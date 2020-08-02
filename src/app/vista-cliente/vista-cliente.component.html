@@ -2,6 +2,7 @@
     <mat-toolbar-row  color="primary">
       <span>Mueblería Vladimir</span>
       <div class ="spacer"> </div>
+      <button mat-button (click)="pageSet('Promociones')">Promociones</button>
       <button mat-button (click)="pageSet('Tienda')">Tienda</button>
       <button mat-button (click)="pageSet('Mis Pedidos')">Mis Pedidos</button>
       <button mat-button (click)="pageSet('Carrito')">Carrito</button>
@@ -11,17 +12,14 @@
   
   
   </mat-toolbar>
-  <body>
-  <app-main-nav *ngIf ="[page]=='Tienda'"></app-main-nav>
+  <body [ngSwitch]="page">
+  <app-main-nav class = content *ngSwitchCase ="'Tienda'"></app-main-nav>
   </body>
+
+ 
+
   
   
   
-  <footer>
-    <mat-toolbar class="footer">
-      <div class="spacer"> </div> 
-      <div class="footerText"> © 2020 Your Company. All Rigths Reserved</div>
-      <div class="spacer"> </div> 
-    </mat-toolbar>
-  </footer>
+  
   

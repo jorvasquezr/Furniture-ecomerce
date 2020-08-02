@@ -21,15 +21,18 @@
     width: 100%;
 
   }
+
+.content{
+    position: absolute;
+}
 .spacer {
     flex:1;
 }
+
 .browseOption {
     background: blue;
-
-
-
 }
+
 .tp-container {
     position: relative;
     height: 50%;
@@ -70,19 +73,12 @@
     margin-bottom:px;
   }
   
-  .footer {
-    
-    position: sticky;
-    
+  .footer{
+      position: relative;
 
-    bottom: 0;
+  }
+  
 
-    background: black;
-  }
-  .footerText {
-    color: white;
-    font-size: small;
-  }
   .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
