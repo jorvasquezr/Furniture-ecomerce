@@ -41,6 +41,7 @@ import { VistaVentaComponent } from './vista-venta/vista-venta.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
 import { FooterComponent } from './footer/footer.component';
+import { VistaSucursalesComponent } from './vista-sucursales/vista-sucursales.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FooterComponent } from './footer/footer.component';
     VistaSalarioComponent,
     VistaVentaComponent,
     VistaClienteComponent,
+    VistaSucursalesComponent,
     FooterComponent
   ],
   imports: [

@@ -46,3 +46,27 @@
     margin: auto auto auto;
     
   }
+
+  .content {
+    display: flex;
+    transform: translateY(-50%);
+    top: 50%;
+    height: auto;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  table {
+    width: 90%;
+  }
+
+  .thick {
+    font-weight: bolder;
+  }
+
+  .tabla {
+    height: 400px;
+    width: 95%;
+    overflow: auto;
+  }
