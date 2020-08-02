@@ -1,0 +1,25 @@
+<mat-toolbar class = "toolbar" >
+    <mat-toolbar-row  color="primary">
+      <span>Mueblería Vladimir</span>
+      <div class ="spacer"> </div>
+      <button mat-button (click)="pageSet('Promociones')">Promociones</button>
+      <button mat-button (click)="pageSet('Tienda')">Tienda</button>
+      <button mat-button (click)="pageSet('Mis Pedidos')">Mis Pedidos</button>
+      <button mat-button (click)="pageSet('Carrito')">Carrito</button>
+      <button mat-raised-button (click)="iniciarSesion()" >Iniciar sesión</button>
+  
+    </mat-toolbar-row>
+  
+  
+  </mat-toolbar>
+  <body [ngSwitch]="page">
+  <app-main-nav class = content *ngSwitchCase ="'Tienda'"></app-main-nav>
+  </body>
+
+ 
+
+  
+  
+  
+  
+  
