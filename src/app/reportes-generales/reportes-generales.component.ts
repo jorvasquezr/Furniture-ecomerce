@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportesGeneralesComponent implements OnInit {
 
+  menuItems = ['dashboard', 'sales', 'orders', 'customers', 'products'];
+
   constructor() { }
 
   ngOnInit(): void {

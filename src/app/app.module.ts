@@ -11,7 +11,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
@@ -64,7 +65,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSortModule,
     MatPaginatorModule,
     MatExpansionModule,
-    MatSliderModule
+    MatSliderModule,
+    MatFormFieldModule
     
   ],
   providers: [],
