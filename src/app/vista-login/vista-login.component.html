@@ -9,6 +9,14 @@
     <div id="container" fxLayoutAlign="center center">
     
     <mat-card class="customCard" >
+        <mat-card-actions style="margin:0 0;">
+            <div fxLayoutAlign="end end"> 
+                <button mat-icon-button aria-label="Close button" routerLink="../">
+                    <mat-icon>close</mat-icon>
+                  </button>
+            </div>
+    
+        </mat-card-actions>
         <mat-card-title fxLayoutAlign="center center" class="example-full-width"> Log In </mat-card-title>
         <mat-card-content>
         <form class="form">
@@ -24,13 +32,16 @@
                 <input matInput type="password" placeholder="Digite su clave" name="psw" id="psw" required>
             </mat-form-field>
             <div fxLayoutAlign="center center"> 
-                <button  mat-raised-button color="primary" style=
+                <button mat-raised-button color="primary" style=
                 "padding: 1.1% 0px;
                 border: none;
                 cursor: pointer;
+                margin-bottom: 8px;
                 width: 100%;
                 opacity: 0.9;" type="submit" class="loginbtn">Iniciar Sesión</button>
             </div>
+           
+            
             <div class="container register">
                 No posees una cuenta? <a href="../vista-register/">Registrate</a>.
             </div>
@@ -38,6 +49,7 @@
     
         </form>
     </mat-card-content>
+
 
     </mat-card>
     </div>
