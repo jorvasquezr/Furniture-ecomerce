@@ -42,6 +42,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
 import { FooterComponent } from './footer/footer.component';
 import { VistaSucursalesComponent } from './vista-sucursales/vista-sucursales.component';
+import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesibilidad/configuraciones-accesibilidad.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { VistaSucursalesComponent } from './vista-sucursales/vista-sucursales.co
     VistaVentaComponent,
     VistaClienteComponent,
     VistaSucursalesComponent,
-    FooterComponent
+    FooterComponent,
+    ConfiguracionesAccesibilidadComponent
   ],
   imports: [
     BrowserModule,
