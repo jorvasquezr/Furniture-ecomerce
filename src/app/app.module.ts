@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatCardModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
+import { MatCardModule,MatInputModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -63,12 +63,12 @@ import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
     LayoutModule,
     MatListModule,
     MatDividerModule,
+    MatInputModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
     MatExpansionModule,
-    MatSliderModule,
-    MatFormFieldModule
+    MatSliderModule
     
   ],
   providers: [],

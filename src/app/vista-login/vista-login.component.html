@@ -5,27 +5,41 @@
     <title>Login</title>
 </head>
 
-<body>
-    <div id="container">
+<body class="bg">
+    <div id="container" fxLayoutAlign="center center">
+    
+    <mat-card class="customCard" style="opacity: 0.8;">
+        <mat-card-title fxLayoutAlign="center center" class="example-full-width"> Log In </mat-card-title>
+        <mat-card-content>
         <form>
-            <div class="container">
-                <h1>Login</h1>
-                <hr>
-
-                <label for="email"><b>Correo</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="email" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Digite su clave" name="psw" id="psw" required>
-                <hr>
-
-                <button type="submit" class="loginbtn">Iniciar Sesión</button>
+ 
+            <mat-form-field class="example-full-width">
+      
+                <mat-label for="email">Correo</mat-label>
+                <input matInput type="text" placeholder="Digite su correo" name="email" id="email" required>
+            </mat-form-field>
+           
+            <mat-form-field class="example-full-width">
+                <mat-label for="psw">Password</mat-label>
+                <input matInput type="password" placeholder="Digite su clave" name="psw" id="psw" required>
+            </mat-form-field>
+            <div fxLayoutAlign="center center"> 
+                <button  mat-raised-button color="primary" style=
+                "padding: 1.1% 0px;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;" type="submit" class="loginbtn">Iniciar Sesión</button>
             </div>
-
             <div class="container register">
-                <p>No posees una cuenta? <a href="../vista-register/">Registrate</a>.</p>
+                No posees una cuenta? <a href="../vista-register/">Registrate</a>.
             </div>
+
+    
         </form>
+    </mat-card-content>
+
+    </mat-card>
     </div>
 </body>
 
