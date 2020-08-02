@@ -16,7 +16,20 @@
 
 <mat-tab-group>
   <mat-tab label="Ver Promociones">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nuevo Precio</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="4.99">
+      </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de fin de la promoción</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-button>Ingresar</button>
+    </form>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef> Nombre</th>
@@ -31,9 +44,48 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
-
   </mat-tab>
   <mat-tab label="Ver Reportes">Ver Reportes</mat-tab>
-  <mat-tab label="Ver Empleados">Ver Promociones</mat-tab>
+  <mat-tab label="Ver Empleados">
+    <div class = "content">
+      <mat-card-title> Lista de empleados de todas las sucursales</mat-card-title>
+      <br>
+      <div class = "tabla">
+        <table mat-table [dataSource]="dataSource2" matSort class = "tabla">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let empleado"> {{empleado.nombre}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="puesto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Puesto </th>
+            <td mat-cell *matCellDef="let empleado"> {{empleado.puesto}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="salario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario </th>
+            <td mat-cell *matCellDef="let empleado"> {{empleado.salario}} $ </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="sucursal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sucursal </th>
+            <td mat-cell *matCellDef="let empleado"> {{empleado.sucursal}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        </table>
+
+      </div>
+
+    </div>
+  </mat-tab>
 </mat-tab-group>

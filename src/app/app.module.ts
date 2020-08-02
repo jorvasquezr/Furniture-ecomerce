@@ -5,7 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatCardModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule, MatFormField, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatCardModule,
+  MatPaginatorModule,
+  MatTabsModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule ,
+  MatDividerModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule} from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -71,7 +84,9 @@ import { FooterComponent } from './footer/footer.component';
     MatExpansionModule,
     MatSliderModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
