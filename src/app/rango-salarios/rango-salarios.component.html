@@ -47,7 +47,8 @@
                     tickInterval="10"
                     min="1"
                     max= {{empleado.salarioMax}} 
-                    [(ngModel)]="value" >
+                    [(ngModel)]="value" 
+                    (change)="updateSetting($event)" >
                   </mat-slider>
                   <button mat-icon-button (click)="hacerCambios(empleado.nombre , value , empleado.salarioMax)">
                     <mat-icon>build</mat-icon>
@@ -83,7 +84,8 @@
                     tickInterval="10"
                     min= {{empleado.salarioMin}}
                     max= "500" 
-                    [(ngModel)]="value" >
+                    [(ngModel)]="value" 
+                    (change)="updateSetting($event)">
                   </mat-slider>
                   <button mat-icon-button (click)="hacerCambios(empleado.nombre , empleado.salarioMin ,value )">
                     <mat-icon>build</mat-icon>
