@@ -67,7 +67,11 @@ export class RangoSalariosComponent implements OnInit {
 
   constructor() { }
 
+  
+
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
+    localStorage.setItem("listaEncuestion", JSON.stringify(this.listPuestos));
+    JSON.parse(localStorage.getItem("listaEncuestion")) as puesto[]
   }
 }
