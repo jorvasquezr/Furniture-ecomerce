@@ -1,13 +1,12 @@
 <div class="toolbar" role="banner">
-    <mat-toolbar-row  color="warn">
-
-        <span>Mueblería Vladimir</span>
-        <div class ="spacer"> </div>
-        <button mat-button  >Configuraciones</button>
-        <button mat-button (click)="pageSet('Venta')">Ventas</button>
-        <button mat-button (click)="pageSet('Salario')">Mi salario</button>
-        <button mat-raised-button routerLink="../" >Cerrar sesión</button>
-    
+    <mat-toolbar-row color="warn">
+      <span>Mueblería Vladimir</span>
+      <div fxLayoutAlign="end end"> 
+      <button mat-button  >Configuraciones</button>
+      <button mat-button (click)="pageSet('Venta')">Ventas</button>
+      <button mat-button (click)="pageSet('Salario')">Mi salario</button>
+      <button mat-raised-button routerLink="../" >Cerrar sesión</button>
+      </div>
       </mat-toolbar-row>
 </div>
 
