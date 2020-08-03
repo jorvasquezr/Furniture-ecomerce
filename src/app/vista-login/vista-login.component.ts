@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { LoginService } from "../servicios/login.service"
 
 @Component({
   selector: 'app-vista-login',
@@ -11,7 +12,7 @@ export class VistaLoginComponent implements OnInit {
   email= new FormControl('');
   psw= new FormControl('');
 
-  constructor() {
+  constructor(private auth : LoginService) {
      
   }
 
@@ -19,17 +20,8 @@ export class VistaLoginComponent implements OnInit {
   }
   
   onSubmit() {
+    this.auth.validarUsuario(this.email.value,this.psw.value);
     
-    const arr = JSON.parse(localStorage.getItem('users')) || [];
-    for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i]);
-      if(arr[i].email == this.email.value && arr[i].psw== this.psw.value){
-        if(arr[i].tipo=="cliente")
-          window.location.href = '/';
-        if(arr[i].tipo=='gerente general')
-          window.location.href = '/vista-gg';
-      }
-    }
     /*
     arr.forEach(function(element){
       console.log(element);

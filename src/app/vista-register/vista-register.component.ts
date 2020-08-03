@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { LoginService } from "../servicios/login.service"
+import { User,UserRole } from '../models/user.model';
 
 @Component({
   selector: 'app-vista-register',
@@ -14,24 +16,23 @@ export class VistaRegisterComponent implements OnInit {
     direccion= new FormControl('');
     phone= new FormControl('');
 
-  constructor() {
+  constructor(private auth : LoginService) {
      
   }
 
   ngOnInit(): void {
+    
   }
   
   onSubmit() {
-    const user = {
+    const user: User = {
       email: this.email.value,
       name: this.name.value,
-      psw: this.psw.value,
+      password: this.psw.value,
       direccion: this.direccion.value,
-      phone: this.phone.value,
-      tipo: 'cliente'
+      telefono: this.phone.value,
+      tipo: UserRole.CLIENTE
     };
-    const arr = JSON.parse(localStorage.getItem('users')) || [];
-    arr.push(user);
-    localStorage.setItem('users',JSON.stringify(arr));
+    this.auth.registrarUsuario(user);
   }
 }
