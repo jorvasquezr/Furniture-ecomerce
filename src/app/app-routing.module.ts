@@ -10,6 +10,7 @@ import {VistaLoginComponent} from './vista-login/vista-login.component'
 import {VistaClienteComponent} from './vista-cliente/vista-cliente.component'
 import {VistaRegisterComponent} from './vista-register/vista-register.component'
 import {VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
+import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesibilidad/configuraciones-accesibilidad.component';
 const routes: Routes = [
   {
     path: 'vista-gg',
@@ -47,6 +48,10 @@ const routes: Routes = [
    {
     path: 'vista-empleado',
     component: VistaEmpleadoComponent
+   },
+   {
+     path: 'configuraciones-accesibilidad',
+     component: ConfiguracionesAccesibilidadComponent
    }
 ];
 

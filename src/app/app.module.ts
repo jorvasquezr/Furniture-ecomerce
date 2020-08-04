@@ -18,7 +18,9 @@ import { MatCardModule,
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
-  MatNativeDateModule} from '@angular/material';
+  MatNativeDateModule,
+  MatSlideToggleModule,
+  MatSelectModule} from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -92,7 +94,9 @@ import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesib
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
