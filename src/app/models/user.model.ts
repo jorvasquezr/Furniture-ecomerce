@@ -1,10 +1,10 @@
 export interface User {
-    id: number;
     name: string;
     email: string;
     direccion: string;
-    correo: string;
-    rol: UserRole;
+    telefono:string;
+    password:string;
+    tipo: UserRole;
 }
 
 export enum UserRole {

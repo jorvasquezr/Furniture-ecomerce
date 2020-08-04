@@ -1,25 +1,23 @@
-<form action="action_page.php">
+<form class="form"  (ngSubmit)="onSubmit()">
     <div class="container">
       <h1>Register</h1>
       <p>Por favor completa este formulario para hacer uso de nuestros servicios.</p>
       <hr>
       <label for="email"><b>Correo</b></label>
-      <input type="text" placeholder="Correo" name="email" id="email" required>
+      <input type="text" [formControl]="email" placeholder="Correo" name="email" id="email" required>
 
       <label for="name"><b>Nombre</b></label>
-      <input type="text" placeholder="Nombre" name="name" id="name" required>
+      <input type="text" [formControl]="name" placeholder="Nombre" name="name" id="name" required>
 
       <label for="phone"><b>telefono</b></label>
-      <input type="text" placeholder="Telefono" name="phone" id="phone" required>
+      <input type="text" [formControl]="phone" placeholder="Telefono" name="phone" id="phone" required>
 
       <label for="direccion"><b>direccion</b></label>
-      <input type="text" placeholder="Escribe tu direccion" name="direccion" id="direccion" required>
+      <input type="text" [formControl]="direccion" placeholder="Escribe tu direccion" name="direccion" id="direccion" required>
   
       <label for="psw"><b>Contraseña</b></label>
-      <input type="password" placeholder="Contraseña" name="psw" id="psw" required>
+      <input type="password" [formControl]="psw" placeholder="Contraseña" name="psw" id="psw" required>
   
-      <label for="psw-repeat"><b>Repita la contraseña</b></label>
-      <input type="password" placeholder="Repite tu contraseña" name="psw-repeat" id="psw-repeat" required>
       <hr>
   
       <p>Al crear una cuenta acepta nuestras <a href="#">politicas de privacidad</a>.</p>
