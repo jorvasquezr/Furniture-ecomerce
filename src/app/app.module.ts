@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
-import { MatSelectModule,MatStepperModule,MatCardModule,MatInputModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
 import { MatCardModule,
   MatPaginatorModule,
+  MatStepperModule,
   MatTabsModule,
   MatMenuModule,
   MatSidenavModule,
@@ -30,8 +30,6 @@ import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
@@ -55,7 +53,7 @@ import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesib
 import { CarouserlImageComponent } from './carouserl-image/carouserl-image.component';
 import { VistaPromoionesComponent } from './vista-promoiones/vista-promoiones.component';
 import { DetallesDeProductoComponent } from './detalles-de-producto/detalles-de-producto.component';
-import {MatRippleModule,MatCheckboxModule} from '@angular/material';
+import {MatRippleModule} from '@angular/material';
 import { PedidoComponent } from './pedido/pedido.component'
 import { HttpClientModule } from "@angular/common/http";
 import { MatInputHyphenCardFormatDirective } from './directives/mat-input-hyphen-card-format.directive';
@@ -96,7 +94,7 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     PedidoCardComponent,
     MisPedidosComponent,
     InicioComponent,
-    TablaProductosComponent
+    TablaProductosComponent,
     VistaSucursalesComponent,
     FooterComponent,
     ConfiguracionesAccesibilidadComponent
@@ -138,6 +136,7 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     MatGridListModule,
     MatSlideToggleModule,
     MatSelectModule,
+    
     MatCheckboxModule
   ],
   providers: [],
