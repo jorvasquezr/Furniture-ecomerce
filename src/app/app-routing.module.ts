@@ -10,19 +10,29 @@ import {VistaLoginComponent} from './vista-login/vista-login.component'
 import {VistaClienteComponent} from './vista-cliente/vista-cliente.component'
 import {VistaRegisterComponent} from './vista-register/vista-register.component'
 import {VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { InicioComponent } from './inicio/inicio.component';
 const routes: Routes = [
   {
     path: 'vista-gg',
     component:  VistaGGComponent
    },
+   {
+  path: '',
+   component:  InicioComponent
+  },
 
    {
     path: 'reportes-generales',
     component:  ReportesGeneralesComponent
    },
    {
-    path: '',
+    path: 'cliente/:param',
     component:  VistaClienteComponent
+   },
+   {
+    path: 'pedido',
+    component:  PedidoComponent
    },
    {
     path: 'rango-salarios',

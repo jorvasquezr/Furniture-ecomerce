@@ -1,19 +1,25 @@
-<mat-toolbar class = "toolbar" >
-    <mat-toolbar-row  color="primary">
+<mat-toolbar    class = "toolbar" color="primary">
+    <mat-toolbar-row  >
       <span>Mueblería Vladimir</span>
       <div class ="spacer"> </div>
-      <button mat-button (click)="pageSet('Promociones')">Promociones</button>
-      <button mat-button (click)="pageSet('Tienda')">Tienda</button>
-      <button mat-button (click)="pageSet('Mis Pedidos')">Mis Pedidos</button>
-      <button mat-button (click)="pageSet('Carrito')">Carrito</button>
-      <button mat-raised-button (click)="iniciarSesion()" >Iniciar sesión</button>
+      
+      <button mat-button  (click)="pageSet('promociones')">Promociones</button>
+      <button mat-button  (click)="pageSet('tienda')">Tienda</button>
+      <button mat-button  (click)="pageSet('misPedidos')">Mis Pedidos</button>
+      <button mat-button  (click)="pageSet('carrito')">Carrito</button>
+      <button mat-button  (click)="iniciarSesion()" >Registrarse</button>
+      <button mat-raised-button color="accent" (click)="iniciarSesion()" >Iniciar sesión</button>
+ 
   
     </mat-toolbar-row>
   
   
   </mat-toolbar>
-  <body [ngSwitch]="page">
-  <app-main-nav class = content *ngSwitchCase ="'Tienda'"></app-main-nav>
+  <body [ngSwitch]="page" >
+    <div><app-mis-pedidos class = "content" *ngSwitchCase ="'misPedidos'"></app-mis-pedidos></div>
+  <div><app-main-nav class = "content" *ngSwitchCase ="'tienda'"></app-main-nav></div>
+  <div><app-carrito class = "content" *ngSwitchCase ="'carrito'"></app-carrito></div>
+  <div><app-vista-promoiones class = content *ngSwitchDefault></app-vista-promoiones></div>
   </body>
 
  

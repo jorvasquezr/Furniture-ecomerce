@@ -1,7 +1,6 @@
 .example-card {
-    max-height: 500px;
     border-radius: 5px;
-    box-shadow: none !important;
+  
     background-color: rgba($color: #000000, $alpha: 0);
   }
   
@@ -19,12 +18,30 @@
   max-width: 60px;
 
 }
-  .imgCard{
-      height: 50%;
-      width: 50%;
-      max-height: 250px;
-      max-width: 270px;
-  }
+.bold{
+  font-weight: bold;
+}
+.boxShadowNode{
+  box-shadow: none !important;
+
+}
+.productList{
+  background-color: rgba($color: #000000, $alpha: 0);
+
+}
+.pedidos{
+  width: 100%;
+
+  position: relative;
+
+
+}
+.imgCard{
+    height: 50%;
+    width: 50%;
+    max-height: 250px;
+    max-width: 270px;
+}
   .footer{
     width: 100px !important;
 }

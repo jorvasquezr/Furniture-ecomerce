@@ -1,0 +1,74 @@
+
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+        attr.role='navigation'
+        mode='over'
+        opened="false">
+      <mat-toolbar><div>Opciones</div></mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item >
+          <span mat-line> Como hacer un pedido</span>
+        </a>
+        <a mat-list-item >
+            <span mat-line>   Solicitar rembolso</span>
+          </a>
+          <a mat-list-item >
+            <span mat-line>Politicas de envío</span>
+          </a>
+      
+      </mat-nav-list>
+      
+      
+
+      
+  
+    </mat-sidenav>
+    <mat-sidenav-content class = "sidenav-content" >
+      <mat-toolbar color="secundary">
+        <mat-toolbar-row>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+    
+        <div class="spacer"></div>
+        <button class = "button" mat-button [matMenuTriggerFor]="beforeMenu">
+          Ordenar Por
+          <mat-icon aria-label="Side nav toggle icon">expand_more</mat-icon>
+       </button>
+          <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item>Precio</button>
+            <button mat-menu-item>Nombre</button>
+          </mat-menu >
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-toolbar class="customPaginator">
+        <div class="spacer"></div>
+          <mat-paginator class= "customPaginator"[length]="100"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
+        </mat-toolbar>
+  
+  
+  
+  <div class="cardList">
+  
+    <ng-container *ngFor="let _ of [1,2,3,4,5,6,1,1,1,1,1,1,1]">
+    <mat-accordion> <app-pedido-card ></app-pedido-card></mat-accordion>
+      <mat-divider></mat-divider>
+    </ng-container>
+  
+    
+  </div>
+  
+  
+  
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <app-footer></app-footer>
+  

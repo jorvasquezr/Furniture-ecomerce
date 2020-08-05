@@ -1,0 +1,63 @@
+.sidenav-container {
+    height: 100%;
+  }
+  .divheight {
+    height: max;
+    min-height: 800px;
+    margin-bottom: 50px;
+  
+  
+  }
+  
+  .sidenav {
+    width: 18em;
+  }
+  
+  .sidenav-content {
+    height: auto;
+    position:static ;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .spacer {
+    flex:1;
+  }
+  .button {
+    position: relative;
+    left: 1;
+    right: 0;
+  }
+  .customPaginator {
+    background:rgba($color: #000000, $alpha: 0);
+  }
+  .buttonNavView{
+      width: 100%;
+      height: 50px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+
+  }
+
+  .cardList {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  /* Row Gap */
+  .cardList > *:not(:last-child) {
+    margin-bottom: 0px;
+  }
+  .productCard{
+  
+    margin-bottom: 0%;
+  }
+  

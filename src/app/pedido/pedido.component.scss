@@ -1,0 +1,106 @@
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+
+.customCard {
+
+  margin-top: 15%;
+  width: 700px;
+  max-height: 900px;
+  border-radius: 0px;
+
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-1.2.1&w=1000&q=80");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto auto auto;
+  
+}
+.buttonLogin {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.spacer{
+  flex: 1;
+}
+.form{
+  margin-right: 9%;
+  margin-left: 9%;
+}
+
+
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+.expasionPanel {
+  border-radius: 5px;
+  box-shadow: none !important;
+  background-color: rgba($color: #000000, $alpha: 0);
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+.button{
+    right: 0;
+}
+.with{
+  width: 100;
+  position: relative;
+
+}

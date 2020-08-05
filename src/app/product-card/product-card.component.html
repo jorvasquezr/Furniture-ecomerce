@@ -1,20 +1,54 @@
-<mat-card  style="margin:1em;" class="example-card">
 
 
-    <div fxLayout="row">
+
+    <mat-card style="margin:1em;" class="example-card">
+    <div fxLayout="row" >
         <img class="imgCard" mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
             <span fxFlex="10"></span>
-       
         <mat-card-content fxFlex="65">
+          
                 <mat-card-title class="text">Producto #1</mat-card-title>
                 <mat-card-subtitle class="text">Cuenta con Madera de Alta Calidad qwhmdhrwghsrjydthtrsjydtkujyrh</mat-card-subtitle>
                 <mat-card-content class="text">
+                    <section *ngIf="tipo=='carrito'">
+                        Cantidad:
+                        <mat-form-field class="example-margin">
+                            <input matInput type="number" value="1">
+                          </mat-form-field>
+
+                    </section>
+                    
                    <h4> USD 94$</h4>
+                
+
                 </mat-card-content>
+       
+
+                    
+           
+        
+          
          
         </mat-card-content>
+        <mat-card-actions  *ngIf="tipo=='tienda'">
+            <section>
+            <button mat-button>Comprar</button>
+            <button mat-button>Ver más</button>
+   </section>
+        </mat-card-actions>
+        <mat-card-actions  *ngIf="tipo=='carrito'">
+            <section>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" yPosition="below">
+                    <button mat-menu-item>Remover</button>
+                    <button mat-menu-item>Ver más</button>
+                  
+                </mat-menu>
+            </section>
         
-    </div>
 
+        </mat-card-actions>
+    </div>
 </mat-card>
-        

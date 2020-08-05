@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-vista-cliente',
@@ -7,8 +7,18 @@ import {Router} from '@angular/router';
   styleUrls: ['./vista-cliente.component.scss']
 })
 export class VistaClienteComponent implements OnInit {
-  page:String = 'Tienda';
-  constructor(public router:Router){}
+  page:String = '';
+  name:String = '';
+  
+  constructor(public router:Router, public activatedRoute:ActivatedRoute){
+
+    this.activatedRoute.params.subscribe(params => {
+      this.page=params.param;
+    });
+
+  
+
+  }
 
  
   public iniciarSesion(){
@@ -17,11 +27,14 @@ export class VistaClienteComponent implements OnInit {
   
 
   public pageSet(nombre:String) {
-    this.page=nombre;
-    
+    this.router.navigateByUrl('cliente/'+nombre);    
   }
 
   ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id'); 
+    console.log(id);
+      
+
   }
 
 }
