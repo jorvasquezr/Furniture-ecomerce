@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface taller {
-  nombre : string 
-}
-
-export interface sucursal {
-  nombre: string;
-  ubicacion: string;
-  empleados: number;
-  ganancias: number;
-  talleres : taller[];
-}
+import {sucursal} from "../models/sucursal.model";
+import {SucursalesService} from '../servicios/sucursales.service'
 
 @Component({
   selector: 'app-vista-sucursales',
@@ -19,28 +9,26 @@ export interface sucursal {
 })
 export class VistaSucursalesComponent implements OnInit {
 
-  public sucursales : sucursal[] = [
-    {
-      nombre: "Central",
-      ubicacion: "Cartago",
-      empleados : 50,
-      ganancias: 1000,
-      talleres : [ { nombre : "Cartago"} , { nombre : "Tres rios"} ]
-    },
-    {
-      nombre: "San jose",
-      ubicacion: "San pedro",
-      empleados: 60,
-      ganancias: 1000,
-      talleres : [ { nombre : "Curridabat"} , { nombre : "Sabanilla"} ]
-    }
-  ]
+  public sucursales : sucursal[] = this.agregar.sucursales;
+
+  nombre = "";
+  ubicacion = "";
+  empleados = 1;
+  ganancias = 1;
+  talleres = [];
+  nuevoTaller = "";
 
   agregarSucursal(){
+    this.agregar.agregarSucursal( this.nombre, this.ubicacion, this.empleados, this.ganancias)
     location.reload()
   }
 
-  constructor() { }
+  agregarTaller( nombre, ubicacion, empleados, ganancia, talleres){
+    this.agregar.agregarTaller( nombre, ubicacion, empleados, ganancia, talleres , this.nuevoTaller )
+    location.reload()
+  }
+
+  constructor( private agregar : SucursalesService) { }
 
   ngOnInit(): void {
   }

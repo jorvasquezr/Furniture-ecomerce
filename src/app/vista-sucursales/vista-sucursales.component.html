@@ -36,9 +36,10 @@
               </mat-expansion-panel-header>
               <div>
                 <mat-label>Ubicación</mat-label>
-                <input matInput>
+                <input matInput nuevoTaller [(ngModel)]="nuevoTaller">
               </div>
-              <button mat-button color="primary" (click)="agregarSucursal()">Agregar taller</button>
+              <button mat-button color="primary" (click)="
+              agregarTaller(sucursal.nombre, sucursal.ubicacion, sucursal.empleados,  sucursal.ganancias, sucursal.talleres)">Agregar taller</button>
             </mat-expansion-panel>
           </mat-expansion-panel>
         </div>
@@ -50,19 +51,19 @@
           </mat-expansion-panel-header>
             <div>
               <mat-label>Nombre</mat-label>
-              <input matInput>
+              <input matInput [(ngModel)]="nombre">
             </div>
             <div>
               <mat-label>Ubicación</mat-label>
-              <input matInput>
+              <input matInput [(ngModel)]="ubicacion">
             </div>
             <div>
               <mat-label>Empleados</mat-label>
-              <input matInput>
+              <input matInput [(ngModel)]="empleados">
             </div>
             <div>
               <mat-label>Ganancia aproximada por mes</mat-label>
-              <input matInput>
+              <input matInput [(ngModel)]="ganancias">
             </div>
             <button mat-button color="primary" (click)="agregarSucursal()">Agregar sucursal</button>
        
