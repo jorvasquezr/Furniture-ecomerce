@@ -1,13 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { elementAt } from 'rxjs/operators';
+import {puesto} from "../models/puestos.model"
+import {RangoSalariosService} from "../servicios/rango-salarios.service"
 
-export interface puesto {
-  nombre: string;
-  salarioMin: number;
-  salarioMax: number;
-}
+
 
 
 
@@ -18,46 +15,16 @@ export interface puesto {
 })
 export class RangoSalariosComponent implements OnInit {
 
-  private listPuestos : puesto[] = [
-    {
-      nombre : "Gerente",
-      salarioMin : 50,
-      salarioMax : 150
-    },
-    {
-      nombre : "Vendedor",
-      salarioMin : 10,
-      salarioMax : 50
-    },
-    {
-      nombre : "Cajero",
-      salarioMin : 10,
-      salarioMax : 60
-    },
-  ]
+  private listPuestos : puesto[] = this.rango.listPuestos;
  
 
   panelOpenState = false;
 
-  value = 0;
+  value = 10;
 
   hacerCambios(puesto, salariomin, salariomax){
-    const nuevo = 
-    {
-      nombre : puesto,
-      salarioMin : salariomin,
-      salarioMax : salariomax
-    }
-
-    const i = this.listPuestos.findIndex(user=>
-      user.nombre === puesto
-    )
-    delete this.listPuestos[i];
-    this.listPuestos.push(nuevo);
-
-    console.log( nuevo )
-
-    location.reload()
+    this.rango.hacerCambios(puesto, salariomin, salariomax);
+    location.reload();
   }
 
   displayedColumns: string[] = ['nombre', 'salarioMin', 'salarioMax'];
@@ -65,9 +32,15 @@ export class RangoSalariosComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor( private rango : RangoSalariosService) {   }
+
+  
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
+  }
+
+  updateSetting(event) {
+    this.value = event.value;
   }
 }

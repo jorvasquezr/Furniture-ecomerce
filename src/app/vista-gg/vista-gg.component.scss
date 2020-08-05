@@ -1,64 +1,85 @@
 .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
 
-  .toolbar img {
-    margin: 0 16px;
-  }
+.toolbar img {
+  margin: 0 16px;
+}
 
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
+.toolbar #twitter-logo {
+  height: 40px;
+  margin: 0 16px;
+}
 
-  .toolbar #twitter-logo:hover {
-    opacity: 0.8;
-  }
-
-  .spacer {
-    flex: 1;
-  }
+.toolbar #twitter-logo:hover {
+  opacity: 0.8;
+}
 
 
-  body,
-  html {
-    height: 100%;
-  }
+
+body,
+html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-1.2.1&w=1000&q=80");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   
-  .bg {
-    /* The image used */
-    background-image: url("https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-1.2.1&w=1000&q=80");
-    /* Full height */
-    height: 100%;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: auto auto auto;
-    
-  }
+}
 
-  .content {
-    display: flex;
-    transform: translateY(-50%);
-    top: 50%;
-    height: auto;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-  }
+.content {
+  display: flex;
+  top: 12%;
+  height: auto;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
+table {
+  width: 90%;
+}
+
+.thick {
+  font-weight: bold;
+}
+
+.tabla {
+  height: auto;
+  width: 95%;
+  overflow: auto;
+}
+
+mat-slider {
+  width: 300px;
+}
+
+.try1 {
+  margin: 31%;
   }
-  
+.try2 {
+  margin: 29%;  
+}
+.try3 {
+  margin: 29%;
+}
+.try4 {
+  margin: 22%;
+}
+

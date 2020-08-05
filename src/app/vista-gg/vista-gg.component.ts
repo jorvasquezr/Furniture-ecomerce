@@ -19,28 +19,6 @@ export interface sucursal {
 })
 export class VistaGGComponent implements OnInit {
 
-  public sucursales : sucursal[] = [
-    {
-      nombre: "Central",
-      ubicacion: "Cartago",
-      empleados : 50,
-      ganancias: 1000,
-      talleres : [ { nombre : "Cartago"} , { nombre : "Tres rios"} ]
-    },
-    {
-      nombre: "San jose",
-      ubicacion: "San pedro",
-      empleados: 60,
-      ganancias: 1000,
-      talleres : [ { nombre : "Curridabat"} , { nombre : "Sabanilla"} ]
-    }
-  ]
-
-  panelOpenState = false;
-
-  agregarSucursal(){
-    location.reload()
-  }
 
   constructor() { }
 

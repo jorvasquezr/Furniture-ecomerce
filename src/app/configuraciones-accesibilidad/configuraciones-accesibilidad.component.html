@@ -1,0 +1,86 @@
+<div class="content">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Modo nocturno
+        </mat-panel-title>
+        <mat-panel-description>
+          Cambia a la apariencia de la aplicación a colores oscuros
+          <mat-icon>nights_stay</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-slide-toggle>Modo Nocturno</mat-slide-toggle>
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Accesibilidad
+        </mat-panel-title>
+        <mat-panel-description>
+          Opciones para diferentes tipos de discapacidades visuales
+          <mat-icon>accessibility</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tamaño de letra</mat-label>
+        <mat-select>
+          <mat-option value="Por Defecto">Por Defecto</mat-option>
+          <mat-option value="Grande">Grande</mat-option>
+          <mat-option value="Extra Grande">Extra Grande</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Daltonismo</mat-label>
+        <mat-select>
+          <mat-option value="Protanopía">Protanopía</mat-option>
+          <mat-option value="Deuteranopía">Deuteranopía</mat-option>
+          <mat-option value="Tritanopía">Tritanopía</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Idioma
+        </mat-panel-title>
+        <mat-panel-description>
+          Seleccione el idioma que desea para la aplicación
+          <mat-icon>language</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Idioma</mat-label>
+        <mat-select>
+          <mat-option value="English">English</mat-option>
+          <mat-option value="Deutsch">Deutsch</mat-option>
+          <mat-option value="Português">Português</mat-option>
+          <mat-option value="Italiano">Italiano</mat-option>
+          <mat-option value="國語">國語</mat-option>
+          <mat-option value="日本語">日本語</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">End</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

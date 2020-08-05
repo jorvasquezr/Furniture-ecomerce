@@ -19,17 +19,17 @@
         </mat-card-actions>
         <mat-card-title fxLayoutAlign="center center" class="example-full-width"> Log In </mat-card-title>
         <mat-card-content>
-        <form class="form">
+        <form class="form"  (ngSubmit)="onSubmit()">
  
             <mat-form-field class="example-full-width">
       
                 <mat-label for="email">Correo</mat-label>
-                <input matInput type="text" placeholder="Digite su correo" name="email" id="email" required>
+                <input matInput [formControl]="email" type="text" placeholder="Digite su correo" name="email" id="email" required>
             </mat-form-field>
            
             <mat-form-field class="example-full-width">
                 <mat-label for="psw">Password</mat-label>
-                <input matInput type="password" placeholder="Digite su clave" name="psw" id="psw" required>
+                <input matInput [formControl]="psw" type="password" placeholder="Digite su clave" name="psw" id="psw" required>
             </mat-form-field>
             <div fxLayoutAlign="center center"> 
                 <button mat-raised-button color="primary" style=

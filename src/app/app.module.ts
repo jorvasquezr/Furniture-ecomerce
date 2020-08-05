@@ -3,9 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowseComponent } from './views/browse/browse.component';
 import { MatSelectModule,MatStepperModule,MatCardModule,MatInputModule,MatPaginatorModule,MatTabsModule,MatMenuModule,MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule ,MatDividerModule } from '@angular/material';
+import { MatCardModule,
+  MatPaginatorModule,
+  MatTabsModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule ,
+  MatDividerModule,
+  MatFormField,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSlideToggleModule,
+  MatSelectModule,
+  MatCheckboxModule} from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
@@ -14,6 +32,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CommonModule } from '@angular/common';
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
@@ -29,6 +49,9 @@ import { VistaVentaComponent } from './vista-venta/vista-venta.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { VistaClienteComponent } from './vista-cliente/vista-cliente.component';
 import { FooterComponent } from './footer/footer.component';
+import { VistaSucursalesComponent } from './vista-sucursales/vista-sucursales.component';
+import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesibilidad/configuraciones-accesibilidad.component';
+
 import { CarouserlImageComponent } from './carouserl-image/carouserl-image.component';
 import { VistaPromoionesComponent } from './vista-promoiones/vista-promoiones.component';
 import { DetallesDeProductoComponent } from './detalles-de-producto/detalles-de-producto.component';
@@ -74,8 +97,13 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     MisPedidosComponent,
     InicioComponent,
     TablaProductosComponent
+    VistaSucursalesComponent,
+    FooterComponent,
+    ConfiguracionesAccesibilidadComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
@@ -102,8 +130,15 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     MatSortModule,
     MatPaginatorModule,
     MatExpansionModule,
-    MatSliderModule
-    
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

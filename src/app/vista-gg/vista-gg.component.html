@@ -1,94 +1,77 @@
 
-<div class="toolbar" role="banner">
+  <div class="toolbar" role="banner">
     <mat-toolbar-row  color="warn">
 
         <span>Mueblería Vladimir</span>
-        <div class ="spacer"> </div>
-        <button mat-button routerLink="../reportes-generales/">Ver reportes generales</button>
         <button mat-button routerLink="../rango-salarios/" >Definir rango de salarios</button>
         <button mat-button routerLink="../ver-todos/">Ver empleados</button>
         <button mat-button  >Configuraciones</button>
-        <button mat-raised-button  >Cerrar sesión</button>
+        <button mat-raised-button>Cerrar sesión</button>
     
       </mat-toolbar-row>
     
 </div>
 
 
+
+
 <div class = "bg">
     <div class = "content">
-      <mat-card-title> Información general de cada sucursal</mat-card-title>
-      <p> Presione una sucursal para ver mas detalles</p>
-      <mat-accordion>
-        <div *ngFor="let sucursal of sucursales">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Sucursal {{ sucursal.nombre}}
-              </mat-panel-title>
-              <mat-panel-description>
-                Mostrar información especifica
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>Ubicación {{ sucursal.ubicacion}}</p>
-            <p>Empleados {{ sucursal.empleados}}</p>
-            <p>Ganancias aproximada {{ sucursal.ganancias}}$ por mes</p>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Talleres 
-                </mat-panel-title>
-                <mat-panel-description>
-                  Mostrar cada taller
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div *ngFor="let taller of sucursal.talleres">
-                <p>Taller {{taller.nombre}}</p>
-              </div>
-            </mat-expansion-panel>
-  
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Agregar taller nuevo 
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div class = "tabla">
-                <mat-label>Ubicación</mat-label>
-                <input matInput>
-              </div>
-              <button mat-button color="primary" (click)="agregarSucursal()">Agregar taller</button>
-            </mat-expansion-panel>
-          </mat-expansion-panel>
-        </div>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Agregar Sucursal nueva 
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-            <div>
-              <mat-label>Nombre</mat-label>
-              <input matInput>
-            </div>
-            <div>
-              <mat-label>Ubicación</mat-label>
-              <input matInput>
-            </div>
-            <div>
-              <mat-label>Empleados</mat-label>
-              <input matInput>
-            </div>
-            <div>
-              <mat-label>Ganancia aproximada por mes</mat-label>
-              <input matInput>
-            </div>
-            <button mat-button color="primary" (click)="agregarSucursal()">Agregar sucursal</button>
-       
-        </mat-expansion-panel>
+      <mat-card-title> Reportes generales de la empresa</mat-card-title>
+      <mat-tab-group dynamicHeight mat-align-tabs="center" class = "tabla">
+        <mat-tab label="Resumen">
+          <p></p>
+          <mat-card>
+            <mat-list>
+              <mat-list-item>
+                Ganancia bruta total: 5000$
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                Gastos totales: 4500$
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                Ganancia neta total: 500$
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item class = "thick">
+                Ranking entre sucursales
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item >
+                <div >Más personal: Cartago</div>
+                <div class = "try1"> Menos personal: San Carlos </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                <div > Mayor ganancia: San Jose</div>
+                <div class = "try2"> Menor ganancia: San Carlos </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                <div >Mayores gastos: San Jose</div>
+                <div class = "try3">Menores gastos: San Carlos </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                <div >Mayor porcentaje de ventas: Cartago</div>
+                <div class = "try4"> Menor porcentaje de ventas: San Carlos </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Ventas y gastos">
+          <p></p>
+          <app-reportes-generales></app-reportes-generales>
+        </mat-tab>
+        <mat-tab label="Sucursales">
+          <p></p>
+          <app-vista-sucursales></app-vista-sucursales>
 
-      </mat-accordion>
-            
+        </mat-tab>
+      </mat-tab-group>
+                  
     </div>
 </div>
 
