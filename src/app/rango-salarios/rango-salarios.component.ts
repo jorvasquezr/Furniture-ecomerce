@@ -22,8 +22,19 @@ export class RangoSalariosComponent implements OnInit {
 
   value = 10;
 
+  nombre = "";
+
+  min = 1;
+  
+  max = 2;
+
   hacerCambios(puesto, salariomin, salariomax){
     this.rango.hacerCambios(puesto, salariomin, salariomax);
+    location.reload();
+  }
+
+  agregar(){
+    this.rango.agregarPuesto(this.nombre, this.min, this.max);
     location.reload();
   }
 

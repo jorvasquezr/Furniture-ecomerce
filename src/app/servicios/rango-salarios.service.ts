@@ -23,6 +23,11 @@ export class RangoSalariosService {
       salarioMin : 10,
       salarioMax : 60
     },
+    {
+      nombre : "Artesano",
+      salarioMin : 10,
+      salarioMax : 60
+    }
   ]
 
   constructor( ) { 
@@ -51,6 +56,18 @@ export class RangoSalariosService {
       user.nombre === puesto
     )
     delete this.listPuestos[i];
+    this.listPuestos.push(nuevo);
+
+    localStorage.setItem("listaEncuestion", JSON.stringify(this.listPuestos));
+  }
+
+  agregarPuesto(puesto, salariomin, salariomax){
+    const nuevo = 
+    {
+      nombre : puesto,
+      salarioMin : salariomin,
+      salarioMax : salariomax
+    }
     this.listPuestos.push(nuevo);
 
     localStorage.setItem("listaEncuestion", JSON.stringify(this.listPuestos));

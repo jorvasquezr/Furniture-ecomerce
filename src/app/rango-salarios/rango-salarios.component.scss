@@ -49,12 +49,11 @@
 
   .content {
     display: flex;
-    transform: translateY(-50%);
-    top: 50%;
-    height: auto;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
+  top: 12%;
+  height: auto;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
   }
 
   table {
@@ -70,8 +69,14 @@
     width: 95%;
     overflow: auto;
   }
+  .tabla1 {
+    width: 95%;
+  }
 
   mat-slider {
     width: 300px;
   }
   
+  .try1 {
+    margin-left: 5%;
+}
