@@ -31,18 +31,18 @@
       <mat-form-field appearance="fill">
         <mat-label>Tamaño de letra</mat-label>
         <mat-select>
-          <mat-option>Por Defecto</mat-option>
-          <mat-option>Grande</mat-option>
-          <mat-option>Extra Grande</mat-option>
+          <mat-option value="Por Defecto">Por Defecto</mat-option>
+          <mat-option value="Grande">Grande</mat-option>
+          <mat-option value="Extra Grande">Extra Grande</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
         <mat-label>Daltonismo</mat-label>
         <mat-select>
-          <mat-option>Protanopía</mat-option>
-          <mat-option>Deuteranopía</mat-option>
-          <mat-option>Tritanopía</mat-option>
+          <mat-option value="Protanopía">Protanopía</mat-option>
+          <mat-option value="Deuteranopía">Deuteranopía</mat-option>
+          <mat-option value="Tritanopía">Tritanopía</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -59,19 +59,19 @@
         </mat-panel-title>
         <mat-panel-description>
           Seleccione el idioma que desea para la aplicación
-          <mat-icon>date_range</mat-icon>
+          <mat-icon>language</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Idioma</mat-label>
         <mat-select>
-          <mat-option>English</mat-option>
-          <mat-option>Deutsch</mat-option>
-          <mat-option>Português</mat-option>
-          <mat-option>Italiano</mat-option>
-          <mat-option>國語</mat-option>
-          <mat-option>日本語</mat-option>
+          <mat-option value="English">English</mat-option>
+          <mat-option value="Deutsch">Deutsch</mat-option>
+          <mat-option value="Português">Português</mat-option>
+          <mat-option value="Italiano">Italiano</mat-option>
+          <mat-option value="國語">國語</mat-option>
+          <mat-option value="日本語">日本語</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-datepicker #picker></mat-datepicker>

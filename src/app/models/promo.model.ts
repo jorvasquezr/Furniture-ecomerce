@@ -1,6 +1,6 @@
 export interface Promo{
   idProducto: number;
-  nombreProducto: number;
+  nombreProducto: string;
   nuevoPrecio: number;
   fechaFinal: Date;
 }
