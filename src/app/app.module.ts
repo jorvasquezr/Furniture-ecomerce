@@ -16,11 +16,13 @@ import { MatCardModule,
   MatIconModule,
   MatButtonModule ,
   MatDividerModule,
+  MatDialogModule,
   MatFormField,
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatSnackBarModule,
   MatSlideToggleModule,
   MatSelectModule,
   MatProgressBarModule,
@@ -67,6 +69,7 @@ import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TablaProductosComponent } from './tabla-productos/tabla-productos.component';
 import { RatingStarComponent } from './rating-star/rating-star.component';
+import { DialogoEvaluacionComponent } from './dialogo-evaluacion/dialogo-evaluacion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,7 +104,8 @@ import { RatingStarComponent } from './rating-star/rating-star.component';
     VistaSucursalesComponent,
     FooterComponent,
     ConfiguracionesAccesibilidadComponent,
-    RatingStarComponent
+    RatingStarComponent,
+    DialogoEvaluacionComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -109,12 +113,14 @@ import { RatingStarComponent } from './rating-star/rating-star.component';
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
+    MatSnackBarModule,
     MatMenuModule,
     MatTabsModule,
     MatRippleModule,
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     MatSelectModule,
     MatToolbarModule,
     FlexLayoutModule,

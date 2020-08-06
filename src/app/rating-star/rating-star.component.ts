@@ -26,7 +26,6 @@ export class RatingStarComponent implements OnInit {
 
   public toggleRating(s: number): void {
     this.ratedCount = s;
-    console.log(s)
     this.onRating.emit(this.ratedCount);
   }
 

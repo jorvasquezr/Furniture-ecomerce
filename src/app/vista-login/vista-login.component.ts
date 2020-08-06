@@ -22,6 +22,7 @@ export class VistaLoginComponent implements OnInit {
     this.location.back(); 
   }
   
+  
   onSubmit() {
     this.auth.validarUsuario(this.email.value,this.psw.value);
     

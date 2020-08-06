@@ -9,8 +9,8 @@
          
                     <mat-card-subtitle class="text">Fecha de solicitud: 10/11/2011 23:54</mat-card-subtitle>
                     <mat-card-content class="text"> 
-                       <div><span class= "bold"> Total:</span> USD 94$</div>
-                       <div><span class= "bold"> Estado del envio:</span> USD 94$</div>
+                       <div><span class= "bold"> Total:</span> {{entrega}}</div>
+                       <div><span class= "bold"> Estado del envio:</span> {{producto}}</div>
                        <div><span class= "bold"> Pago:</span> Cancelado</div>
                        <div><span class= "bold"> Resumen de productos:</span></div>
                     </mat-card-content>         
@@ -27,10 +27,10 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" yPosition="below">
-                    <button mat-menu-item>Calificar</button>
+                    <button mat-menu-item [disabled]="pedidoCalificado" (click)="openDialog()">Calificar</button>
                   
                 </mat-menu>
-     
+      
           
             
         </mat-card-actions >
@@ -39,7 +39,7 @@
         </div>
 
          <mat-expansion-panel #panel class = "productList boxShadowNode">
-            <app-tabla-productos></app-tabla-productos>
+            <app-tabla-productos class="pedidos"></app-tabla-productos>
         </mat-expansion-panel >
     </mat-card>
   

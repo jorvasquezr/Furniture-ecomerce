@@ -1,0 +1,25 @@
+<div fxLayoutAlign="center center" ><h3 mat-dialog-title> Calificación de Pedido  #{{data.pedidoId}}</h3>
+</div>
+    <div mat-dialog-content>
+  
+
+   <div fxLayoutAlign="center center" class="starPlatinumTitle" >
+       <mat-label>Entrega</mat-label> 
+    </div>
+    <div fxLayoutAlign="center center" class="starPlatinum">
+        <app-rating-star (onRating) ="calificarEntrega($event)" max=5></app-rating-star>
+    </div>
+
+    <div fxLayoutAlign="center center" class="starPlatinumTitle">
+        <mat-label>Producto</mat-label>
+     </div>
+    <div fxLayoutAlign="center center" class="starPlatinum">
+        <app-rating-star (onRating) ="calificarProducto($event)" max=5></app-rating-star>
+    </div>
+    <mat-error *ngIf="isError">{{error1}}</mat-error>
+
+</div>
+<div fxLayoutAlign="center center" mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="matDialogClose()" cdkFocusInitial>Enviar</button>
+</div>
