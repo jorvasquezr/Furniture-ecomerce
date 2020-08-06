@@ -104,5 +104,25 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <p></p>
+        <mat-expansion-panel class = "tabla1">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Agregar un nuevo puesto 
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+            <div>
+              <mat-label>Puesto</mat-label>
+              <input matInput [(ngModel)]="nombre" class = "try1">
+              <mat-label class = "try1">Salario minimo</mat-label>
+              <input matInput [(ngModel)]="min" class = "try1">
+              <mat-label class = "try1">Salario maximo</mat-label>
+              <input matInput [(ngModel)]="max" class = "try1">
+              <button mat-button color="primary" (click)="agregar()" class = "try1">Agregar puesto</button>
+            </div>
+            
+       
+        </mat-expansion-panel>
     
     </div>
+  </div>
