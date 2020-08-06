@@ -20,16 +20,13 @@ export class LoginService {
   ]
 
   constructor() {
-    if (localStorage.getItem("users") === null) {
-      console.log("お兄ちゃん")
+    if (localStorage.getItem("users") == null) {
+      localStorage.setItem('users',JSON.stringify(this.usuarios));
     }
     else{
       var filtered = JSON.parse(localStorage.getItem("users")) as User[];
-      var filtered = filtered.filter(function (el) {
-        return el != null;
-      });
-    Array.prototype.push.apply(this.usuarios,filtered);  ;
-    console.log(this.usuarios);
+      var filtered = filtered.filter(function (el) {return el != null;});
+      this.usuarios = filtered;
     }
   }
 
