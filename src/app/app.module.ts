@@ -23,6 +23,7 @@ import { MatCardModule,
   MatNativeDateModule,
   MatSlideToggleModule,
   MatSelectModule,
+  MatProgressBarModule,
   MatCheckboxModule} from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -32,6 +33,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
+
 import { VistaGGComponent } from './vista-gg/vista-gg.component';
 import { ReportesGeneralesComponent } from './reportes-generales/reportes-generales.component';
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
@@ -64,6 +66,7 @@ import { PedidoCardComponent } from './pedido-card/pedido-card.component';
 import { MisPedidosComponent } from './mis-pedidos/mis-pedidos.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TablaProductosComponent } from './tabla-productos/tabla-productos.component';
+import { RatingStarComponent } from './rating-star/rating-star.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +100,8 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     TablaProductosComponent,
     VistaSucursalesComponent,
     FooterComponent,
-    ConfiguracionesAccesibilidadComponent
+    ConfiguracionesAccesibilidadComponent,
+    RatingStarComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -132,6 +136,7 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatProgressBarModule,
     MatNativeDateModule,
     MatGridListModule,
     MatSlideToggleModule,

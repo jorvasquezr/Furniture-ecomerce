@@ -1,6 +1,6 @@
 <mat-toolbar    class = "toolbar" color="primary">
     <mat-toolbar-row  >
-      <span>Mueblería Vladimir</span>
+      <span class ="fontd">Mueblería Vladimir</span>
       <div class ="spacer"> </div>
       
       <button mat-button  (click)="pageSet('promociones')">Promociones</button>
@@ -19,7 +19,7 @@
     <div><app-mis-pedidos class = "content" *ngSwitchCase ="'misPedidos'"></app-mis-pedidos></div>
   <div><app-main-nav class = "content" *ngSwitchCase ="'tienda'"></app-main-nav></div>
   <div><app-carrito class = "content" *ngSwitchCase ="'carrito'"></app-carrito></div>
-  <div><app-vista-promoiones class = content *ngSwitchDefault></app-vista-promoiones></div>
+  <div><app-rating-star max=5></app-rating-star></div>
   </body>
 
  
