@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input() public tipo: string="tienda";
+  @Input() public id: string="tienda";
 
 
 

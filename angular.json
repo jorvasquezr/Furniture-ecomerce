@@ -27,7 +27,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -121,8 +122,13 @@
               "devServerTarget": "Furniture-ecomerce:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Furniture-ecomerce"
 }
