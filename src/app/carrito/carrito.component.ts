@@ -26,9 +26,11 @@ export class CarritoComponent  {
     public cantidadProductos:number;
 
   constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
-    this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
-    for (let i = 0; i < this.pedido.carrito.length; i++) {
-      
+    if(this.auth.usuarioActual!=null){
+      this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
+        for (let i = 0; i < this.pedido.carrito.length; i++) {
+          
+      }
     }
   }
 
