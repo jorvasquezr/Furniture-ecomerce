@@ -1,39 +1,24 @@
-
-
-
 <mat-card style="margin:1em;" class="customCard">
     <div fxLayout="row" >
         <img class="imgCard" mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
             <span fxFlex="10"></span>
         <mat-card-content fxFlex="65">
           
-                <mat-card-title class="text">Producto #{{id}}</mat-card-title>
-                <mat-card-subtitle class="text">Cuenta con Madera de Alta Calidad qwhmdhrwghsrjydthtrsjydtkujyrh</mat-card-subtitle>
+                <mat-card-title class="text">{{producto.nombre}}</mat-card-title>
+                <mat-card-subtitle class="text">Descripcion: {{producto.descripcion}}</mat-card-subtitle>
                 <mat-card-content class="text">
                     <section *ngIf="tipo=='carrito'">
                         Cantidad:
                         <mat-form-field class="example-margin">
                             <input matInput type="number" value="1">
                           </mat-form-field>
-
                     </section>
-                    
-                   <h4> USD 94$</h4>
-                
-
+                   <h4>USD ${{producto.precio}}</h4>
                 </mat-card-content>
-            
-       
-
-                    
-           
-        
-          
-         
-        </mat-card-content>
+            </mat-card-content>
         <mat-card-actions  *ngIf="tipo=='tienda'">
             <section>
-            <button mat-button>Comprar</button>
+            <button (click)="comprar()"  mat-button>Comprar</button>
             <button mat-button>Ver más</button>
    </section>
         </mat-card-actions>
@@ -48,8 +33,6 @@
                   
                 </mat-menu>
             </section>
-        
-
         </mat-card-actions>
     </div>
 </mat-card>

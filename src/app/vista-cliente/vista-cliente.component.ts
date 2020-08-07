@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
+import { CompraService } from "../servicios/compra.service";
 
 @Component({
   selector: 'app-vista-cliente',
@@ -10,17 +11,13 @@ export class VistaClienteComponent implements OnInit {
   page:String = '';
   name:String = '';
   
-  constructor(public router:Router, public activatedRoute:ActivatedRoute){
+  constructor(private compraService : CompraService,public router:Router, public activatedRoute:ActivatedRoute){
 
     this.activatedRoute.params.subscribe(params => {
       this.page=params.param;
     });
-
-  
-
   }
 
- 
   public iniciarSesion(){
     this.router.navigateByUrl('vista-login')
   }
@@ -33,8 +30,6 @@ export class VistaClienteComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id'); 
     console.log(id);
-      
-
   }
 
 }

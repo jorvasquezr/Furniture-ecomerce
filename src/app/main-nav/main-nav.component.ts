@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { CompraService } from '../servicios/compra.service';
+import { Producto } from '../models/producto.model';
 
 @Component({
   selector: 'app-main-nav',
@@ -16,6 +18,9 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  public productosOfrecidos: Producto[];
 
+  constructor(private compraService : CompraService,private breakpointObserver: BreakpointObserver) {
+    this.productosOfrecidos= this.compraService.productosOfrecidos ;
+  }
 }

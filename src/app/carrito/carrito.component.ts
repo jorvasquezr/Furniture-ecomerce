@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { CompraService } from '../servicios/compra.service';
+import { Carrito } from '../models/carrito.model';
 
 @Component({
   selector: 'app-carrito',
@@ -14,10 +16,13 @@ export class CarritoComponent  {
       map(result => result.matches),
       shareReplay()
     );
-
-    constructor(private breakpointObserver: BreakpointObserver) {}
+    public carrito:Carrito[];
+  constructor(private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+    this.carrito = this.compraService.carrito;
+  }
 
   ngOnInit(): void {
+
   }
 
 }

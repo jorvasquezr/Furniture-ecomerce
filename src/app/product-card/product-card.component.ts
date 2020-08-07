@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { CompraService } from '../servicios/compra.service';
+import { Producto } from '../models/producto.model';
 
 @Component({
   selector: 'app-product-card',
@@ -7,10 +9,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input() public tipo: string="tienda";
-  @Input() public id: string="tienda";
+  @Input() public producto: Producto;
 
-
-
-  constructor() { }
-
+  constructor(private compraService : CompraService) {
+  }
+  comprar(){
+    this.compraService.agregarProducto(this.producto,1);
+  }
 }

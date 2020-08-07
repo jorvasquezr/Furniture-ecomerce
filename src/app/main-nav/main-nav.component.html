@@ -44,21 +44,12 @@
               [pageSizeOptions]="[5, 10, 25, 100]">
         </mat-paginator>
       </mat-toolbar>
-
-
-
 <div class="cardList">
-
-  <ng-container *ngFor="let i of [1,2,3,4,5,6,1,1,1,1,1,1,1]">
-    <app-product-card [id] = "i" ></app-product-card>
+  <ng-container *ngFor="let i of let p of productosOfrecidos">
+    <app-product-card [producto] = "i" ></app-product-card>
     <mat-divider ></mat-divider>
   </ng-container>
-
-  
 </div>
-
-
-
   </mat-sidenav-content>
 </mat-sidenav-container>
 <app-footer></app-footer>
