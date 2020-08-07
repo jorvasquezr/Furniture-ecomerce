@@ -3,7 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CompraService } from '../servicios/compra.service';
-import { Carrito } from '../models/carrito.model';
+import { LoginService } from '../servicios/login.service';
+import { Pedido } from '../models/pedido.model';
 
 @Component({
   selector: 'app-carrito',
@@ -16,9 +17,19 @@ export class CarritoComponent  {
       map(result => result.matches),
       shareReplay()
     );
-    public carrito:Carrito[];
-  constructor(private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
-    this.carrito = this.compraService.carrito;
+
+    public pedido:Pedido;
+
+    public total:number;
+    public descuento:number;
+    public totalNeto:number;
+    public cantidadProductos:number;
+
+  constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+    this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
+    for (let i = 0; i < this.pedido.carrito.length; i++) {
+      
+    }
   }
 
   ngOnInit(): void {

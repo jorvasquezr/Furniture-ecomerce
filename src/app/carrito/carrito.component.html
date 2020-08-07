@@ -14,19 +14,19 @@
           <table style="width: 100%;">
             <tr >
               <td><h4>Total</h4></td>
-              <td>4000$</td>
+              <td>{{total}}</td>
             </tr>
             <tr >
               <td><h4>Descuento</h4></td>
-              <td>4000$</td>
+              <td>{{descuento}}</td>
             </tr>
             <tr >
               <td><h4>Precio a pagar</h4></td>
-              <td>4000$</td>
+              <td>{{totalNeto}}</td>
             </tr>
             <tr >
               <td><h4>Cantidad de productos</h4></td>
-              <td>100</td>
+              <td>{{cantidadProductos}}</td>
             </tr>
           </table>
 
@@ -39,8 +39,8 @@
     </mat-sidenav>
     <mat-sidenav-content class = "sidenav-content" >
   <div class="cardList">
-    <ng-container *ngFor="let i of let p of carrito">
-      <app-product-card [producto] = "i" ></app-product-card>
+    <ng-container *ngFor="let p of carrito">
+      <app-product-card [producto] = "p.producto" ></app-product-card>
       <mat-divider ></mat-divider>
     </ng-container>
   </div>

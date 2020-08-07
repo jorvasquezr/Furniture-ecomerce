@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../models/producto.model';
-import { Carrito } from '../models/carrito.model';
+import { Pedido } from '../models/pedido.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompraService {
 
-  public carrito : Carrito[] = []
+  public pedidos : Pedido[];
 
   public productosDisponibles: number[] = [1,2,2]
 
@@ -51,28 +52,33 @@ export class CompraService {
     } 
   }
 
-  agregarProducto(producto:Producto,cantidad:number){
-    for (let i = 0; i < this.carrito.length; i++) {
-      if(this.carrito[i].producto.id == producto.id)
-      this.carrito.splice(i, 1);
+  agregarProducto(correoUsuario:string,producto:Producto,cantidad:number){
+    for (let i = 0; i < this.pedidos.length; i++) {
+      if(this.pedidos[i].correoCliente == correoUsuario)
+        for (let i = 0; i < this.pedidos[i].carrito.length; i++) {
+          if(this.pedidos[i].carrito[i].producto.id == producto.id)
+            this.pedidos[i].carrito.splice(i, 1);
+        }
+        this.pedidos[i].carrito.push({producto,cantidad});
     }
-    this.carrito.push({producto,cantidad});
-    localStorage.setItem('carrito',JSON.stringify(this.carrito));
+    localStorage.setItem('carrito',JSON.stringify(this.pedidos));
   }
 
-  removerProductoCarrito(producto:Producto){
-    for (let i = 0; i < this.carrito.length; i++) {
-      if(this.carrito[i].producto.id == producto.id)
-      this.carrito.splice(i, 1);
+  removerProductoCarrito(idProducto:number,correoUsuario:string){
+    for (let i = 0; i < this.pedidos.length; i++) {
+      if(this.pedidos[i].correoCliente == correoUsuario)
+        for (let i = 0; i < this.pedidos[i].carrito.length; i++) {
+          if(this.pedidos[i].carrito[i].producto.id == idProducto)
+            this.pedidos[i].carrito.splice(i, 1);
+        }
     }
-    localStorage.setItem('carrito',JSON.stringify(this.carrito));
+    localStorage.setItem('pedidos',JSON.stringify(this.pedidos));
   }
-  getProduct(idProducto) {
-    console.log(this.productosOfrecidos);
-    console.log(idProducto);
+  
+  getMicarrito(correoUsuario: String){
     for (let i = 0; i < this.productosOfrecidos.length; i++) {
-      if(this.productosOfrecidos[i].id == idProducto)
-        return this.productosOfrecidos[i];
+      if(this.pedidos[i].correoCliente == correoUsuario)
+        return this.pedidos[i];
     }
   }
 }

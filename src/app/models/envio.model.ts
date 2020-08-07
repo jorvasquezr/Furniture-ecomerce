@@ -1,8 +1,5 @@
-import { Producto } from "./producto.model";
-
-export interface envio {
+export interface Envio {
     destino: string;
     estado: string;
-    producto: Producto;
     precio: number;
 }
