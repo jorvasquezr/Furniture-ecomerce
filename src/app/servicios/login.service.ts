@@ -16,6 +16,14 @@ export class LoginService {
       telefono:'2256-2222',
       password:'password',
       tipo: UserRole.GERENTE_GENERAL,
+    },
+    {
+      name:'neura',
+      email: 'admin@cenyth.com',
+      direccion: '200 mts del sol a la izquierda',
+      telefono:'2256-2256',
+      password:'MyPassword123',
+      tipo: UserRole.CLIENTE,
     }
   ]
 

@@ -39,14 +39,11 @@
     </mat-sidenav>
     <mat-sidenav-content class = "sidenav-content" >
   <div class="cardList">
-    <ng-container *ngFor="let p of carrito">
+    <ng-container *ngFor="let p of pedido.carrito">
       <app-product-card [producto] = "p.producto" ></app-product-card>
       <mat-divider ></mat-divider>
     </ng-container>
   </div>
-  
-  
-  
     </mat-sidenav-content>
   </mat-sidenav-container>
 

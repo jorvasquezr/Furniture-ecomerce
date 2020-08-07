@@ -28,8 +28,7 @@ export class VistaClienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id'); 
-    console.log(id);
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
 }

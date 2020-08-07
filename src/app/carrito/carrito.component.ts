@@ -18,7 +18,10 @@ export class CarritoComponent  {
       shareReplay()
     );
 
-    public pedido:Pedido;
+    public pedido:Pedido={
+      carrito:[],
+      correoCliente:""
+    };
 
     public total:number;
     public descuento:number;
@@ -28,9 +31,9 @@ export class CarritoComponent  {
   constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
       this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
-        for (let i = 0; i < this.pedido.carrito.length; i++) {
-          
-      }
+        //for (let i = 0; i < this.pedido.carrito.length; i++) {
+
+      //}
     }
   }
 
