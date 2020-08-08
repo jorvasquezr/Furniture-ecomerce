@@ -30,12 +30,19 @@ export class CarritoComponent  {
 
   constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
-      this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
-        //for (let i = 0; i < this.pedido.carrito.length; i++) {
-
-      //}
+      this.pedido = this.compraService.carrito;
+      //this.total = this.getTotal();
     }
+    
   }
+  private getTotal(){
+    
+      
+  }
+  private getDescuento(){
+      
+  }
+  
 
   ngOnInit(): void {
 

@@ -86,15 +86,7 @@ const empleados: trabajador[] = [
 
 ];
 
-const datosTabla: Producto[] = [
-  {nombre: 'Silla', precio: 5.99, id: 0, disponible: false},
-  {nombre: 'Sillon', precio: 5.99, id: 1, disponible: false},
-  {nombre: 'Repisa', precio: 5.99, id: 2, disponible: false},
-  {nombre: 'Mueble de baño', precio: 5.99, id: 3, disponible: false},
-  {nombre: 'Mesa', precio: 5.99, id: 4, disponible: false},
-  {nombre: 'Escritorio', precio: 5.99, id: 5, disponible: false},
-  {nombre: 'Biblioteca', precio: 5.99, id: 6, disponible: false},
-];
+const datosTabla: Producto[] = [];
 
 const promos: Promo[] = [];
 
