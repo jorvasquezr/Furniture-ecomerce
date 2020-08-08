@@ -3,9 +3,10 @@ import {MatFormField, MatTableDataSource} from '@angular/material';
 import {Producto} from '../models/producto.model';
 import {Promo} from '../models/promo.model';
 import { SelectionModel } from '@angular/cdk/collections';
-import {PromoService} from "../servicios/promo.service"
-
-
+import {PromoService} from '../servicios/promo.service';
+import {ProductoService} from '../servicios/producto.service';
+import {sucursal} from '../models/sucursal.model';
+import {SucursalesService} from '../servicios/sucursales.service';
 export interface trabajador{
   nombre: string;
   puesto: string;
@@ -86,18 +87,8 @@ const empleados: trabajador[] = [
 
 ];
 
-const datosTabla: Producto[] = [
-  {nombre: 'Silla', precio: 5.99, id: 0, disponible: false},
-  {nombre: 'Sillon', precio: 5.99, id: 1, disponible: false},
-  {nombre: 'Repisa', precio: 5.99, id: 2, disponible: false},
-  {nombre: 'Mueble de baño', precio: 5.99, id: 3, disponible: false},
-  {nombre: 'Mesa', precio: 5.99, id: 4, disponible: false},
-  {nombre: 'Escritorio', precio: 5.99, id: 5, disponible: false},
-  {nombre: 'Biblioteca', precio: 5.99, id: 6, disponible: false},
-];
-
 const promos: Promo[] = [];
-
+const datosTabla: Producto[] = [];
 
 @Component({
   selector: 'app-vista-gerente',
@@ -106,9 +97,11 @@ const promos: Promo[] = [];
 })
 
 export class VistaGerenteComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'id', 'nombre', 'precio', 'disponible'];
+  sucursales: sucursal[] = [];
+  displayedColumns: string[] = ['select', 'id', 'nombre', 'precio', 'descripcion'];
   displayedColumns2: string[] = ['nombre', 'puesto', 'salario', 'sucursal'];
   displayedColumns3: string[] = ['id', 'nombre', 'nuevoPrecio', 'fechaFin'];
+  displayedColumns4: string[] = ['id', 'nombre', 'precio', 'descripcion'];
   dataSource = new MatTableDataSource<Producto> (datosTabla);
   selection = new SelectionModel<Producto>(true, []);
   precioPromo: number;
@@ -116,6 +109,14 @@ export class VistaGerenteComponent implements OnInit {
   dataSource2 = empleados;
   dataSource3 = new MatTableDataSource<Promo> ([]);
   selected: any = -1;
+  gridsize = 0;
+  nombreNuevoProducto: string;
+  precioNuevoProducto: number;
+  descripcionNuevoProducto: string;
+  updateSetting(event) {
+    this.gridsize = event.value;
+  }
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -130,13 +131,26 @@ export class VistaGerenteComponent implements OnInit {
   }
 
   crearPromocion(){
+    if (!this.fechaMaxima || this.selected === -1 || this.gridsize === 0){
+      return;
+    }
     const nuevaPromo: Promo = {idProducto: this.selected.id, nombreProducto: this.selected.nombre,
-      nuevoPrecio: this.precioPromo, fechaFinal: this.fechaMaxima};
+      nuevoPrecio: (this.gridsize * (this.selected.precio / 100)), fechaFinal: this.fechaMaxima};
     this.servicioPromos.tablaCambiada(nuevaPromo).subscribe((data: Promo[]) => {
       this.dataSource3.data = data;
     });
   }
-
+  crearProducto(){
+    if (!this.nombreNuevoProducto) {
+      return;
+    }
+    const nuevoID = this.servicioProductos.getLastID() + 1;
+    const nuevoProducto: Producto = {nombre: this.nombreNuevoProducto, precio: this.precioNuevoProducto,
+      id: nuevoID, descripcion: this.descripcionNuevoProducto};
+    this.servicioProductos.tablaCambiada(nuevoProducto).subscribe((data: Producto[]) => {
+      this.dataSource.data = data;
+    })
+  }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Producto): string {
@@ -147,10 +161,15 @@ export class VistaGerenteComponent implements OnInit {
   }
 
   constructor(
-    private servicioPromos: PromoService
+    private servicioPromos: PromoService,
+    private servicioProductos: ProductoService,
+    private servicioSucursales: SucursalesService
   ) {this.servicioPromos.tablaCambiada().subscribe((data: Promo[]) => {
     this.dataSource3.data = data;
-  });}
+  });this.servicioProductos.tablaCambiada().subscribe((data: Producto[]) =>
+    this.dataSource.data = data);
+     this.sucursales = servicioSucursales.sucursales;
+  }
 
   ngOnInit(): void {
   }

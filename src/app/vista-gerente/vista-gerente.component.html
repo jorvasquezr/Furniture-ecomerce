@@ -1,124 +1,178 @@
 
 
+<div class="bg">
+  <mat-tab-group>
 
-<mat-tab-group>
+    <mat-tab label="Ver Promociones">
+      <div class="content">
+        <form class="example-form">
+          <div class="mat-subheading-2">Porcentaje de descuento: {{gridsize.value}} %</div>
+          <mat-slider #gridsize (change)="updateSetting($event)" step="5" min="0" max="100" [value]="gridsize"></mat-slider>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha de fin de la promoción</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)] = "fechaMaxima" name="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-  <mat-tab label="Ver Promociones">
-    <div class="content">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Nuevo Precio</mat-label>
-          <input matInput placeholder="Ex. Pizza" value="4.99" [(ngModel)]='precioPromo' name="precio">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-          <mat-label>Fecha de fin de la promoción</mat-label>
-          <input matInput [matDatepicker]="picker" [(ngModel)] = "fechaMaxima" name="fecha">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <button mat-button (click) = "crearPromocion()">Ingresar</button>
-      </form>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          (change)="selected=row"
-                          [checked]="selected===row"
-                          [aria-label]="checkboxLabel(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID</th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-        <ng-container matColumnDef="precio">
-          <th mat-header-cell *matHeaderCellDef> Precio </th>
-          <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
-        </ng-container>
-        <ng-container matColumnDef="disponible">
-          <th mat-header-cell *matHeaderCellDef> Disponible </th>
-          <td mat-cell *matCellDef="let element"> {{element.disponible}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-            (click)="selection.toggle(row)"></tr>
-      </table>
-      <br>
-      <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>ID de Producto</th>
-          <td mat-cell *matCellDef="let element">{{element.idProducto}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef>Nombre de Producto</th>
-          <td mat-cell *matCellDef="let element">{{element.nombreProducto}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="nuevoPrecio">
-          <th mat-header-cell *matHeaderCellDef>Nuevo Precio</th>
-          <td mat-cell *matCellDef="let element">{{element.nuevoPrecio}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="fechaFin">
-          <th mat-header-cell *matHeaderCellDef>Fecha de fin de la Promoción</th>
-          <td mat-cell *matCellDef="let element">{{element.fechaFinal}}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
-      </table>
-    </div>
-  </mat-tab>
-  <mat-tab label="Ver Reportes">Ver Reportes</mat-tab>
-  <mat-tab label="Ver Empleados">
-    <div class = "content">
-      <mat-card-title> Lista de empleados de todas las sucursales</mat-card-title>
-      <br>
-      <div class = "tabla">
-        <table mat-table [dataSource]="dataSource2" matSort class = "tabla">
-
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- Position Column -->
+          <button mat-button (click) = "crearPromocion()">Ingresar</button>
+        </form>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="selected=row"
+                            [checked]="selected===row"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
           <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-            <td mat-cell *matCellDef="let empleado"> {{empleado.nombre}} </td>
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+          </ng-container>
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
           </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="puesto">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Puesto </th>
-            <td mat-cell *matCellDef="let empleado"> {{empleado.puesto}} </td>
-          </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="salario">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario </th>
-            <td mat-cell *matCellDef="let empleado"> {{empleado.salario}} $ </td>
-          </ng-container>
-
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="sucursal">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sucursal </th>
-            <td mat-cell *matCellDef="let empleado"> {{empleado.sucursal}} </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row)"></tr>
         </table>
+        <br>
+        <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID de Producto</th>
+            <td mat-cell *matCellDef="let element">{{element.idProducto}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre de Producto</th>
+            <td mat-cell *matCellDef="let element">{{element.nombreProducto}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nuevoPrecio">
+            <th mat-header-cell *matHeaderCellDef>Nuevo Precio</th>
+            <td mat-cell *matCellDef="let element">{{element.nuevoPrecio}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="fechaFin">
+            <th mat-header-cell *matHeaderCellDef>Fecha de fin de la Promoción</th>
+            <td mat-cell *matCellDef="let element">{{element.fechaFinal}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Agregar Producto">
+      <div class="content">
+        <div class="mat-subheading-2">Agregar Nuevo Producto</div>
+        <form class="nuevoProducto">
+          <mat-form-field>
+            <mat-label>Nombre del producto</mat-label>
+            <input [(ngModel)] = "nombreNuevoProducto" name="nuevoProducto" matInput>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Precio</mat-label>
+            <input [(ngModel)] = "precioNuevoProducto" name="nuevoPrecio" matInput>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input [(ngModel)] = "descripcionNuevoProducto" name="nuevaDescripcion" class="descripcion" matInput>
+          </mat-form-field><br>
+          <button mat-button (click)="crearProducto()">Agregar</button>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID</th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef> Precio </th>
+              <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+            </ng-container>
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+              <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
+          </table>
+        </form>
 
       </div>
+    </mat-tab>
+    <mat-tab label="Ver Reportes">
+      <div class="content">
+        <div class="mat-subheading-2">Reportes de la sucursal</div>
+        <mat-form-field>
+          <mat-label>Seleccione la Sucursal</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let sucursal of sucursales">{{sucursal.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+    <mat-tab label="Ver Empleados">
+      <div class = "content">
+        <mat-card-title> Lista de empleados de todas las sucursales</mat-card-title>
+        <br>
+        <div class = "tabla">
+          <table mat-table [dataSource]="dataSource2" matSort class = "tabla">
 
-    </div>
-  </mat-tab>
-</mat-tab-group>
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+              <td mat-cell *matCellDef="let empleado"> {{empleado.nombre}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="puesto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Puesto </th>
+              <td mat-cell *matCellDef="let empleado"> {{empleado.puesto}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="salario">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario </th>
+              <td mat-cell *matCellDef="let empleado"> {{empleado.salario}} $ </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="sucursal">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Sucursal </th>
+              <td mat-cell *matCellDef="let empleado"> {{empleado.sucursal}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+          </table>
+
+        </div>
+
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -7,7 +7,7 @@ import {puesto} from "../models/puestos.model";
 
 export class RangoSalariosService {
 
-  public listPuestos : puesto[] = [
+  public listPuestos: puesto[] = [
     {
       nombre : "Gerente",
       salarioMin : 50,
@@ -30,7 +30,7 @@ export class RangoSalariosService {
     }
   ]
 
-  constructor( ) { 
+  constructor( ) {
     if (localStorage.getItem("listaEncuestion") === null) {
       console.log("hola")
     }
@@ -45,7 +45,7 @@ export class RangoSalariosService {
   }
 
   hacerCambios(puesto, salariomin, salariomax){
-    const nuevo = 
+    const nuevo =
     {
       nombre : puesto,
       salarioMin : salariomin,
@@ -62,7 +62,7 @@ export class RangoSalariosService {
   }
 
   agregarPuesto(puesto, salariomin, salariomax){
-    const nuevo = 
+    const nuevo =
     {
       nombre : puesto,
       salarioMin : salariomin,
