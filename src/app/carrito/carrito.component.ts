@@ -67,7 +67,7 @@ export class CarritoComponent  {
   }
   private obtenerPrecioDescuento(id){
     for (let i = 0; i < this.promoService.datos.length; i++) {
-      if(this.promoService.datos[i].idProducto==id)
+      if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
         return this.promoService.datos[i].nuevoPrecio
     }
     return 0;
