@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../models/producto.model';
-import { Pedido } from '../models/pedido.model';
+import { Pedido, Estado } from '../models/pedido.model';
 import { User } from '../models/user.model';
-import { Carrito,CarritoRole } from '../models/carrito.model'
 import { concatMapTo } from 'rxjs/operators';
 
 @Injectable({
@@ -14,7 +13,8 @@ export class CompraService {
 
   public carrito: Pedido={
     correoCliente:"",
-    carrito:[]
+    carrito:[],
+    estado:Estado.FABRICACION
   };
 
   public productosDisponibles: number[] = [1,2,2]
@@ -65,30 +65,29 @@ export class CompraService {
     }
   }
 
-  agregarProducto(producto:Producto,cantidad:number,rol:CarritoRole){
-    //agrega un producto al carrito
-        for (let i = 0; i < this.carrito.carrito.length; i++) {
-          if(this.carrito.carrito[i].producto.id == producto.id)
-            this.pedidos[i].carrito.splice(i, 1);
-        }
-        const nuevo: Carrito = {
-          producto: producto,
-          cantidad: cantidad,
-          tipo:CarritoRole.PRODUCTO
-        };
-
-        console.log(nuevo);
-        //this.carrito.carrito.push(nuevo);
+  agregarProducto(idProducto:number,cantidad:number){
+    for (let i = 0; i < this.carrito.carrito.length; i++) {
+      if(this.carrito.carrito[i].idProducto == idProducto)
+        this.pedidos[i].carrito.splice(i, 1);
+      }
+    this.carrito.carrito.push({idProducto,cantidad});
   }
 
   removerProductoCarrito(idProducto:number){
     for (let i = 0; i < this.carrito.carrito.length; i++) {
-      if(this.carrito.carrito[i].producto.id == idProducto)
+      if(this.carrito.carrito[i].idProducto == idProducto)
         this.pedidos[i].carrito.splice(i, 1);
     }
   }
   
   getPedidos(correoUsuario: String){
     return this.pedidos.filter(el => el.correoCliente==correoUsuario);
+  }
+
+  getProducto(idProducto: number): Producto {
+    for (let i = 0; i < this.productosOfrecidos.length; i++) {
+      if(this.productosOfrecidos[i].id == idProducto)
+        return this.productosOfrecidos[i];
+    }
   }
 }

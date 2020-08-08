@@ -19,10 +19,6 @@
       
       </mat-nav-list>
       
-      
-
-      
-  
     </mat-sidenav>
     <mat-sidenav-content class = "sidenav-content" >
       <mat-toolbar color="secundary">
@@ -59,7 +55,7 @@
   <div class="cardList">
   
     <ng-container *ngFor="let i of pedidos">
-    <mat-accordion> <app-pedido-card  [pedido] = "i"></app-pedido-card></mat-accordion>
+    <mat-accordion> <app-pedido-card [pedido] = "i"></app-pedido-card></mat-accordion>
       <mat-divider></mat-divider>
     </ng-container>
   
