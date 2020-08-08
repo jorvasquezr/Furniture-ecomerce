@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../models/producto.model';
-import { Pedido, Estado } from '../models/pedido.model';
+import { Pedido } from '../models/pedido.model';
 import { User } from '../models/user.model';
 import { concatMapTo } from 'rxjs/operators';
 
@@ -14,7 +14,11 @@ export class CompraService {
   public carrito: Pedido={
     correoCliente:"",
     carrito:[],
-    estado:Estado.FABRICACION
+    id:340,
+    calEntrega:0,
+    calProducto:0,
+    calificado:false
+
   };
 
   public productosDisponibles: number[] = [1,2,2]

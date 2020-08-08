@@ -8,7 +8,8 @@ import {
   MatSnackBar,
   MatSnackBarConfig
 } from '@angular/material/snack-bar';
-import { Pedido,Estado } from '../models/pedido.model';
+import { Pedido } from '../models/pedido.model';
+import { Estado } from '../models/envio.model';
 import { Carrito } from '../models/carrito.model';
 @Component({
   selector: 'app-pedido-card',
@@ -17,6 +18,7 @@ import { Carrito } from '../models/carrito.model';
 })
 export class PedidoCardComponent {
     @Input() public pedido: Pedido;
+    pedidoCalificado=false;
     /*
     entrega=0;
     producto= 0;
@@ -25,26 +27,25 @@ export class PedidoCardComponent {
     pedidoEntregado=false;;
 */
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {
-    
+    this.pedidoCalificado=this.pedido.calificado;
    }
   openDialog(): void {
     
-    if(this.pedido.estado=Estado.ENTREGADO){
+    if(this.pedido.envio.estado=Estado.ENTREGADO){
+      const dialogRef = this.dialog.open(DialogoEvaluacionComponent, {
+        data: {pedidoId:this.pedido.id,entrega: this.pedido.calEntrega, producto: this.pedido.calEntrega}
+      });
 
-     
-    const dialogRef = this.dialog.open(DialogoEvaluacionComponent, {
-      data: {pedidoId:this.pedido.id,entrega: this.pedido.calEntrega, producto: this.pedido.calEntrega}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.pedido.calProducto = result.producto;
-      this.pedido.calEntrega = result.entrega;
-      this.pedido.calificado=true;
-    });
-  }else{
+      dialogRef.afterClosed().subscribe(result => {
+        this.pedido.calProducto = result.producto;
+        this.pedido.calEntrega = result.entrega;
+        this.pedido.calificado=true;
+      });
+    }else{
     this.openSnackBar()
+    }
   }
-  }
+
   abrirPanel(panel:MatExpansionPanel){
     panel.expanded=!panel.expanded;
   }

@@ -6,6 +6,7 @@ import { CompraService } from '../servicios/compra.service';
 import { LoginService } from '../servicios/login.service';
 import { Pedido } from '../models/pedido.model';
 import { Producto } from '../models/producto.model';
+import { PromoService } from '../servicios/promo.service';
 
 @Component({
   selector: 'app-carrito',
@@ -31,7 +32,7 @@ export class CarritoComponent  {
     public totalNeto:number;
     public cantidadProductos:number;
 
-  constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+  constructor(private promoService : PromoService,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
       //this.promociones=this.compraService.promociones;
 
@@ -43,8 +44,9 @@ export class CarritoComponent  {
       }
 
       this.total = this.getTotal();
+      this.descuento = this.getDescuento();
       this.cantidadProductos = this.productos.length;
-      //this.totalNeto=this.total-this.descuento
+      this.totalNeto=this.total-this.descuento
     }
     
   }
@@ -57,9 +59,19 @@ export class CarritoComponent  {
     
   }
   private getDescuento(){
-      
+    var total=0;
+    for (let i = 0; i < this.productos.length; i++) {
+      total+=this.obtenerPrecioDescuento(this.productos[i].id);
+    }
+    return total;
   }
-  
+  private obtenerPrecioDescuento(id){
+    for (let i = 0; i < this.promoService.datos.length; i++) {
+      if(this.promoService.datos[i].idProducto==id)
+        return this.promoService.datos[i].nuevoPrecio
+    }
+    return 0;
+  }
 
   ngOnInit(): void {
 
