@@ -6,7 +6,7 @@ import { User,UserRole } from '../models/user.model'
 })
 export class LoginService {
 
-  public usuarioActual: User= null;
+  public usuarioActual: User;
 
   public usuarios : User[] = [
     {
@@ -36,6 +36,11 @@ export class LoginService {
       var filtered = filtered.filter(function (el) {return el != null;});
       this.usuarios = filtered;
     }
+
+    if (localStorage.getItem("actualUser") != null) {
+      this.usuarioActual = JSON.parse(localStorage.getItem("actualUser")) as User;
+    }
+
   }
 
   registrarUsuario(user){
@@ -46,16 +51,20 @@ export class LoginService {
   }
   validarUsuario(email,psw){
     for (let i = 0; i < this.usuarios.length; i++) {
-      console.log(this.usuarios[i]);
       if(this.usuarios[i].email == email && this.usuarios[i].password== psw){
         if(this.usuarios[i].tipo ==UserRole.CLIENTE){
-          window.location.href = '/';this.usuarioActual=this.usuarios[i]}
+          this.usuarioActual=this.usuarios[i]; window.location.href = '/cliente/tienda';
+          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));
+        }
         if(this.usuarios[i].tipo ==UserRole.GERENTE_GENERAL){
-          window.location.href = '/vista-gg';this.usuarioActual=this.usuarios[i]}
+          window.location.href = '/vista-gg';this.usuarioActual=this.usuarios[i]
+          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
         if(this.usuarios[i].tipo ==UserRole.GERENTE){
-          window.location.href = '/vista-gerente';this.usuarioActual=this.usuarios[i]}
+          window.location.href = '/vista-gerente';this.usuarioActual=this.usuarios[i]
+          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
         if(this.usuarios[i].tipo ==UserRole.EMPLEADO){
-          window.location.href = '/vista-empleado';this.usuarioActual=this.usuarios[i]}
+          window.location.href = '/vista-empleado';this.usuarioActual=this.usuarios[i]
+          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
       }
     }
   }
