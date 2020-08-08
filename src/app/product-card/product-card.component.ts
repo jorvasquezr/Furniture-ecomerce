@@ -8,6 +8,7 @@ import { LoginService } from '../servicios/login.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss']
 })
+
 export class ProductCardComponent {
   @Input() public tipo: string="tienda";
   @Input() public producto: Producto;
@@ -15,6 +16,10 @@ export class ProductCardComponent {
   constructor(private auth:LoginService,private compraService : CompraService) {
   }
   comprar(){
-    this.compraService.agregarProducto(this.auth.usuarioActual.email,this.producto,1);
+    if(this.auth.usuarioActual!=null){
+      this.compraService.agregarProducto(this.producto.id,1);
+    } else {
+      console.log("Necesitas iniciar sesión para poder comprar");
+    }
   }
 }

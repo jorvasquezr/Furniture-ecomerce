@@ -11,7 +11,7 @@ export class VistaClienteComponent implements OnInit {
   page:String = '';
   name:String = '';
   
-  constructor(private compraService : CompraService,public router:Router, public activatedRoute:ActivatedRoute){
+  constructor(public router:Router, public activatedRoute:ActivatedRoute){
 
     this.activatedRoute.params.subscribe(params => {
       this.page=params.param;

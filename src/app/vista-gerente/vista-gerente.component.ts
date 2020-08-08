@@ -87,6 +87,8 @@ const empleados: trabajador[] = [
 
 ];
 
+const datosTabla: Producto[] = [];
+
 const promos: Promo[] = [];
 const datosTabla: Producto[] = [];
 
