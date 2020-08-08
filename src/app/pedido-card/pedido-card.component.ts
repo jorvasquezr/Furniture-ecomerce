@@ -8,7 +8,8 @@ import {
   MatSnackBar,
   MatSnackBarConfig
 } from '@angular/material/snack-bar';
-import { Pedido } from '../models/pedido.model';
+import { Pedido,Estado } from '../models/pedido.model';
+import { Carrito } from '../models/carrito.model';
 @Component({
   selector: 'app-pedido-card',
   templateUrl: './pedido-card.component.html',
@@ -28,24 +29,23 @@ export class PedidoCardComponent {
    }
   openDialog(): void {
     
-    if(this.pedido.pedidoEntregado){
+    if(this.pedido.estado=Estado.ENTREGADO){
 
+     
     const dialogRef = this.dialog.open(DialogoEvaluacionComponent, {
-
-      data: {pedidoId:this.pedidoId,entrega: this.entrega, producto: this.producto}
+      data: {pedidoId:this.pedido.id,entrega: this.pedido.calEntrega, producto: this.pedido.calEntrega}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.producto = result.producto;
-      this.entrega = result.entrega;
-      this.pedidoCalificado=true;
+      this.pedido.calProducto = result.producto;
+      this.pedido.calEntrega = result.entrega;
+      this.pedido.calificado=true;
     });
   }else{
     this.openSnackBar()
   }
   }
   abrirPanel(panel:MatExpansionPanel){
-    this.pedidoEntregado=!panel.expanded;
     panel.expanded=!panel.expanded;
   }
   openSnackBar() {
