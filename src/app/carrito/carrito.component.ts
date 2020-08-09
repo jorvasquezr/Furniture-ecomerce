@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { CompraService } from '../servicios/compra.service';
 import { LoginService } from '../servicios/login.service';
 import { Pedido } from '../models/pedido.model';
-import { Producto } from '../models/producto.model';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-carrito',
@@ -18,48 +18,25 @@ export class CarritoComponent  {
       map(result => result.matches),
       shareReplay()
     );
-/*
-    public pedido:Pedido={
-      carrito:[],
-      correoCliente:""
-    };
-*/
-    public productos:Producto[]=[];
+
+    public pedido:Pedido;
 
     public total:number;
     public descuento:number;
     public totalNeto:number;
     public cantidadProductos:number;
 
-  constructor(private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+  constructor(private router:Router,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
-      //this.promociones=this.compraService.promociones;
+      this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
+        //for (let i = 0; i < this.pedido.carrito.length; i++) {
 
-      //get products to show them, falta validar que no tenga promociones, si tiene promocion se muestra disitnto
-      for (let i = 0; i < this.compraService.carrito.carrito.length; i++) {
-          this.productos.push(
-            this.compraService.getProducto(this.compraService.carrito.carrito[i].idProducto)
-          );
-      }
-
-      this.total = this.getTotal();
-      this.cantidadProductos = this.productos.length;
-      //this.totalNeto=this.total-this.descuento
+      //}
     }
-    
   }
-  private getTotal(){
-    var total=0;
-    for (let i = 0; i < this.productos.length; i++) {
-      total+=this.productos[i].precio;
-    }
-    return total;
-    
+  goToPedido(){
+    this.router.navigate(['/pedido']);
   }
-  private getDescuento(){
-      
-  }
-  
 
   ngOnInit(): void {
 

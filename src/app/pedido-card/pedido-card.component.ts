@@ -3,6 +3,7 @@ import { MatExpansionPanel } from '@angular/material';
 import { DialogoEvaluacionComponent } from '../dialogo-evaluacion/dialogo-evaluacion.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogData} from '../dialogo-evaluacion/dialog-data'
+import {CompraService} from '../servicios/compra.service'
 
 import {
   MatSnackBar,
@@ -17,6 +18,8 @@ import { Carrito } from '../models/carrito.model';
 })
 export class PedidoCardComponent {
     @Input() public pedido: Pedido;
+    
+    
     /*
     entrega=0;
     producto= 0;
@@ -24,7 +27,8 @@ export class PedidoCardComponent {
     pedidoCalificado=false;
     pedidoEntregado=false;;
 */
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  constructor(private compra:CompraService,public dialog: MatDialog, private _snackBar: MatSnackBar) {
+    compra.productosDisponibles
     
    }
   openDialog(): void {

@@ -13,6 +13,10 @@ export class CompraService {
 
   public carrito: Pedido={
     correoCliente:"",
+    id:1000,
+    calEntrega:0,
+    calProducto:0,
+    calificado:false,
     carrito:[],
     estado:Estado.FABRICACION
   };
@@ -82,6 +86,9 @@ export class CompraService {
   
   getPedidos(correoUsuario: String){
     return this.pedidos.filter(el => el.correoCliente==correoUsuario);
+  }
+  getMicarrito(email:String):Pedido{
+    return this.carrito;
   }
 
   getProducto(idProducto: number): Producto {

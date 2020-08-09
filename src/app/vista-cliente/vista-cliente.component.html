@@ -5,10 +5,13 @@
       
       <button mat-button  (click)="pageSet('promociones')">Promociones</button>
       <button mat-button  (click)="pageSet('tienda')">Tienda</button>
-      <button mat-button  (click)="pageSet('misPedidos')">Mis Pedidos</button>
-      <button mat-button  (click)="pageSet('carrito')">Carrito</button>
-      <button mat-button  (click)="iniciarSesion()" >Registrarse</button>
-      <button mat-raised-button color="accent" (click)="iniciarSesion()" >Iniciar sesión</button>
+      <button mat-button *ngIf="userLogged"  (click)="pageSet('misPedidos')">Mis Pedidos</button>
+      <button mat-button *ngIf="userLogged" (click)="pageSet('carrito')">Carrito</button>
+      <button mat-button  (click)="pageSet('carrito')">Configuraciones</button>
+      <button mat-button  *ngIf="!userLogged" (click)="iniciarSesion()" >Iniciar sesión</button>
+      <button mat-raised-button *ngIf="!userLogged"  color="accent"  (click)="registrarse()" >Registrarse</button>
+      <button mat-raised-button *ngIf="userLogged"  color="accent"  (click)="cerrarSesion()" >Cerrar Sesion</button>
+      
  
     </mat-toolbar-row>
   

@@ -22,141 +22,190 @@
         </mat-card-header>
         <mat-horizontal-stepper linear #stepper>
 
-
-  <mat-step>
-    <ng-template matStepLabel>Resumen de compra</ng-template>
-    <p>you are done</p>
-    <div>
-      <button mat-button matStepperNext>Siguiente</button>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="firstFormGroup" #matStep optional>
-
-    <form [formGroup]="firstFormGroup" >
-      <ng-template matStepLabel>Detalles de Envio</ng-template>
-
-      <div style="margin-bottom: 30px;">
-        <mat-checkbox #checkBox (change)="formularioEnvio(panel,matStep)" formControlName="solicitudDeEnvio" class="example-margin"  >Solicitar Servicio de Envío</mat-checkbox>
-      </div>
-
-    <mat-accordion   #matAcordion class="with" >
-      <mat-expansion-panel class="expasionPanel" #panel disabled="true" hideToggle>
-
-
-      <div >
-      <mat-form-field appearance="standard" style="width: 90.5%;">
-        <mat-label>Provincia</mat-label>
-        <mat-select formControlName="provincia"  name="provincia" (selectionChange)="provinciaChange()" required>
-          <mat-option *ngFor="let p of provincias; let i = index" [value]="p" >
-            {{p}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div></div>
-
-
-      <mat-form-field appearance="standard" style="width: 90.5%;">
-        <mat-label>Cantón</mat-label>
-        <mat-select formControlName="canton"  name="provincia" (selectionChange)="cantonChange()" required>
-          <mat-option *ngFor="let p of cantones; let i = index" [value]="p" >
-            {{p}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div></div>
-
-
-      <mat-form-field appearance="standard" style="width: 90.5%;">
-        <mat-label>Distrito</mat-label>
-        <mat-select formControlName="distrito"  name="provincia" required>
-          <mat-option *ngFor="let p of distritos; let i = index" [value]="p" >
-            {{p}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div><mat-form-field style="width: 90.5%;">
-        <mat-label>Calle</mat-label>
-        <input matInput formControlName="calle" placeholder="" required>
-      </mat-form-field>
-    </div>
-    <div><mat-form-field style="width: 90.5%;">
-      <mat-label>Direccion</mat-label>
-      <textarea matInput formControlName="direccion" required></textarea>
-    </mat-form-field>
-  </div>
-    </div>
-
-  </mat-expansion-panel>
-</mat-accordion>
-
-      <div>
-        <button mat-button matStepperPrevious>Atras</button>
-        <button mat-button matStepperNext>Siguiente</button>
-      </div>
-    </form>
-
-
-
-
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" >
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Información de pago</ng-template>
-      
-      <div><mat-form-field style="width: 90.5%;">
-        <mat-label>Nombre de Targeta</mat-label>
-        <input matInput formControlName="nombreTargerta" placeholder="Julieta Benavides C."
-               required>
-      </mat-form-field></div>
-
-      <div><mat-form-field  style="width: 90.5%;">
-        <mat-label>Numero de Targeta</mat-label>
-        <input matInput formControlName="numeroTargeta" creditCardNumber  placeholder="1234-1234-1234-1234"
-               required>
-      </mat-form-field></div>
-
-      <div><mat-form-field appearance="standard">
-        <mat-label>Mes de vencimiento</mat-label>
-        <mat-select formControlName="mesVencimiento"  name="mes" required>
-          <mat-option *ngFor="let p of meses; let i = index" [value]="p" >
-            {{p}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field style="margin-left: 10px;" appearance="standard">
-        <mat-label>Año de Vencimiento</mat-label>
-        <mat-select formControlName="annyoVencimiento"  name="anyo"  required>
-          <mat-option *ngFor="let p of anyos; let i = index" [value]="p" >
-            {{p}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field style="margin-left: 10px;" >
-        <mat-label>CSV</mat-label>
-        <input matInput formControlName="csv" csv  placeholder="123"
-               required>
-      </mat-form-field></div>
-      
- 
-        <div>
-           
-            <button mat-button matStepperPrevious>Atras</button>
-            <button class= "button" mat-button matStepperNext>Pagar</button>
-        </div>
-
-      
-    </form>
-  </mat-step>
-</mat-horizontal-stepper>
+          <!-- Mat Step 1  --->
+          <!--correo: ['', Validators.required],
+          name:[false, Validators.required],
+          lastName: ['',Validators.required],
+          phone: ['',Validators.required]-->
+          <mat-step *ngIf="empleadoLogged" [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup" >
+              <ng-template matStepLabel>Datos de cliente</ng-template>
+            <div><mat-form-field style="width: 90.5%;">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="name" placeholder="Julieta "
+                    required>
+            </mat-form-field></div>
+            <div><mat-form-field style="width: 90.5%;">
+              <mat-label>Apellidos</mat-label>
+              <input matInput formControlName="lastName" placeholder="Benavides Castro"
+                    required>
+            </mat-form-field></div>
+            <div><mat-form-field style="width: 90.5%;">
+              <mat-label>Correo electronico</mat-label>
+              <input matInput formControlName="correo" placeholder="julietaLove@jojomail.com"
+                    required>
+            </mat-form-field></div>
+            <div><mat-form-field style="width: 90.5%;">
+              <mat-label>phone</mat-label>
+              <input matInput formControlName="phone" placeholder="+506 83671843"
+                    required>
+            </mat-form-field></div>
+            <div>
+              <button mat-button matStepperPrevious>Atras</button>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+     
    
+            
+
+          </mat-step>
 
 
-    </mat-card>
-    </div>
-</body>
 
-</html>
+        <!-- Mat Step 2  --->
+
+
+          <mat-step [stepControl]="firstFormGroup" #matStep optional>
+
+            <form [formGroup]="firstFormGroup" >
+              <ng-template matStepLabel>Detalles de Envio</ng-template>
+
+              <div style="margin-bottom: 30px;">
+                <mat-checkbox #checkBox (change)="formularioEnvio(panel,matStep)" formControlName="solicitudDeEnvio" class="example-margin"  >Solicitar Servicio de Envío</mat-checkbox>
+              </div>
+
+            <mat-accordion   #matAcordion class="with" >
+              <mat-expansion-panel class="expasionPanel" #panel disabled="true" hideToggle>
+
+
+              <div >
+              <mat-form-field appearance="standard" style="width: 90.5%;">
+                <mat-label>Provincia</mat-label>
+                <mat-select formControlName="provincia"  name="provincia" (selectionChange)="provinciaChange()" required>
+                  <mat-option *ngFor="let p of provincias; let i = index" [value]="p" >
+                    {{p}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div></div>
+
+
+              <mat-form-field appearance="standard" style="width: 90.5%;">
+                <mat-label>Cantón</mat-label>
+                <mat-select formControlName="canton"  name="provincia" (selectionChange)="cantonChange()" required>
+                  <mat-option *ngFor="let p of cantones; let i = index" [value]="p" >
+                    {{p}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div></div>
+
+
+              <mat-form-field appearance="standard" style="width: 90.5%;">
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="distrito"  name="provincia" required>
+                  <mat-option *ngFor="let p of distritos; let i = index" [value]="p" >
+                    {{p}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div><mat-form-field style="width: 90.5%;">
+                <mat-label>Calle</mat-label>
+                <input matInput formControlName="calle" placeholder="" required>
+              </mat-form-field>
+            </div>
+            <div><mat-form-field style="width: 90.5%;">
+              <mat-label>Direccion</mat-label>
+              <textarea matInput formControlName="direccion" required></textarea>
+            </mat-form-field>
+          </div>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+              <div>
+                <button mat-button matStepperPrevious>Atras</button>
+                <button mat-button matStepperNext>Siguiente</button>
+              </div>
+            </form>
+
+
+
+
+          </mat-step>
+
+          <!-- Mat Step 3  --->
+
+          <mat-step [stepControl]="secondFormGroup" >
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Información de pago</ng-template>
+              
+              <div><mat-form-field style="width: 90.5%;">
+                <mat-label>Nombre de Targeta</mat-label>
+                <input matInput formControlName="nombreTargerta" placeholder="Julieta Benavides C."
+                      required>
+              </mat-form-field></div>
+
+              <div><mat-form-field  style="width: 90.5%;">
+                <mat-label>Numero de Targeta</mat-label>
+                <input matInput formControlName="numeroTargeta" creditCardNumber  placeholder="1234-1234-1234-1234"
+                      required>
+              </mat-form-field></div>
+
+              <div><mat-form-field appearance="standard">
+                <mat-label>Mes de vencimiento</mat-label>
+                <mat-select formControlName="mesVencimiento"  name="mes" required>
+                  <mat-option *ngFor="let p of meses; let i = index" [value]="p" >
+                    {{p}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field style="margin-left: 10px;" appearance="standard">
+                <mat-label>Año de Vencimiento</mat-label>
+                <mat-select formControlName="annyoVencimiento"  name="anyo"  required>
+                  <mat-option *ngFor="let p of anyos; let i = index" [value]="p" >
+                    {{p}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field style="margin-left: 10px;" >
+                <mat-label>CSV</mat-label>
+                <input matInput formControlName="csv" csv  placeholder="123"
+                      required>
+              </mat-form-field></div>
+              
+        
+                <div>
+                  
+                    <button mat-button matStepperPrevious>Atras</button>
+                    <button class= "button" mat-button matStepperNext>Pagar</button>
+                </div>
+
+              
+            </form>
+          </mat-step>
+
+          <!-- Mat Step 4  --->
+
+          <mat-step>
+            <ng-template matStepLabel>Resumen de compra</ng-template>
+            <p>you are done</p>
+            <div>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+          
+
+
+            </mat-card>
+            </div>
+        </body>
+
+        </html>
