@@ -4,10 +4,10 @@
       <span>Mueblería Vladimir</span>
       <div class ="spacer"> </div>
       <button mat-raised-button routerLink = "" >Cerrar sesión</button>
-  
+
     </mat-toolbar-row>
-  
-</mat-toolbar> 
+
+</mat-toolbar>
 
 <div class="bg">
   <mat-tab-group mat-align-tabs="center">
@@ -78,7 +78,7 @@
               <th mat-header-cell *matHeaderCellDef> Descripcion </th>
               <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
             </ng-container>
-  
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                 (click)="selection.toggle(row)"></tr>
@@ -87,17 +87,17 @@
             <form class="example-form">
               <div class="mat-subheading-2">Porcentaje de descuento: {{gridsize.value}} %</div>
               <mat-slider #gridsize (change)="updateSetting($event)" step="5" min="0" max="100" [value]="gridsize"></mat-slider>
-              
+
               <mat-form-field appearance="fill">
                 <mat-label>Fecha de fin de la promoción</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)] = "fechaMaxima" name="fecha">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-    
+
               <button mat-button (click) = "crearPromocion()">Ingresar</button>
             </form>
-  
+
           </mat-card>
 
         </mat-expansion-panel>
@@ -108,7 +108,7 @@
       <div class="content">
         <mat-card-title> Lista de productos</mat-card-title>
         <br>
-        
+
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef> ID</th>
@@ -243,7 +243,7 @@
     </mat-tab>
     <mat-tab label="Ver Empleados">
       <div class = "content">
-        <mat-card-title> Lista de empleados de todas las sucursales</mat-card-title>
+        <mat-card-title> Lista de empleados de la sucursal Central</mat-card-title>
         <br>
         <div class = "tabla">
           <table mat-table [dataSource]="dataSource2" matSort class = "tabla">
@@ -278,9 +278,33 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
           </table>
-
         </div>
-
+      </div>
+      <div class="content">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Agregar Empleado</mat-panel-title>
+            <mat-panel-description>Ingrese el nombre del empleado, el puesto y su salerio</mat-panel-description>
+          </mat-expansion-panel-header>
+          <form class=nuevoEmpleado>
+            <mat-form-field>
+              <mat-label>Nombre del Empleado</mat-label>
+              <input matInput [(ngModel)]="nombreEmpleado" name="nombreEmpleado">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Puesto</mat-label>
+              <input matInput [(ngModel)]="puestoEmpleado" name="puestoEmpleado">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Salario</mat-label>
+              <input matInput [(ngModel)]="salarioEmpleado" name="salarioEmpleado">
+            </mat-form-field>
+            <br>
+            <button mat-button (click)="crearEmpleado()">Agregrar Empleado</button>
+          </form>
+        </mat-expansion-panel>
       </div>
     </mat-tab>
   </mat-tab-group>

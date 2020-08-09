@@ -12,81 +12,49 @@ import { Reporte } from '../models/reporte.model';
 export interface trabajador{
   nombre: string;
   puesto: string;
-  salario: string;
+  salario: number;
   sucursal: string;
 }
 
 
 
 const empleados: trabajador[] = [
-
-  {
-    nombre: 'Pedro',
-    puesto: 'Gerente',
-    salario: '100',
-    sucursal: 'Cartago'
-  },
-  {
-    nombre: 'Maria',
-    puesto: 'Vendedor',
-    salario: '10',
-    sucursal: 'Cartago'
-  },
-  {
-    nombre: 'Saul',
-    puesto: 'Cajero',
-    salario: '20',
-    sucursal: 'Cartago'
-  },
   {
     nombre: 'Mario',
     puesto: 'Cajero',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Astolfo',
     puesto: 'Gerente',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Lucia',
     puesto: 'Vendedor',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Maria',
     puesto: 'Vendedor',
-    salario: '18',
+    salario: 18,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Astolfo',
     puesto: 'Gerente',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Luz',
     puesto: 'Cajero',
-    salario: '12',
+    salario: 12,
     sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Manuela',
-    puesto: 'Gerente',
-    salario: '75',
-    sucursal: 'San Carlos'
-  },
-  {
-    nombre: 'Estefania',
-    puesto: 'Vendedor',
-    salario: '15',
-    sucursal: 'San Carlos'
-  },
-
+  }
 ];
 
 const datosTabla: Producto[] = [];
@@ -111,7 +79,7 @@ export class VistaGerenteComponent implements OnInit {
   selection = new SelectionModel<Producto>(true, []);
   precioPromo: number;
   fechaMaxima: Date;
-  dataSource2 = empleados;
+  dataSource2 = new MatTableDataSource<trabajador> (empleados);
   dataSource3 = new MatTableDataSource<Promo> ([]);
   selected: any = -1;
   gridsize = 0;
@@ -123,6 +91,9 @@ export class VistaGerenteComponent implements OnInit {
   gastosPorMes: number;
   porcentajeVentas: number;
   gananciaNeta: number;
+  nombreEmpleado: string;
+  puestoEmpleado: string;
+  salarioEmpleado: number;
   setStep(index: number) {
     this.step = index;
   }
@@ -143,6 +114,10 @@ export class VistaGerenteComponent implements OnInit {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
+  }
+  crearEmpleado(){
+    empleados.push({nombre:this.nombreEmpleado, puesto:this.puestoEmpleado, salario:this.salarioEmpleado, sucursal:"San Jose"});
+    this.dataSource2.data=empleados;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
