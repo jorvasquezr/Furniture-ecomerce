@@ -5,7 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { CompraService } from '../servicios/compra.service';
 import { LoginService } from '../servicios/login.service';
 import { Pedido } from '../models/pedido.model';
-import {Router} from '@angular/router'
+import { Producto } from '../models/producto.model';
+import { PromoService } from '../servicios/promo.service';
 
 @Component({
   selector: 'app-carrito',
@@ -26,16 +27,40 @@ export class CarritoComponent  {
     public totalNeto:number;
     public cantidadProductos:number;
 
-  constructor(private router:Router,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+  constructor(private promoService : PromoService,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
       this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
         //for (let i = 0; i < this.pedido.carrito.length; i++) {
 
-      //}
+      //get products to show them, falta validar que no tenga promociones, si tiene promocion se muestra disitnto
+      for (let i = 0; i < this.compraService.carrito.carrito.length; i++) {
+          this.productos.push(
+            this.compraService.getProducto(this.compraService.carrito.carrito[i].idProducto)
+          );
+      }
+
+      this.total = this.getTotal();
+      this.descuento = this.getDescuento();
+      this.cantidadProductos = this.productos.length;
+      this.totalNeto=this.total-this.descuento
     }
   }
   goToPedido(){
     this.router.navigate(['/pedido']);
+  }
+  private getDescuento(){
+    var total=0;
+    for (let i = 0; i < this.productos.length; i++) {
+      total+=this.obtenerPrecioDescuento(this.productos[i].id);
+    }
+    return total;
+  }
+  private obtenerPrecioDescuento(id){
+    for (let i = 0; i < this.promoService.datos.length; i++) {
+      if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
+        return this.promoService.datos[i].nuevoPrecio
+    }
+    return 0;
   }
 
   ngOnInit(): void {

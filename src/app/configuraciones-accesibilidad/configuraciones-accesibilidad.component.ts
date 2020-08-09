@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-configuraciones-accesibilidad',
@@ -20,9 +21,13 @@ export class ConfiguracionesAccesibilidadComponent implements OnInit {
   prevStep() {
     this.step--;
   }
-  constructor() { }
+  constructor( private location: Location) { }
 
   ngOnInit(): void {
+  }
+
+  cancel(){
+    this.location.back(); 
   }
 
 }

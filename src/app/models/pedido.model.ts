@@ -6,18 +6,9 @@ export interface Pedido {
     carrito:Carrito[];
     id:number;
     correoCliente:string;
-    estado:Estado;
     envio?:Envio;
     pago?:Pago;
-    calEntrega:0
-    calProducto:0
-    calificado:boolean
-
-}
-
-export enum Estado {
-    FABRICACION=0,
-    ALMACENADO=1,
-    ENVIADO=2,
-    ENTREGADO=3
+    calEntrega:0;
+    calProducto:0;
+    calificado:boolean;
 }
