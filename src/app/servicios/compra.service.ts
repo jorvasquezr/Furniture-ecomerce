@@ -154,7 +154,7 @@ export class CompraService {
       }
     var precio = this.productoService.getProducto(idProducto).precio;
 
-    var descuento = 0; //// <--------------------------------------------------HERE-----------------------------------------------------------------------
+    var descuento = this.obtenerPrecioDescuento(idProducto);
     var carrito: Carrito ={
       idProducto:idProducto,
       cantidad:cantidad,
@@ -163,7 +163,6 @@ export class CompraService {
     }
     this.carrito.carrito.push(carrito);
     this.carrito$.next(this.carrito);
-    
   }
 
   public removerProductoCarrito(idProducto:number){
@@ -190,6 +189,7 @@ export class CompraService {
     }
     return total;
   }
+
   private obtenerPrecioDescuento(id){
     for (let i = 0; i < this.promoService.datos.length; i++) {
       if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
