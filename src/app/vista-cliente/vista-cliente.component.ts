@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { CompraService } from "../servicios/compra.service";
-
+import {LoginService} from '../servicios/login.service'
 @Component({
   selector: 'app-vista-cliente',
   templateUrl: './vista-cliente.component.html',
@@ -11,16 +11,28 @@ export class VistaClienteComponent implements OnInit {
   page:String = '';
   name:String = '';
   
-  constructor(private compraService : CompraService,public router:Router, public activatedRoute:ActivatedRoute){
+  constructor(private logSer:LoginService,public router:Router, public activatedRoute:ActivatedRoute){
 
     this.activatedRoute.params.subscribe(params => {
       this.page=params.param;
     });
   }
+  get userLogged(){
+    return this.logSer.usuarioLogeado();
+  }
+  cerrarSesion(){
+    console.log(this.logSer)
+    this.logSer.cerrarSesion();
+    this.pageSet("tienda")
+  }
 
   public iniciarSesion(){
     this.router.navigateByUrl('vista-login')
   }
+  public registrarse(){
+    this.router.navigateByUrl('vista-register')
+  }
+
   
 
   public pageSet(nombre:String) {

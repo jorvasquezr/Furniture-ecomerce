@@ -6,21 +6,21 @@ import { User,UserRole } from '../models/user.model'
 })
 export class LoginService {
 
-  public usuarioActual: User;
-
+  
+  usuarioActual: User;
   public usuarios : User[] = [
     {
       name:'vic',
-      email: 'string',
-      direccion: '200 mts del sol a la izquierda',
+      lastName:"-kun",
+      email: 'string@str.s',
       telefono:'2256-2222',
       password:'password',
       tipo: UserRole.GERENTE_GENERAL,
     },
     {
       name:'neura',
+      lastName:"neuratic",
       email: 'admin@cenyth.com',
-      direccion: '200 mts del sol a la izquierda',
       telefono:'2256-2256',
       password:'MyPassword123',
       tipo: UserRole.CLIENTE,
@@ -28,6 +28,7 @@ export class LoginService {
   ]
 
   constructor() {
+    this.usuarioActual=undefined;
     if (localStorage.getItem("users") == null) {
       localStorage.setItem('users',JSON.stringify(this.usuarios));
     }
@@ -42,12 +43,28 @@ export class LoginService {
     }
 
   }
+  usuarioLogeado():boolean{
+    console.log(this.usuarioActual)
+    if(this.usuarioActual !== undefined){
+      return true;
+    }
+    return false;
+  }
+  cerrarSesion():boolean{
+    if(this.usuarioActual!== undefined){
+      this.usuarioActual=undefined;
+      localStorage.removeItem('actualUser');
+      return true;
+    }
+    return false;
+  }
 
-  registrarUsuario(user){
+  registrarUsuario(user):boolean{
     const arr = JSON.parse(localStorage.getItem('users')) || [];
     arr.push(user);
     this.usuarios.push(user)
     localStorage.setItem('users',JSON.stringify(arr));
+    return true;
   }
   validarUsuario(email,psw){
     for (let i = 0; i < this.usuarios.length; i++) {

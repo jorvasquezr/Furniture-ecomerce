@@ -89,8 +89,10 @@ const empleados: trabajador[] = [
 
 ];
 
-const promos: Promo[] = [];
 const datosTabla: Producto[] = [];
+
+const promos: Promo[] = [];
+
 
 @Component({
   selector: 'app-vista-gerente',

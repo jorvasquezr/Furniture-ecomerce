@@ -1,30 +1,95 @@
-<form class="form"  (ngSubmit)="onSubmit()">
-    <div class="container">
-      <h1>Register</h1>
-      <p>Por favor completa este formulario para hacer uso de nuestros servicios.</p>
-      <hr>
-      <label for="email"><b>Correo</b></label>
-      <input type="text" [formControl]="email" placeholder="Correo" name="email" id="email" required>
+<!doctype html>
+<html>
 
-      <label for="name"><b>Nombre</b></label>
-      <input type="text" [formControl]="name" placeholder="Nombre" name="name" id="name" required>
+<head>
+    <title>Login</title>
+</head>
 
-      <label for="phone"><b>telefono</b></label>
-      <input type="text" [formControl]="phone" placeholder="Telefono" name="phone" id="phone" required>
+<body class="bg">
+    <div id="container" fxLayoutAlign="center center">
+    
+    <mat-card class="customCard" >
+        <mat-card-actions style="margin:0 0;">
+            <div fxLayoutAlign="end end"> 
+                <button mat-icon-button aria-label="Close button" (click)="cancel()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+            </div>
+    
+        </mat-card-actions>
+        <mat-card-title fxLayoutAlign="center center" class="example-full-width"> Registro </mat-card-title>
+        <mat-card-content>
+        <form [formGroup]="registerForm" class="form"  (ngSubmit)="onSubmit()">
+ 
+            <mat-form-field class="example-full-width">
+      
+            <mat-label for="email">Correo</mat-label>
+                <input matInput formControlName="email" type="text" placeholder="Digite su correo" name="email" id="email" required>
 
-      <label for="direccion"><b>direccion</b></label>
-      <input type="text" [formControl]="direccion" placeholder="Escribe tu direccion" name="direccion" id="direccion" required>
-  
-      <label for="psw"><b>Contraseña</b></label>
-      <input type="password" [formControl]="psw" placeholder="Contraseña" name="psw" id="psw" required>
-  
-      <hr>
-  
-      <p>Al crear una cuenta acepta nuestras <a href="#">politicas de privacidad</a>.</p>
-      <button type="submit" class="registerbtn">Registrarse</button>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width">      
+              <mat-label for="name">Nombre</mat-label>
+              <input matInput type="text" formControlName="name" placeholder="Nombre" name="name" id="name" required>
+            </mat-form-field> 
+
+            
+            <mat-form-field class="example-full-width">   
+              <mat-label for="name">Apellido</mat-label>
+              <input matInput type="text" formControlName="lastName" placeholder="Nombre" name="name" id="name" required>
+            </mat-form-field>
+    
+
+
+              <mat-form-field class="example-full-width">   
+              <mat-label for="phone">telefono</mat-label>
+              <input matInput type="text" formControlName="phone" placeholder="Telefono" name="phone" id="phone" required>
+
+              </mat-form-field>
+
+      
+            <mat-form-field class="example-full-width">
+                <mat-label for="psw">Contraseña</mat-label>
+                <input matInput formControlName="psw" type="password" placeholder="Digite su clave" name="psw" id="psw" required>
+            </mat-form-field>
+        
+
+
+            <mat-form-field class="example-full-width">
+              <mat-label for="psw">Repite la Contraseña </mat-label>
+              <input matInput formControlName="psw2" type="password" placeholder="Digite su clave" name="psw2" id="psw2" required>
+          </mat-form-field>
+          <mat-error *ngIf="submitted && f.psw.errors" >
+            <div *ngIf="f.psw.errors.required">La contraseña es requirida</div>
+            <div *ngIf="f.psw.errors.minlength">La contraseña debe ser de almenos 6 caracteres</div>
+          </mat-error>
+          <mat-error *ngIf="submitted && f.psw2.errors && !f.psw.errors ">
+            <div *ngIf="f.psw2.errors.required">La confirmacion de la contraseña es requirida</div>
+            <div *ngIf="f.psw2.errors.mustMatch">Las contraseñas deben ser iguales</div>
+          </mat-error>
+    
+
+
+          <p>Al crear una cuenta acepta nuestras <a href="#">politicas de privacidad</a>.</p>
+            <div fxLayoutAlign="center center"> 
+                <button mat-raised-button color="primary" style=
+                "padding: 1.1% 0px;
+                border: none;
+                cursor: pointer;
+                margin-bottom: 8px;
+                width: 100%;
+                opacity: 0.9;" type="submit" [disabled]='!registerForm.valid' class="loginbtn">Registrarse</button>
+            </div>
+           
+            
+            <div class="container register">
+            </div>
+
+    
+        </form>
+    </mat-card-content>
+
+
+    </mat-card>
     </div>
-  
-    <div class="container signin">
-      <p>Ya cuentas con una cuenta? <a href="../vista-login/">Inicia sesión</a>.</p>
-    </div>
-  </form>

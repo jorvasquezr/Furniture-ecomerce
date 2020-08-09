@@ -6,19 +6,58 @@
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+
+.customCard {
+
+  margin-top: 3%;
+  width: 700px;
+  max-height: 900px;
+  border-radius: 0px;
+
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-1.2.1&w=1000&q=80");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto auto auto;
+  
+}
+.buttonLogin {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
   border: none;
-  background: #f1f1f1;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 30px;
 }
+
+.spacer{
+  flex: 1;
+}
+.form{
+  margin-right: 9%;
+  margin-left: 9%;
+}
+
+
 
 /* Overwrite default styles of hr */
 hr {

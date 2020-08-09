@@ -1,55 +1,20 @@
+<mat-toolbar    class = "toolbar" color="primary">
+  <mat-toolbar-row  color="warn">
 
+      <span>Mueblería Vladimir</span>
+      <div class ="spacer"> </div>
+      <button mat-raised-button routerLink = "" >Cerrar sesión</button>
+  
+    </mat-toolbar-row>
+  
+</mat-toolbar> 
 
 <div class="bg">
-  <mat-tab-group>
+  <mat-tab-group mat-align-tabs="center">
 
-    <mat-tab label="Ver Promociones">
+    <mat-tab label="Ver Promociones" >
       <div class="content">
-        <form class="example-form">
-          <div class="mat-subheading-2">Porcentaje de descuento: {{gridsize.value}} %</div>
-          <mat-slider #gridsize (change)="updateSetting($event)" step="5" min="0" max="100" [value]="gridsize"></mat-slider>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>Fecha de fin de la promoción</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)] = "fechaMaxima" name="fecha">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <button mat-button (click) = "crearPromocion()">Ingresar</button>
-        </form>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>
-            <td mat-cell *matCellDef="let row">
-              <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="selected=row"
-                            [checked]="selected===row"
-                            [aria-label]="checkboxLabel(row)">
-              </mat-checkbox>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID</th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-          </ng-container>
-          <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-          </ng-container>
-          <ng-container matColumnDef="precio">
-            <th mat-header-cell *matHeaderCellDef> Precio </th>
-            <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
-          </ng-container>
-          <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-              (click)="selection.toggle(row)"></tr>
-        </table>
+        <mat-card-title> Lista de promociones</mat-card-title>
         <br>
         <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
           <ng-container matColumnDef="id">
@@ -64,7 +29,7 @@
 
           <ng-container matColumnDef="nuevoPrecio">
             <th mat-header-cell *matHeaderCellDef>Nuevo Precio</th>
-            <td mat-cell *matCellDef="let element">{{element.nuevoPrecio}}</td>
+            <td mat-cell *matCellDef="let element">{{element.nuevoPrecio}} $</td>
           </ng-container>
 
           <ng-container matColumnDef="fechaFin">
@@ -75,27 +40,75 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
         </table>
+        <br>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Crear promoción
+            </mat-panel-title>
+            <mat-panel-description>
+              Seleccione un producto, su porcentaje de despuesto y la fecha limite
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="selected=row"
+                              [checked]="selected===row"
+                              [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID</th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef> Precio </th>
+              <td mat-cell *matCellDef="let element"> {{element.precio}} $ </td>
+            </ng-container>
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+              <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)"></tr>
+          </table>
+          <mat-card>
+            <form class="example-form">
+              <div class="mat-subheading-2">Porcentaje de descuento: {{gridsize.value}} %</div>
+              <mat-slider #gridsize (change)="updateSetting($event)" step="5" min="0" max="100" [value]="gridsize"></mat-slider>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de fin de la promoción</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)] = "fechaMaxima" name="fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+    
+              <button mat-button (click) = "crearPromocion()">Ingresar</button>
+            </form>
+  
+          </mat-card>
+
+        </mat-expansion-panel>
+
       </div>
     </mat-tab>
-    <mat-tab label="Agregar Producto">
+    <mat-tab label="Ver Productos">
       <div class="content">
-        <div class="mat-subheading-2">Agregar Nuevo Producto</div>
-        <form class="nuevoProducto">
-          <mat-form-field>
-            <mat-label>Nombre del producto</mat-label>
-            <input [(ngModel)] = "nombreNuevoProducto" name="nuevoProducto" matInput>
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>Precio</mat-label>
-            <input [(ngModel)] = "precioNuevoProducto" name="nuevoPrecio" matInput>
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>Descripción</mat-label>
-            <input [(ngModel)] = "descripcionNuevoProducto" name="nuevaDescripcion" class="descripcion" matInput>
-          </mat-form-field><br>
-          <button mat-button (click)="crearProducto()">Agregar</button>
+        <mat-card-title> Lista de productos</mat-card-title>
+        <br>
+        
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef> ID</th>
@@ -117,7 +130,35 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
           </table>
-        </form>
+          <br>
+
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Agregar un nuevo producto
+              </mat-panel-title>
+              <mat-panel-description>
+                rellene la siguiente información
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <form class="nuevoProducto">
+              <mat-form-field>
+                <mat-label>Nombre del producto</mat-label>
+                <input [(ngModel)] = "nombreNuevoProducto" name="nuevoProducto" matInput>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Precio</mat-label>
+                <input [(ngModel)] = "precioNuevoProducto" name="nuevoPrecio" matInput>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Descripción</mat-label>
+                <input [(ngModel)] = "descripcionNuevoProducto" name="nuevaDescripcion" class="descripcion" matInput>
+              </mat-form-field><br>
+              <button mat-button (click)="crearProducto()">Agregar</button>
+            </form>
+          </mat-expansion-panel>
 
       </div>
     </mat-tab>
