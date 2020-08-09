@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatFormField, MatTableDataSource} from '@angular/material';
+import {MatFormField, MatTableDataSource, MatSelectChange} from '@angular/material';
 import {Producto} from '../models/producto.model';
 import {Promo} from '../models/promo.model';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -7,84 +7,54 @@ import {PromoService} from '../servicios/promo.service';
 import {ProductoService} from '../servicios/producto.service';
 import {sucursal} from '../models/sucursal.model';
 import {SucursalesService} from '../servicios/sucursales.service';
+import {ReportesService} from '../servicios/reportes.service';
+import { Reporte } from '../models/reporte.model';
 export interface trabajador{
   nombre: string;
   puesto: string;
-  salario: string;
+  salario: number;
   sucursal: string;
 }
 
 
 
 const empleados: trabajador[] = [
-
-  {
-    nombre: 'Pedro',
-    puesto: 'Gerente',
-    salario: '100',
-    sucursal: 'Cartago'
-  },
-  {
-    nombre: 'Maria',
-    puesto: 'Vendedor',
-    salario: '10',
-    sucursal: 'Cartago'
-  },
-  {
-    nombre: 'Saul',
-    puesto: 'Cajero',
-    salario: '20',
-    sucursal: 'Cartago'
-  },
   {
     nombre: 'Mario',
     puesto: 'Cajero',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Astolfo',
     puesto: 'Gerente',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Lucia',
     puesto: 'Vendedor',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Maria',
     puesto: 'Vendedor',
-    salario: '18',
+    salario: 18,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Astolfo',
     puesto: 'Gerente',
-    salario: '10',
+    salario: 10,
     sucursal: 'San Jose'
   },
   {
     nombre: 'Luz',
     puesto: 'Cajero',
-    salario: '12',
+    salario: 12,
     sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Manuela',
-    puesto: 'Gerente',
-    salario: '75',
-    sucursal: 'San Carlos'
-  },
-  {
-    nombre: 'Estefania',
-    puesto: 'Vendedor',
-    salario: '15',
-    sucursal: 'San Carlos'
-  },
-
+  }
 ];
 
 const datosTabla: Producto[] = [];
@@ -100,6 +70,7 @@ const promos: Promo[] = [];
 
 export class VistaGerenteComponent implements OnInit {
   sucursales: sucursal[] = [];
+  reportes: Reporte[] =[]
   displayedColumns: string[] = ['select', 'id', 'nombre', 'precio', 'descripcion'];
   displayedColumns2: string[] = ['nombre', 'puesto', 'salario', 'sucursal'];
   displayedColumns3: string[] = ['id', 'nombre', 'nuevoPrecio', 'fechaFin'];
@@ -108,13 +79,33 @@ export class VistaGerenteComponent implements OnInit {
   selection = new SelectionModel<Producto>(true, []);
   precioPromo: number;
   fechaMaxima: Date;
-  dataSource2 = empleados;
+  dataSource2 = new MatTableDataSource<trabajador> (empleados);
   dataSource3 = new MatTableDataSource<Promo> ([]);
   selected: any = -1;
   gridsize = 0;
+  step = 0;
   nombreNuevoProducto: string;
   precioNuevoProducto: number;
   descripcionNuevoProducto: string;
+  gananciaBruta: number;
+  gastosPorMes: number;
+  porcentajeVentas: number;
+  gananciaNeta: number;
+  nombreEmpleado: string;
+  puestoEmpleado: string;
+  salarioEmpleado: number;
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
   updateSetting(event) {
     this.gridsize = event.value;
   }
@@ -123,6 +114,10 @@ export class VistaGerenteComponent implements OnInit {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
+  }
+  crearEmpleado(){
+    empleados.push({nombre:this.nombreEmpleado, puesto:this.puestoEmpleado, salario:this.salarioEmpleado, sucursal:"San Jose"});
+    this.dataSource2.data=empleados;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -164,6 +159,18 @@ export class VistaGerenteComponent implements OnInit {
       this.dataSource.data = data;
     })
   }
+  cambiarDatosReporte(event:MatSelectChange){
+    console.log(event.source.value);
+    for (let i=0; i<this.reportes.length; i++){
+      if (this.reportes[i].nombreSucursal === event.source.value){
+        this.gananciaBruta = this.reportes[i].gananciaBrutaPorMes;
+        this.gananciaNeta = this.reportes[i].gananciaNeta;
+        this.gastosPorMes = this.reportes[i].gastosPorMes;
+        this.porcentajeVentas = this.reportes[i].porcentajeVentas;
+      }
+    }
+
+  }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Producto): string {
@@ -176,12 +183,14 @@ export class VistaGerenteComponent implements OnInit {
   constructor(
     private servicioPromos: PromoService,
     private servicioProductos: ProductoService,
-    private servicioSucursales: SucursalesService
+    private servicioSucursales: SucursalesService,
+    private servicioReportes: ReportesService
   ) {this.servicioPromos.tablaCambiada().subscribe((data: Promo[]) => {
     this.dataSource3.data = data;
   });this.servicioProductos.tablaCambiada().subscribe((data: Producto[]) =>
     this.dataSource.data = data);
      this.sucursales = servicioSucursales.sucursales;
+     this.reportes = servicioReportes.reportes;
   }
 
   ngOnInit(): void {
