@@ -13,6 +13,7 @@ import {ProductoDisponible} from '../models/productoDisponible'
 import {LoginService} from './login.service'
 import {UserRole} from '../models/user.model'
 import {Subject, Observable} from 'rxjs'
+import {formatDate} from '@angular/common'
 
 
 
@@ -103,8 +104,7 @@ export class CompraService {
 
   
   public registrarPedido():boolean{
-    console.log(Date.now.toString())
-    this.carrito.fecha= Date.now.toString();
+    this.carrito.fecha= formatDate(new Date(), 'dd/MM/yyyy hh:mm', 'en');
     const arr = JSON.parse(localStorage.getItem('pedidos')) || [];
     arr.push(this.carrito);
     this.pedidos.push(this.carrito)

@@ -69,10 +69,8 @@ export class ProductoService {
     }
   }
   public getProducto(idProducto: number): Producto {
-    for (let i = 0; i < this.productosOfrecidos.length; i++) {
-      if(this.productosOfrecidos[i].id == idProducto)
-        return this.productosOfrecidos[i];
-    }
+    return this.productosOfrecidos.find(element => element.id==idProducto);
+
   }
 
 
