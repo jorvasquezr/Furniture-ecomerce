@@ -4,6 +4,7 @@ import { Pedido } from '../models/pedido.model';
 import { User } from '../models/user.model';
 import { Envio } from '../models/envio.model';
 import { Pago } from '../models/pago.model';
+import { Carrito } from '../models/carrito.model';
 
 import { concatMapTo, elementAt } from 'rxjs/operators';
 import {ProductoService} from './producto.service'
@@ -151,7 +152,16 @@ export class CompraService {
       if(this.carrito.carrito[i].idProducto == idProducto)
         this.carrito.carrito.splice(i, 1);
       }
-    this.carrito.carrito.push({idProducto,cantidad});
+    var precio = this.productoService.getProducto(idProducto).precio;
+
+    var descuento = 0; //// <--------------------------------------------------HERE-----------------------------------------------------------------------
+    var carrito: Carrito ={
+      idProducto:idProducto,
+      cantidad:cantidad,
+      descuento:descuento,
+      precioProducto:precio
+    }
+    this.carrito.carrito.push(carrito);
     this.carrito$.next(this.carrito);
     
   }
