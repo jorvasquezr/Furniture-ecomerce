@@ -19,13 +19,8 @@ export class CarritoComponent  {
       map(result => result.matches),
       shareReplay()
     );
-/*
-    public pedido:Pedido={
-      carrito:[],
-      correoCliente:""
-    };
-*/
-    public productos:Producto[]=[];
+
+    public pedido:Pedido;
 
     public total:number;
     public descuento:number;
@@ -34,7 +29,8 @@ export class CarritoComponent  {
 
   constructor(private promoService : PromoService,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
-      //this.promociones=this.compraService.promociones;
+      this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
+        //for (let i = 0; i < this.pedido.carrito.length; i++) {
 
       //get products to show them, falta validar que no tenga promociones, si tiene promocion se muestra disitnto
       for (let i = 0; i < this.compraService.carrito.carrito.length; i++) {
@@ -48,15 +44,9 @@ export class CarritoComponent  {
       this.cantidadProductos = this.productos.length;
       this.totalNeto=this.total-this.descuento
     }
-    
   }
-  private getTotal(){
-    var total=0;
-    for (let i = 0; i < this.productos.length; i++) {
-      total+=this.productos[i].precio;
-    }
-    return total;
-    
+  goToPedido(){
+    this.router.navigate(['/pedido']);
   }
   private getDescuento(){
     var total=0;

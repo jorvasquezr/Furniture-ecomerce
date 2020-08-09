@@ -3,6 +3,7 @@ import { MatExpansionPanel } from '@angular/material';
 import { DialogoEvaluacionComponent } from '../dialogo-evaluacion/dialogo-evaluacion.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogData} from '../dialogo-evaluacion/dialog-data'
+import {CompraService} from '../servicios/compra.service'
 
 import {
   MatSnackBar,

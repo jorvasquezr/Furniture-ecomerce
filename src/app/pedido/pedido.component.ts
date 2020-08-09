@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from "@angular/common/http"
 import { MatSelect, MatExpansionPanel, MatStep } from '@angular/material';
+import {LoginService} from '../servicios/login.service'
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
@@ -11,6 +12,7 @@ export class PedidoComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   isEditable = false;
   formulario:boolean;
 
@@ -25,7 +27,7 @@ export class PedidoComponent implements OnInit {
   indexDistrito:number;
 
 
-  constructor(private http: HttpClient,private _formBuilder: FormBuilder) {
+  constructor(private loginService:LoginService,private http: HttpClient,private _formBuilder: FormBuilder) {
     this.listaDeProvincias();
     this.setNextYears();
 
@@ -38,8 +40,23 @@ export class PedidoComponent implements OnInit {
     }
 
   }
+  get empleadoLogged(){
+    if(this.loginService.usuarioActual!==undefined){
+      return this.loginService.usuarioActual.tipo===2;
+    }
+    return true;
+    
+
+  }
+  
 
   ngOnInit() {
+    this.thirdFormGroup = this._formBuilder.group({
+      correo: ['', Validators.required],
+      name:['', Validators.required],
+      lastName: ['',Validators.required],
+      phone: ['',Validators.required]
+    });
     this.firstFormGroup = this._formBuilder.group({
       calle: ['', Validators.required],
       solicitudDeEnvio:[false, Validators.required],
