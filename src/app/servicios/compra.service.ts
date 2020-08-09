@@ -154,7 +154,7 @@ export class CompraService {
       }
     var precio = this.productoService.getProducto(idProducto).precio;
 
-    var descuento = this.obtenerPrecioDescuento(idProducto);
+    var descuento = precio - this.obtenerPrecioDescuento(idProducto);
     var carrito: Carrito ={
       idProducto:idProducto,
       cantidad:cantidad,
