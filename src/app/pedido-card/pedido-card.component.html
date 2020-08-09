@@ -27,7 +27,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" yPosition="below">
-                    <button mat-menu-item [disabled]="pedidoCalificado" (click)="openDialog()">Calificar</button>
+                    <button mat-menu-item [disabled]="pedido.calificado" (click)="openDialog()">Calificar</button>
                   
                 </mat-menu>
       

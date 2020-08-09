@@ -36,7 +36,7 @@ export class PedidoComponent implements OnInit {
   indexDistrito:number;
 
 
-  constructor(private location:Location,private _productServ:ProductoService,private _snackBar:MatSnackBar,private compra:CompraService,private loginService:LoginService,private http: HttpClient,private _formBuilder: FormBuilder) {
+  constructor(private location:Location,private _productServ:ProductoService,private _snackBar:MatSnackBar,private compra:CompraService,public loginService:LoginService,private http: HttpClient,private _formBuilder: FormBuilder) {
     this.listaDeProvincias();
     this.setNextYears();
 
@@ -64,7 +64,7 @@ export class PedidoComponent implements OnInit {
 
   get empleadoLogged(){
     if(this.loginService.usuarioActual!==undefined){
-      return this.loginService.usuarioActual.tipo===2;
+      return this.loginService.usuarioActual.tipo==2;
     }
     return false;
     
@@ -151,21 +151,22 @@ export class PedidoComponent implements OnInit {
     const clienteData:FormGroup= this.thirdFormGroup;
     const envioData:FormGroup=this.firstFormGroup;
     const metodoPago:FormGroup=this.fourthFormGroup;
-    var pago:Pago;
-    pago.estado=(metodoPago.controls['metodoPago'].value=='Efectivo')? EstadoPago.PENDIENTE:EstadoPago.CANCELADO;
-    pago.idPago=this.compra.getMicarrito().id;
-    pago.medio=metodoPago.controls['metodoPago'].value;
-    pago.totalPagado=this.compra.getTotal();
+    var pago:Pago={
+    estado:(metodoPago.controls['metodoPago'].value=='Efectivo')? EstadoPago.PENDIENTE:EstadoPago.CANCELADO,
+    idPago:this.compra.getMicarrito().id,
+    medio:metodoPago.controls['metodoPago'].value,
+    totalPagado:this.compra.getTotal()
+  }
 
-    var envio:Envio;
-    envio.provincia=envioData.controls['provincia'].value;
-    envio.canton=envioData.controls['canton'].value;
-    envio.distrito=envioData.controls['distrito'].value;
-    envio.barrio=envioData.controls['calle'].value;
-    envio.direccion=envioData.controls['direccion'].value;
-    envio.estado=Estado.FABRICACION;
-    envio.pais='Costa Rica'
-    envio.precio=10000;
+    var envio:Envio={
+    provincia:envioData.controls['provincia'].value,
+    canton:envioData.controls['canton'].value,
+    distrito:envioData.controls['distrito'].value,
+    barrio:envioData.controls['calle'].value,
+    direccion:envioData.controls['direccion'].value,
+    estado:Estado.FABRICACION,
+    pais:'Costa Rica',
+    precio:10000}
 
     this.compra.agregarEnvio(envio);
     this.compra.agregarPago(pago);
@@ -176,7 +177,6 @@ export class PedidoComponent implements OnInit {
     if(this.compra.registrarPedido()){
 
       this.openSnackBar("Pedido registrado correctamente","ok");
-      console.log(this.compra.getPedidos(this.loginService.usuarioActual.email))
       this.location.back();
 
     }else{

@@ -29,7 +29,7 @@ export class PedidoCardComponent {
     pedidoEntregado=false;;
 */
   constructor(private location:Location,public dialog: MatDialog, private _snackBar: MatSnackBar) {
-    this.pedidoCalificado=this.pedido.calificado;
+    
    }
   openDialog(): void {
     

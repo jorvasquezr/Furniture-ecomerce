@@ -36,10 +36,10 @@ export class CompraService {
     }
   }
   limpiarCarrito(){
-    if(this.loginService.usuarioActual.tipo=UserRole.CLIENTE){
+    if(this.loginService.usuarioActual.tipo==UserRole.CLIENTE){
       this.nuevoCarritoCliente(this.loginService.usuarioActual.email)
     }else{
-      if(this.loginService.usuarioActual.tipo=UserRole.EMPLEADO){
+      if(this.loginService.usuarioActual.tipo==UserRole.EMPLEADO){
         this.nuevoCarritoEmpleado(this.loginService.usuarioActual.email)
       }
 
@@ -120,7 +120,6 @@ export class CompraService {
     if(Number(cantidad)!==null)
     var producto = this.carrito.carrito.find(element=> element.idProducto==idProducto);
     producto.cantidad=cantidad;
-    console.log(producto);
 
   }
   public productoEnCarrito(idProducto):boolean{
