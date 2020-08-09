@@ -73,7 +73,7 @@ export class VistaGerenteComponent implements OnInit {
   reportes: Reporte[] =[]
   displayedColumns: string[] = ['select', 'id', 'nombre', 'precio', 'descripcion'];
   displayedColumns2: string[] = ['nombre', 'puesto', 'salario', 'sucursal'];
-  displayedColumns3: string[] = ['id', 'nombre', 'nuevoPrecio', 'fechaFin'];
+  displayedColumns3: string[] = ['id', 'nuevoPrecio', 'fechaFin'];
   displayedColumns4: string[] = ['id', 'nombre', 'precio', 'descripcion'];
   dataSource = new MatTableDataSource<Producto> (datosTabla);
   selection = new SelectionModel<Producto>(true, []);
@@ -131,7 +131,7 @@ export class VistaGerenteComponent implements OnInit {
     if (!this.fechaMaxima || this.selected === -1 || this.gridsize === 0){
       return;
     }
-    const nuevaPromo: Promo = {idProducto: this.selected.id, nombreProducto: this.selected.nombre,
+    const nuevaPromo: Promo = {idProducto: this.selected.id,
       nuevoPrecio: (this.gridsize * (this.selected.precio / 100)), fechaFinal: this.fechaMaxima};
     this.servicioPromos.tablaCambiada(nuevaPromo).subscribe((data: Promo[]) => {
       this.dataSource3.data = data;
