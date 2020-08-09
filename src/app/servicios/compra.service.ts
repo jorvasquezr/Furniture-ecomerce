@@ -17,13 +17,10 @@ export class CompraService {
     calEntrega:0,
     calProducto:0,
     calificado:false,
-    carrito:[],
-    id:340,
-    calEntrega:0,
-    calProducto:0,
-    calificado:false
+    carrito:[]
 
   };
+
 
   public productosDisponibles: number[] = [1,2,2]
 
