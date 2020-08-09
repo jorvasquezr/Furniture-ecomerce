@@ -3,6 +3,7 @@ import { CompraService } from '../servicios/compra.service';
 import { Producto } from '../models/producto.model';
 import { LoginService } from '../servicios/login.service';
 import { PromoService } from '../servicios/promo.service';
+import {MatSnackBar} from'@angular/material'
 
 @Component({
   selector: 'app-product-card',
@@ -14,16 +15,36 @@ export class ProductCardComponent {
   @Input() public tipo: string="tienda";
   @Input() public producto: Producto;
 
+
   public promocion:string;
 
-  constructor(private promoService:PromoService,private auth:LoginService,private compraService : CompraService) {  }
+  constructor(private _snackBar:MatSnackBar,private promoService:PromoService,private auth:LoginService,public compraService : CompraService) {  }
   comprar(){
+
+  
     if(this.auth.usuarioActual!=null){
       this.compraService.agregarProducto(this.producto.id,1);
 
     } else {
-      console.log("Necesitas iniciar sesión para poder comprar");
+
+      this.openSnackBar("Necesitas iniciar sesión para poder comprar","ok");
     }
+  }
+  openSnackBar(msg:string, action:string) {
+    this._snackBar.open(msg, action, {
+      duration: 2500,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
+  cantidadCambio(value){
+    this.compraService.agregarProductoCantidad(this.producto.id,value)
+  }
+  remover(){
+    console.log("sads")
+  
+    this.compraService.removerProductoCarrito(this.producto.id);
+    console.log(this.compraService.carrito)
   }
 
   private obtenerPrecioDescuento(id){

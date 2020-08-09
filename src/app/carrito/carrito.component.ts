@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CompraService } from '../servicios/compra.service';
 import { LoginService } from '../servicios/login.service';
 import { Pedido } from '../models/pedido.model';
 import { Producto } from '../models/producto.model';
 import { PromoService } from '../servicios/promo.service';
+import { ProductoService } from '../servicios/producto.service';
 import {Router} from '@angular/router'
+
+
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
-export class CarritoComponent  {
+export class CarritoComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -28,53 +31,41 @@ export class CarritoComponent  {
     public totalNeto:number;
     public cantidadProductos:number;
     public productos: Producto[]=[];
-
-  constructor(private router:Router,private promoService : PromoService,private auth : LoginService,private compraService : CompraService, private breakpointObserver: BreakpointObserver) {
+    public carrito:Observable<Pedido> ;
+  
+  constructor(private productoSev:ProductoService,private router:Router,private auth : LoginService, public compraService : CompraService, private breakpointObserver: BreakpointObserver) {
     if(this.auth.usuarioActual!=null){
-      this.pedido = this.compraService.getMicarrito(auth.usuarioActual.email);
-        //for (let i = 0; i < this.pedido.carrito.length; i++) {
 
-      //get products to show them, falta validar que no tenga promociones, si tiene promocion se muestra disitnto
-      
-      for (let i = 0; i < this.compraService.carrito.carrito.length; i++) {
-          this.productos.push(
-            this.compraService.getProducto(this.compraService.carrito.carrito[i].idProducto)
-          );
+        this.pedido = this.compraService.getMicarrito();
+        this.total = this.getTotal();
+        this.descuento = this.getDescuento();
+        this.cantidadProductos = this.pedido.carrito.length;
+        this.totalNeto=this.total-this.descuento
       }
-
-      this.total = this.getTotal();
-      this.descuento = this.getDescuento();
-      this.cantidadProductos = this.productos.length;
-      this.totalNeto=this.total-this.descuento
-    }
-  }
-  private getTotal(){
-    var total=0;
-    for (let i = 0; i < this.productos.length; i++) {
-      total+=this.productos[i].precio;
-    }
-    return total;
+     
     
   }
+  obtenerProducto(id:number):Producto{
+    return this.productoSev.getProducto(id);
+  }
+
+
+
+  getTotal():number{
+    return this.compraService.getTotal();
+  }
+  getDescuento():number{
+    return this.compraService.getDescuento();
+  }
+
+
   goToPedido(){
     this.router.navigate(['/pedido']);
   }
-  private getDescuento(){
-    var total=0;
-    for (let i = 0; i < this.productos.length; i++) {
-      total+=this.obtenerPrecioDescuento(this.productos[i].id);
-    }
-    return total;
-  }
-  private obtenerPrecioDescuento(id){
-    for (let i = 0; i < this.promoService.datos.length; i++) {
-      if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
-        return this.promoService.datos[i].nuevoPrecio
-    }
-    return 0;
-  }
+ 
 
   ngOnInit(): void {
+    
 
   }
 

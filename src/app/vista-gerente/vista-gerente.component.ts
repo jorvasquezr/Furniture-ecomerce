@@ -142,13 +142,24 @@ export class VistaGerenteComponent implements OnInit {
       this.dataSource3.data = data;
     });
   }
+  /*Agregar que inserte imagen //
+
+░█████╗░░██████╗░██████╗░███████╗░██████╗░░█████╗░██████╗░  ██╗███╗░░░███╗░█████╗░░██████╗░███████╗███╗░░██╗
+██╔══██╗██╔════╝░██╔══██╗██╔════╝██╔════╝░██╔══██╗██╔══██╗  ██║████╗░████║██╔══██╗██╔════╝░██╔════╝████╗░██║
+███████║██║░░██╗░██████╔╝█████╗░░██║░░██╗░███████║██████╔╝  ██║██╔████╔██║███████║██║░░██╗░█████╗░░██╔██╗██║
+██╔══██║██║░░╚██╗██╔══██╗██╔══╝░░██║░░╚██╗██╔══██║██╔══██╗  ██║██║╚██╔╝██║██╔══██║██║░░╚██╗██╔══╝░░██║╚████║
+██║░░██║╚██████╔╝██║░░██║███████╗╚██████╔╝██║░░██║██║░░██║  ██║██║░╚═╝░██║██║░░██║╚██████╔╝███████╗██║░╚███║
+╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚══════╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝  ╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚═════╝░╚══════╝╚═╝░░╚══╝
+
+
+  */
   crearProducto(){
     if (!this.nombreNuevoProducto) {
       return;
     }
     const nuevoID = this.servicioProductos.getLastID() + 1;
     const nuevoProducto: Producto = {nombre: this.nombreNuevoProducto, precio: this.precioNuevoProducto,
-      id: nuevoID, descripcion: this.descripcionNuevoProducto};
+      id: nuevoID, descripcion: this.descripcionNuevoProducto,imagenUrl:"https://www.invesa.com/wp-content/themes/invesa-template/html5blank-stable/img/prod.jpg" };//<---- here
     this.servicioProductos.tablaCambiada(nuevoProducto).subscribe((data: Producto[]) => {
       this.dataSource.data = data;
     })

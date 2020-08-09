@@ -8,7 +8,9 @@ export interface Pedido {
     correoCliente:string;
     envio?:Envio;
     pago?:Pago;
-    calEntrega:0;
-    calProducto:0;
+    fecha?:string;
+    calEntrega:number;
+    calProducto:number;
     calificado:boolean;
+    correoEmpleado?:string;
 }

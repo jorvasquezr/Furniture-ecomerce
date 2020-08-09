@@ -1,5 +1,6 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { User,UserRole } from '../models/user.model'
+import {CompraService} from './compra.service'
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,6 @@ export class LoginService {
 
   }
   usuarioLogeado():boolean{
-    console.log(this.usuarioActual)
     if(this.usuarioActual !== undefined){
       return true;
     }

@@ -6,4 +6,5 @@ export interface Producto {
     nombre: string;
     descripcion: string;
     promocion?: Promo;
+    imagenUrl:string;
 }

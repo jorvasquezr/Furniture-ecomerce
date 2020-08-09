@@ -1,7 +1,6 @@
 export interface Pago {
     estado: EstadoPago;
     totalPagado:number;
-    precio:number;
     idPago:number;
     medio:string;
 }

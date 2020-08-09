@@ -14,33 +14,33 @@
           <table style="width: 100%;">
             <tr >
               <td><h4>Total</h4></td>
-              <td>${{total}}</td>
+              <td>${{compraService.getTotal()}}</td>
             </tr>
             <tr >
               <td><h4>Descuento</h4></td>
-              <td>${{descuento}}</td>
+              <td>${{compraService.getDescuento()}}</td>
             </tr>
             <tr >
               <td><h4>Precio a pagar</h4></td>
-              <td>${{totalNeto}}</td>
+              <td>${{compraService.getTotal()-compraService.getDescuento()}}</td>
             </tr>
             <tr >
               <td><h4>Cantidad de productos</h4></td>
-              <td>{{cantidadProductos}}</td>
+              <td>{{compraService.obtenerCantidadDeProducto()}}</td>
             </tr>
           </table>
 
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color = "warn"  style ="width: 100%;"> Pagar </button>
+          <button mat-raised-button color = "warn"  [disabled]="compraService.obtenerCantidadDeProducto()<1" routerLink="/pedido" style ="width: 100%;"> Pagar </button>
         </mat-card-actions>
 
       </mat-card>
     </mat-sidenav>
     <mat-sidenav-content class = "sidenav-content" >
   <div class="cardList">
-    <ng-container *ngFor="let p of productos">
-      <app-product-card [producto] = "p" ></app-product-card>
+    <ng-container *ngFor="let p of pedido.carrito">
+      <app-product-card tipo ="carrito" [producto] = "obtenerProducto(p.idProducto)"  ></app-product-card>
       <mat-divider ></mat-divider>
     </ng-container>
   </div>
