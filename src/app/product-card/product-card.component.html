@@ -1,6 +1,6 @@
 <mat-card style="margin:1em;" class="customCard">
     <div fxLayout="row" >
-        <img class="imgCard" mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img class="imgCard" mat-card-xl-image [src]="producto.imagenUrl" alt="Photo of a Shiba Inu">
             <span fxFlex="10"></span>
         <mat-card-content fxFlex="65">
           
@@ -10,8 +10,8 @@
                     <section *ngIf="tipo=='carrito'">
                         Cantidad:
                         <mat-form-field class="example-margin">
-                            <input matInput type="number" value="1">
-                          </mat-form-field>
+                            <input matInput type="number" value="1" (change) ="cantidadCambio($event.target.value)">
+                          </mat-form-field> 
                     </section>
                    <h4>USD ${{producto.precio}}</h4>
                    <h4>{{promocion}}</h4>
@@ -19,8 +19,8 @@
             </mat-card-content>
         <mat-card-actions  *ngIf="tipo=='tienda'">
             <section>
-            <button (click)="comprar()"  mat-button>Comprar</button>
-            <button mat-button>Ver más</button>
+            <button *ngIf="!compraService.productoEnCarrito(producto.id)" (click)="comprar()"  mat-button>Comprar</button>
+            <button *ngIf="compraService.productoEnCarrito(producto.id)" disabled="true"  mat-button>Agregado</button>
    </section>
         </mat-card-actions>
         <mat-card-actions  *ngIf="tipo=='carrito'">
@@ -29,8 +29,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" yPosition="below">
-                    <button mat-menu-item>Remover</button>
-                    <button mat-menu-item>Ver más</button>
+                    <button mat-menu-item (click)="remover()">Remover</button>
                   
                 </mat-menu>
             </section>

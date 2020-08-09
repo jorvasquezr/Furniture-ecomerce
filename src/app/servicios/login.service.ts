@@ -1,12 +1,15 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { User,UserRole } from '../models/user.model'
+import {CompraService} from './compra.service'
+import { elementAt } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  
+
+
   usuarioActual: User;
   public usuarios : User[] = [
     {
@@ -15,7 +18,7 @@ export class LoginService {
       email: 'string@str.s',
       telefono:'2256-2222',
       password:'password',
-      tipo: UserRole.GERENTE_GENERAL,
+      tipo: UserRole.GERENTE_GENERAL, 
     },
     {
       name:'neura',
@@ -26,6 +29,7 @@ export class LoginService {
       tipo: UserRole.CLIENTE,
     }
   ]
+
 
   constructor() {
     this.usuarioActual=undefined;
@@ -41,10 +45,14 @@ export class LoginService {
     if (localStorage.getItem("actualUser") != null) {
       this.usuarioActual = JSON.parse(localStorage.getItem("actualUser")) as User;
     }
+ //   var interval = setInterval(()=>{
+ //     if(this.usuarioActual!==undefined){
+ //     console.log(this.usuarioActual.tipo)
+ //   }
+//   },200);
 
   }
   usuarioLogeado():boolean{
-    console.log(this.usuarioActual)
     if(this.usuarioActual !== undefined){
       return true;
     }
@@ -67,22 +75,24 @@ export class LoginService {
     return true;
   }
   validarUsuario(email,psw){
-    for (let i = 0; i < this.usuarios.length; i++) {
-      if(this.usuarios[i].email == email && this.usuarios[i].password== psw){
-        if(this.usuarios[i].tipo ==UserRole.CLIENTE){
-          this.usuarioActual=this.usuarios[i]; window.location.href = '/cliente/tienda';
-          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));
-        }
-        if(this.usuarios[i].tipo ==UserRole.GERENTE_GENERAL){
-          window.location.href = '/vista-gg';this.usuarioActual=this.usuarios[i]
-          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
-        if(this.usuarios[i].tipo ==UserRole.GERENTE){
-          window.location.href = '/vista-gerente';this.usuarioActual=this.usuarios[i]
-          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
-        if(this.usuarios[i].tipo ==UserRole.EMPLEADO){
-          window.location.href = '/vista-empleado';this.usuarioActual=this.usuarios[i]
-          localStorage.setItem('actualUser',JSON.stringify(this.usuarios[i]));}
+    console.log(email,psw);
+    var usuario = this.usuarios.find(element => element.email===email && element.password===psw);
+    if(usuario !== undefined){
+      localStorage.setItem('actualUser',JSON.stringify(usuario));
+      if(usuario.tipo == UserRole.CLIENTE){
+        this.usuarioActual=usuario; window.location.href = '/cliente/tienda';
+      }
+      if(usuario.tipo == UserRole.GERENTE_GENERAL){
+        window.location.href = '/vista-gg';this.usuarioActual=usuario
+      }
+      if(usuario.tipo == UserRole.GERENTE){
+        window.location.href = '/vista-gerente';this.usuarioActual=usuario
+      }
+      if(usuario.tipo == UserRole.EMPLEADO){
+        window.location.href = '/vista-empleado';this.usuarioActual=usuario
       }
     }
   }
+
+
 }

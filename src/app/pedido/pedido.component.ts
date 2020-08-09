@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from "@angular/common/http"
-import { MatSelect, MatExpansionPanel, MatStep } from '@angular/material';
+import { MatSelect, MatExpansionPanel, MatStep, MatSnackBar } from '@angular/material';
 import {LoginService} from '../servicios/login.service'
+import {Pago,EstadoPago} from '../models/pago.model'
+import {Envio, Estado} from '../models/envio.model'
+import {Pedido} from '../models/pedido.model'
+import {Location} from '@angular/common'
+
+import {UserRole} from '../models/user.model'
+import { CompraService } from '../servicios/compra.service';
+import { ProductoService } from '../servicios/producto.service';
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
@@ -13,6 +21,7 @@ export class PedidoComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthFormGroup:FormGroup;
   isEditable = false;
   formulario:boolean;
 
@@ -27,9 +36,16 @@ export class PedidoComponent implements OnInit {
   indexDistrito:number;
 
 
-  constructor(private loginService:LoginService,private http: HttpClient,private _formBuilder: FormBuilder) {
+  constructor(private location:Location,private _productServ:ProductoService,private _snackBar:MatSnackBar,private compra:CompraService,public loginService:LoginService,private http: HttpClient,private _formBuilder: FormBuilder) {
     this.listaDeProvincias();
     this.setNextYears();
+
+  }
+  get metodoPago(){
+    return ["Targeta","Efectivo"]
+  }
+  get pagaConTarjeta(){
+    return this.fourthFormGroup.controls['metodoPago'].value ==='Targeta';
 
   }
   setNextYears(){
@@ -40,11 +56,17 @@ export class PedidoComponent implements OnInit {
     }
 
   }
+  openSnackBar(mensage:string, action:string) {
+    this._snackBar.open(mensage, action, {
+      duration: 2000,
+    });
+  }
+
   get empleadoLogged(){
     if(this.loginService.usuarioActual!==undefined){
-      return this.loginService.usuarioActual.tipo===2;
+      return this.loginService.usuarioActual.tipo==2;
     }
-    return true;
+    return false;
     
 
   }
@@ -56,6 +78,9 @@ export class PedidoComponent implements OnInit {
       name:['', Validators.required],
       lastName: ['',Validators.required],
       phone: ['',Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      metodoPago: ['', Validators.required]
     });
     this.firstFormGroup = this._formBuilder.group({
       calle: ['', Validators.required],
@@ -122,5 +147,89 @@ export class PedidoComponent implements OnInit {
     expansion.expanded=value;
   }
 
+  terminarPedido(){
+    const clienteData:FormGroup= this.thirdFormGroup;
+    const envioData:FormGroup=this.firstFormGroup;
+    const metodoPago:FormGroup=this.fourthFormGroup;
+    var pago:Pago={
+    estado:(metodoPago.controls['metodoPago'].value=='Efectivo')? EstadoPago.PENDIENTE:EstadoPago.CANCELADO,
+    idPago:this.compra.getMicarrito().id,
+    medio:metodoPago.controls['metodoPago'].value,
+    totalPagado:this.compra.getTotal()
+  }
+
+    var envio:Envio={
+    provincia:envioData.controls['provincia'].value,
+    canton:envioData.controls['canton'].value,
+    distrito:envioData.controls['distrito'].value,
+    barrio:envioData.controls['calle'].value,
+    direccion:envioData.controls['direccion'].value,
+    estado:Estado.FABRICACION,
+    pais:'Costa Rica',
+    precio:10000}
+
+    this.compra.agregarEnvio(envio);
+    this.compra.agregarPago(pago);
+    if(this.loginService.usuarioActual.tipo==UserRole.EMPLEADO){
+      this.compra.agregarCorreoCliente(clienteData.controls['correo'].value);
+    }
+
+    if(this.compra.registrarPedido()){
+
+      this.openSnackBar("Pedido registrado correctamente","ok");
+      this.location.back();
+
+    }else{
+      this.openSnackBar("Error al registrar pedido","ok");
+
+    }
+
+
+
+  }
+
 
 }
+/*
+carrito:Carrito[];
+id:number;
+correoCliente:string;
+envio?:Envio;
+pago?:Pago;
+calEntrega:0;
+calProducto:0;
+calificado:boolean;
+
+export interface Pago {
+    estado: EstadoPago;
+    totalPagado:number;
+    idPago:number;
+    medio:string;
+}
+
+export enum EstadoPago{
+    CANCELADO=0,
+    PENDIENTE=1
+}
+
+
+export interface Envio {
+    provincia:string;
+    pais:string;
+    canton:string;
+    distrito:string;
+    direccion: string;
+    barrio:string;
+    estado: Estado;
+    precio: number;
+}
+
+export enum Estado {
+    FABRICACION=0,
+    ALMACENADO=1,
+    ENVIADO=2,
+    ENTREGADO=3
+}
+
+
+*/

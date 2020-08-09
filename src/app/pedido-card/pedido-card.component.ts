@@ -4,6 +4,7 @@ import { DialogoEvaluacionComponent } from '../dialogo-evaluacion/dialogo-evalua
 import {MatDialog} from '@angular/material/dialog';
 import {DialogData} from '../dialogo-evaluacion/dialog-data'
 import {CompraService} from '../servicios/compra.service'
+import { Location } from '@angular/common';
 
 import {
   MatSnackBar,
@@ -27,8 +28,8 @@ export class PedidoCardComponent {
     pedidoCalificado=false;
     pedidoEntregado=false;;
 */
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {
-    this.pedidoCalificado=this.pedido.calificado;
+  constructor(private location:Location,public dialog: MatDialog, private _snackBar: MatSnackBar) {
+    
    }
   openDialog(): void {
     
@@ -46,6 +47,10 @@ export class PedidoCardComponent {
     this.openSnackBar()
     }
   }
+  cancel(){
+    this.location.back(); 
+  }
+ 
 
   abrirPanel(panel:MatExpansionPanel){
     panel.expanded=!panel.expanded;

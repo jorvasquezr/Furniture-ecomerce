@@ -1,5 +1,10 @@
 export interface Envio {
-    destino: string;
+    provincia:string;
+    pais:string;
+    canton:string;
+    distrito:string;
+    direccion: string;
+    barrio:string;
     estado: Estado;
     precio: number;
 }
