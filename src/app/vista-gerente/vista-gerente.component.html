@@ -126,10 +126,78 @@
         <div class="mat-subheading-2">Reportes de la sucursal</div>
         <mat-form-field>
           <mat-label>Seleccione la Sucursal</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let sucursal of sucursales">{{sucursal.nombre}}</mat-option>
+          <mat-select (selectionChange)="cambiarDatosReporte($event)" >
+            <mat-option *ngFor="let sucursal of sucursales" [value]="sucursal.nombre" >{{sucursal.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
+      </div>
+      <div class="content">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Ganancia Bruta por Mes
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-card>
+              <mat-card-title>$ {{gananciaBruta}}</mat-card-title>
+            </mat-card>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Gastos Por Mes
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-card>
+              <mat-card-title>$ {{gastosPorMes}}</mat-card-title>
+            </mat-card>
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Porcentaje de ventas
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <mat-card>
+              <mat-card-title>{{porcentajeVentas}} %</mat-card-title>
+            </mat-card>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">End</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Ganancia Neta
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+
+            <mat-card>
+              <mat-card-title>$ {{gananciaNeta}}</mat-card-title>
+            </mat-card>
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
     </mat-tab>
     <mat-tab label="Ver Empleados">
