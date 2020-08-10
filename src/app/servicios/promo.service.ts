@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class PromoService {
-  datos: Promo[] = [{idProducto: 1, nuevoPrecio: 25, fechaFinal: new Date()}];
+  datos: Promo[] = [{idProducto: 1, nuevoPrecio: 25, fechaFinal: new Date(2021,2,2)}];
 
   constructor(){
     if (localStorage.getItem("listaPromos") === null) {

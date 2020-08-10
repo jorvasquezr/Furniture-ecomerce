@@ -46,6 +46,7 @@ export class VistaGerenteComponent implements OnInit {
   nombreNuevoProducto: string;
   precioNuevoProducto: number;
   descripcionNuevoProducto: string;
+  urlImagenProducto: string;
   gananciaBruta: number;
   gastosPorMes: number;
   porcentajeVentas: number;
@@ -113,7 +114,7 @@ export class VistaGerenteComponent implements OnInit {
     }
     const nuevoID = this.servicioProductos.getLastID() + 1;
     const nuevoProducto: Producto = {nombre: this.nombreNuevoProducto, precio: this.precioNuevoProducto,
-      id: nuevoID, descripcion: this.descripcionNuevoProducto,imagenUrl:"https://www.invesa.com/wp-content/themes/invesa-template/html5blank-stable/img/prod.jpg" };//<---- here
+      id: nuevoID, descripcion: this.descripcionNuevoProducto,imagenUrl:this.urlImagenProducto};//<---- here
     this.servicioProductos.tablaCambiada(nuevoProducto).subscribe((data: Producto[]) => {
       this.dataSource.data = data;
     })

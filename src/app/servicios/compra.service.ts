@@ -55,8 +55,6 @@ export class CompraService {
       pedido.calEntrega=calEntrega;
       pedido.calProducto=calProducto;
       pedido.calificado=true;
-      console.log("servicios/compra.service.ts")
-      console.log(this.pedidos.find(element => element.id = id))
     }
     catch(error){
       console.error(error)
@@ -195,9 +193,9 @@ export class CompraService {
   public getDescuento(){
     var total=0;
     for (let i = 0; i < this.carrito.carrito.length; i++) {
-      total+=this.obtenerPrecioDescuento(this.carrito.carrito[i].idProducto);
+      total+=this.obtenerPrecioDescuento(this.carrito.carrito[i].idProducto) *this.carrito.carrito[i].cantidad;
     }
-    return total;
+    return total ;
   }
 
   private obtenerPrecioDescuento(id){
