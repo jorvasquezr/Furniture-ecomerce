@@ -70,6 +70,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TablaProductosComponent } from './tabla-productos/tabla-productos.component';
 import { RatingStarComponent } from './rating-star/rating-star.component';
 import { DialogoEvaluacionComponent } from './dialogo-evaluacion/dialogo-evaluacion.component';
+import { AgregarInventarioComponent } from './agregar-inventario/agregar-inventario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +106,8 @@ import { DialogoEvaluacionComponent } from './dialogo-evaluacion/dialogo-evaluac
     FooterComponent,
     ConfiguracionesAccesibilidadComponent,
     RatingStarComponent,
-    DialogoEvaluacionComponent
+    DialogoEvaluacionComponent,
+    AgregarInventarioComponent
   ],
   imports: [
     ReactiveFormsModule,
