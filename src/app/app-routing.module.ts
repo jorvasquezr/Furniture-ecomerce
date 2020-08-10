@@ -10,9 +10,11 @@ import {VistaLoginComponent} from './vista-login/vista-login.component'
 import {VistaClienteComponent} from './vista-cliente/vista-cliente.component'
 import {VistaRegisterComponent} from './vista-register/vista-register.component'
 import {VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component';
+import {AgregarInventarioComponent} from './agregar-inventario/agregar-inventario.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesibilidad/configuraciones-accesibilidad.component';
+import { from } from 'rxjs';
 const routes: Routes = [
   {
     path: 'vista-gg',
@@ -62,6 +64,10 @@ const routes: Routes = [
    {
      path: 'configuraciones-accesibilidad',
      component: ConfiguracionesAccesibilidadComponent
+   },
+   {
+     path: 'agregar-inventario',
+     component: AgregarInventarioComponent
    }
 ];
 

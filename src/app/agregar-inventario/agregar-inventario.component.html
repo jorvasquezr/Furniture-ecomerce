@@ -1,1 +1,37 @@
-<p>agregar-inventario works!</p>
+
+<div class="bg">
+
+  <div class="content">
+    <div class="mat-subheading-2">Agregar inventario</div>
+    <mat-form-field>
+      <mat-label>Ingrese la cantidad que quiere agregar</mat-label>
+      <input matInput type="number" value="1" [(ngModel)] = "cantidad" name="cantidad">
+    </mat-form-field>
+    <br>
+    <button mat-button (click)="agregar()">Agregar</button>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="selected=row"
+                        [checked]="selected===row"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="idProducto">
+        <th mat-header-cell *matHeaderCellDef> ID de producto</th>
+        <td mat-cell *matCellDef="let element"> {{element.idProducto}} </td>
+      </ng-container>
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad en Inventario </th>
+        <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          (click)="selection.toggle(row)"></tr>
+    </table>
+  </div>
+</div>
