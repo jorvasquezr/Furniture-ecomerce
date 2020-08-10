@@ -8,54 +8,13 @@ import {ProductoService} from '../servicios/producto.service';
 import {sucursal} from '../models/sucursal.model';
 import {SucursalesService} from '../servicios/sucursales.service';
 import {ReportesService} from '../servicios/reportes.service';
+import {EmpleadosService} from '../servicios/empleados.service';
 import { Reporte } from '../models/reporte.model';
-export interface trabajador{
-  nombre: string;
-  puesto: string;
-  salario: number;
-  sucursal: string;
-}
+import { Empleado } from '../models/empleado.model';
 
 
 
-const empleados: trabajador[] = [
-  {
-    nombre: 'Mario',
-    puesto: 'Cajero',
-    salario: 10,
-    sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Astolfo',
-    puesto: 'Gerente',
-    salario: 10,
-    sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Lucia',
-    puesto: 'Vendedor',
-    salario: 10,
-    sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Maria',
-    puesto: 'Vendedor',
-    salario: 18,
-    sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Astolfo',
-    puesto: 'Gerente',
-    salario: 10,
-    sucursal: 'San Jose'
-  },
-  {
-    nombre: 'Luz',
-    puesto: 'Cajero',
-    salario: 12,
-    sucursal: 'San Jose'
-  }
-];
+const empleados: Empleado[] = [];
 
 const datosTabla: Producto[] = [];
 
@@ -70,7 +29,7 @@ const promos: Promo[] = [];
 
 export class VistaGerenteComponent implements OnInit {
   sucursales: sucursal[] = [];
-  reportes: Reporte[] =[]
+  reportes: Reporte[] = [];
   displayedColumns: string[] = ['select', 'id', 'nombre', 'precio', 'descripcion'];
   displayedColumns2: string[] = ['nombre', 'puesto', 'salario', 'sucursal'];
   displayedColumns3: string[] = ['id', 'nuevoPrecio', 'fechaFin'];
@@ -79,7 +38,7 @@ export class VistaGerenteComponent implements OnInit {
   selection = new SelectionModel<Producto>(true, []);
   precioPromo: number;
   fechaMaxima: Date;
-  dataSource2 = new MatTableDataSource<trabajador> (empleados);
+  dataSource2 = new MatTableDataSource<Empleado> (empleados);
   dataSource3 = new MatTableDataSource<Promo> ([]);
   selected: any = -1;
   gridsize = 0;
@@ -116,8 +75,8 @@ export class VistaGerenteComponent implements OnInit {
     return numSelected === numRows;
   }
   crearEmpleado(){
-    empleados.push({nombre:this.nombreEmpleado, puesto:this.puestoEmpleado, salario:this.salarioEmpleado, sucursal:"San Jose"});
-    this.dataSource2.data=empleados;
+    const  empleadoNuevo: Empleado = {nombre:this.nombreEmpleado, puesto:this.puestoEmpleado, salario:this.salarioEmpleado, sucursal:"San Jose"};
+    this.empleadosService.tablaCambiada(empleadoNuevo).subscribe((data: Empleado[]) => {this.dataSource2.data = data; });
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -184,11 +143,14 @@ export class VistaGerenteComponent implements OnInit {
     private servicioPromos: PromoService,
     private servicioProductos: ProductoService,
     private servicioSucursales: SucursalesService,
-    private servicioReportes: ReportesService
+    private servicioReportes: ReportesService,
+    private empleadosService: EmpleadosService
   ) {this.servicioPromos.tablaCambiada().subscribe((data: Promo[]) => {
     this.dataSource3.data = data;
   });this.servicioProductos.tablaCambiada().subscribe((data: Producto[]) =>
     this.dataSource.data = data);
+     this.empleadosService.tablaCambiada().subscribe((data: Empleado[]) =>
+    this.dataSource2.data = data);
      this.sucursales = servicioSucursales.sucursales;
      this.reportes = servicioReportes.reportes;
   }
