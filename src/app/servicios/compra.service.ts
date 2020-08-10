@@ -100,6 +100,16 @@ export class CompraService {
     return this.carrito$.asObservable();
   }
 
+  public calificarProducto(idPedido:number,producntoC:number, envioC:number){
+    var arr=JSON.parse(localStorage.getItem("pedidos")) as Pedido[];
+    var pedido = arr.find(element=>element.id==idPedido)
+    pedido.calEntrega=envioC;
+    pedido.calProducto=producntoC;
+    pedido.calificado=true;
+    localStorage.setItem('pedidos',JSON.stringify(arr));
+
+    return true;
+  }
 
 
   

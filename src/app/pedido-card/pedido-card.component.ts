@@ -32,7 +32,7 @@ export class PedidoCardComponent {
     pedidoCalificado=false;
     pedidoEntregado=false;;
 */
-  constructor(private productoServ:ProductoService,private location:Location,public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  constructor(private compra:CompraService,private productoServ:ProductoService,private location:Location,public dialog: MatDialog, private _snackBar: MatSnackBar) {
    }
    estadoEnvio(id:number){
      console.log(id)
@@ -70,7 +70,7 @@ export class PedidoCardComponent {
    }
   openDialog(): void {
     
-    if(this.pedido.envio.estado=Estado.ENTREGADO){
+    if(this.pedido.envio.estado==Estado.ENTREGADO){
       const dialogRef = this.dialog.open(DialogoEvaluacionComponent, {
         data: {pedidoId:this.pedido.id,entrega: this.pedido.calEntrega, producto: this.pedido.calEntrega}
       });
@@ -79,6 +79,7 @@ export class PedidoCardComponent {
         this.pedido.calProducto = result.producto;
         this.pedido.calEntrega = result.entrega;
         this.pedido.calificado=true;
+        this.compra.calificarProducto(this.pedido.id,this.pedido.calProducto, this.pedido.calEntrega);
       });
     }else{
     this.openSnackBar()
