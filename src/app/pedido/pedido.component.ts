@@ -155,8 +155,10 @@ export class PedidoComponent implements OnInit {
     estado:(metodoPago.controls['metodoPago'].value=='Efectivo')? EstadoPago.PENDIENTE:EstadoPago.CANCELADO,
     idPago:this.compra.getMicarrito().id,
     medio:metodoPago.controls['metodoPago'].value,
-    totalPagado:this.compra.getTotal()
+    totalPagado:this.compra.getTotal() - this.compra.getDescuento()
+    
   }
+  console.log(this.compra.getDescuento() + " " + this.compra.getTotal());
 
     var envio:Envio={
     provincia:envioData.controls['provincia'].value,

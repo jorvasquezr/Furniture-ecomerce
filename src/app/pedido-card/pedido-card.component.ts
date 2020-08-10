@@ -35,7 +35,6 @@ export class PedidoCardComponent {
   constructor(private compra:CompraService,private productoServ:ProductoService,private location:Location,public dialog: MatDialog, private _snackBar: MatSnackBar) {
    }
    estadoEnvio(id:number){
-     console.log(id)
     switch(id) { 
       case Estado.ALMACENADO: { 
         return "Almacenado"

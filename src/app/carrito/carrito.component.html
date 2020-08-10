@@ -18,11 +18,11 @@
             </tr>
             <tr >
               <td><h4>Descuento</h4></td>
-              <td>${{compraService.getDescuento()}}</td>
+              <td>${{compraService.getTotal()-compraService.getDescuento()}}</td>
             </tr>
             <tr >
               <td><h4>Precio a pagar</h4></td>
-              <td>${{compraService.getTotal()-compraService.getDescuento()}}</td>
+              <td>${{compraService.getDescuento()}}</td>
             </tr>
             <tr >
               <td><h4>Cantidad de productos</h4></td>

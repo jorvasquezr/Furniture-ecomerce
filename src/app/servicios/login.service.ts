@@ -15,19 +15,35 @@ export class LoginService {
     {
       name:'vic',
       lastName:"-kun",
-      email: 'string@str.s',
+      email: 'gg@gg',
       telefono:'2256-2222',
-      password:'password',
+      password:'gg',
       tipo: UserRole.GERENTE_GENERAL, 
     },
     {
       name:'neura',
       lastName:"neuratic",
-      email: 'admin@cenyth.com',
+      email: 'cliente@cliente',
       telefono:'2256-2256',
-      password:'MyPassword123',
+      password:'cliente',
       tipo: UserRole.CLIENTE,
-    }
+    },
+    {
+      name:'neura',
+      lastName:"neuratic",
+      email: 'empleado@empleado',
+      telefono:'2256-2256',
+      password:'empleado',
+      tipo: UserRole.EMPLEADO,
+    },
+    {
+      name:'neura',
+      lastName:"neuratic",
+      email: 'gerente@gerente',
+      telefono:'2256-2256',
+      password:'gerente',
+      tipo: UserRole.GERENTE,
+    },
   ]
 
 
