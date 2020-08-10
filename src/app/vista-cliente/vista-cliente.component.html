@@ -6,8 +6,7 @@
       <button mat-button  (click)="pageSet('tienda')">Tienda</button>
       <button mat-button *ngIf="userLogged"  (click)="pageSet('misPedidos')">Mis Pedidos</button>
       <button mat-button *ngIf="userLogged" (click)="pageSet('carrito')">Carrito</button>
-      
-      <button mat-button  href = "../configuraciones-accesibilidad/">Configuraciones</button>
+      <button mat-button  (click)="configuraciones('configuraciones-accesibilidad')">Configuraciones</button>
       <button mat-button  *ngIf="!userLogged" (click)="iniciarSesion()" >Iniciar sesión</button>
       <button mat-raised-button *ngIf="!userLogged"  color="accent"  (click)="registrarse()" >Registrarse</button>
       <button mat-raised-button *ngIf="userLogged"  color="accent"  (click)="cerrarSesion()" >Cerrar Sesion</button>
