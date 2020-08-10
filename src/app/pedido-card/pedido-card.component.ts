@@ -60,7 +60,7 @@ export class PedidoCardComponent {
         return "Cancelado"
       } 
       case EstadoPago.PENDIENTE : { 
-        return "Pedinente"
+        return "Pendiente"
       } 
       default: { 
         return "Indefinido"

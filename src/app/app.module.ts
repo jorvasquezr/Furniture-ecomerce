@@ -71,6 +71,7 @@ import { TablaProductosComponent } from './tabla-productos/tabla-productos.compo
 import { RatingStarComponent } from './rating-star/rating-star.component';
 import { DialogoEvaluacionComponent } from './dialogo-evaluacion/dialogo-evaluacion.component';
 import { AgregarInventarioComponent } from './agregar-inventario/agregar-inventario.component';
+import { VistaCambiarEstadoComponent } from './vista-cambiar-estado/vista-cambiar-estado.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +108,8 @@ import { AgregarInventarioComponent } from './agregar-inventario/agregar-inventa
     ConfiguracionesAccesibilidadComponent,
     RatingStarComponent,
     DialogoEvaluacionComponent,
-    AgregarInventarioComponent
+    AgregarInventarioComponent,
+    VistaCambiarEstadoComponent
   ],
   imports: [
     ReactiveFormsModule,

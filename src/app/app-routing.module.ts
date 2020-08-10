@@ -13,6 +13,7 @@ import {VistaEmpleadoComponent } from './vista-empleado/vista-empleado.component
 import {AgregarInventarioComponent} from './agregar-inventario/agregar-inventario.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { VistaCambiarEstadoComponent } from './vista-cambiar-estado/vista-cambiar-estado.component';
 import { ConfiguracionesAccesibilidadComponent } from './configuraciones-accesibilidad/configuraciones-accesibilidad.component';
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -68,7 +69,12 @@ const routes: Routes = [
    {
      path: 'agregar-inventario',
      component: AgregarInventarioComponent
-   }
+   },
+   {
+    path: 'cambiar-estado-pedido',
+    component: VistaCambiarEstadoComponent
+  },
+
 ];
 
 @NgModule({
