@@ -35,10 +35,13 @@ export class VistaClienteComponent implements OnInit {
     this.router.navigateByUrl('vista-register')
   }
 
-  
+  public configuraciones(){
+    this.router.navigateByUrl('configuraciones-accesibilidad'); 
+  }
 
   public pageSet(nombre:String) {
-    this.router.navigateByUrl('cliente/'+nombre);    
+    this.router.navigateByUrl('cliente/'+nombre); 
+
   }
 
   ngOnInit(): void {
