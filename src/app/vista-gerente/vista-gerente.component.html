@@ -156,6 +156,10 @@
                 <mat-label>Descripción</mat-label>
                 <input [(ngModel)] = "descripcionNuevoProducto" name="nuevaDescripcion" class="descripcion" matInput>
               </mat-form-field><br>
+              <mat-form-field>
+                <mat-label>URL imagen</mat-label>
+                <input [(ngModel)] = "urlImagenProducto" name="urlImagenProducto" matInput>
+              </mat-form-field><br>
               <button mat-button (click)="crearProducto()">Agregar</button>
             </form>
           </mat-expansion-panel>
