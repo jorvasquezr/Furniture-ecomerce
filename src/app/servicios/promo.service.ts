@@ -9,7 +9,7 @@ export class PromoService {
 
   constructor(){
     if (localStorage.getItem("listaPromos") === null) {
-      console.log("hola")
+      localStorage.setItem("listaPromos", JSON.stringify(this.datos));
     }
     else{
       var filtered = JSON.parse(localStorage.getItem("listaPromos")) as Promo[];
@@ -21,12 +21,12 @@ export class PromoService {
     }
    }
   tablaCambiada(nuevaPromo?: Promo): Observable<Promo[]>{
-    const nuevaLista = this.datos;
+    this.datos;
     if (nuevaPromo) {
-      nuevaLista.push(nuevaPromo);
+      this.datos.push(nuevaPromo);
       this.hacerCambios();
     }
-    return of(nuevaLista);
+    return of(this.datos);
   }
   hacerCambios(){
     localStorage.setItem("listaPromos", JSON.stringify(this.datos));

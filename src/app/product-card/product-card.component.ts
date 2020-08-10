@@ -4,6 +4,7 @@ import { Producto } from '../models/producto.model';
 import { LoginService } from '../servicios/login.service';
 import { PromoService } from '../servicios/promo.service';
 import {MatSnackBar} from'@angular/material'
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
@@ -49,7 +50,9 @@ export class ProductCardComponent {
 
   private obtenerPrecioDescuento(id){
     for (let i = 0; i < this.promoService.datos.length; i++) {
-      if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
+      console.log(this.promoService.datos[i].fechaFinal);
+      console.log(new Date());
+      if(this.promoService.datos[i].idProducto==id && formatDate(new Date(),'yyyy-MM-dd','en_US') <= formatDate(this.promoService.datos[i].fechaFinal,'yyyy-MM-dd','en_US'))
         return "OFERTA: ahora por USD $" + this.promoService.datos[i].nuevoPrecio;
     }
     return "";

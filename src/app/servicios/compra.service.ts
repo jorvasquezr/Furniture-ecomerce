@@ -202,7 +202,7 @@ export class CompraService {
 
   private obtenerPrecioDescuento(id){
     for (let i = 0; i < this.promoService.datos.length; i++) {
-      if(this.promoService.datos[i].idProducto==id && new Date() <= this.promoService.datos[i].fechaFinal)
+      if(this.promoService.datos[i].idProducto==id && formatDate(new Date(),'yyyy-MM-dd','en_US') <= formatDate(this.promoService.datos[i].fechaFinal,'yyyy-MM-dd','en_US'))
         return this.promoService.datos[i].nuevoPrecio
     }
     return 0;

@@ -156,7 +156,8 @@ export class PedidoComponent implements OnInit {
     idPago:this.compra.getMicarrito().id,
     medio:metodoPago.controls['metodoPago'].value,
     totalPagado:this.compra.getTotal()
-  }
+    
+    }
 
     var envio:Envio={
     provincia:envioData.controls['provincia'].value,
