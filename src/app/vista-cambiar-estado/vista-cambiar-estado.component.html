@@ -5,27 +5,58 @@
               The actual rendered columns are set as a property on the row definition" -->
       
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let pedido"> {{pedido.id}} </td>
         </ng-container>
       
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <ng-container matColumnDef="CorreoC">
+          <th mat-header-cell *matHeaderCellDef> Correo cliente </th>
+          <td mat-cell *matCellDef="let pedido"> {{pedido.correoCliente}} </td>
         </ng-container>
+
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total pagado </th>
+            <td mat-cell *matCellDef="let pedido"> $ {{pedido.pago.totalPagado}} </td>
+          </ng-container>
       
         <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <ng-container matColumnDef="Fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha de creación </th>
+          <td mat-cell *matCellDef="let pedido"> {{pedido.fecha}} </td>
         </ng-container>
       
         <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <ng-container matColumnDef="Pago">
+          <th mat-header-cell *matHeaderCellDef> Estado del pago </th>
+          <td mat-cell *matCellDef="let pedido"> {{setSelectedPago(pedido.pago.estado)}} 
+            <mat-form-field appearance="fill" >
+                <mat-select [(value)]="selectedPago">
+                  <mat-option [value]="option.Estado" *ngFor="let option of pago">{{ option.Estado }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Estado">
+            <th mat-header-cell *matHeaderCellDef> Estado del pedido </th>
+            <td mat-cell *matCellDef="let pedido"> {{setSelectedEnvio(pedido.envio.estado)}} 
+                <mat-form-field appearance="fill" >
+                    <mat-select [(value)]="selectedEnvio" disableRipple>
+                      <mat-option [value]="option.Estado" *ngFor="let option of envio">{{ option.Estado }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cambiar">
+            <th mat-header-cell *matHeaderCellDef> Guardar Cambios </th>
+            <td mat-cell *matCellDef="let pedido"> 
+                <button mat-icon-button>
+                    <mat-icon>done</mat-icon>
+                </button>
+            </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
