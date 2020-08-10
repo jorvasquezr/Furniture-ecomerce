@@ -21,7 +21,18 @@ export class ProductoService {
       cantidad:10
     },
     {
+      idProducto:2,
+      cantidad:10
+    }
+  ]
+
+  public recargaProducto: ProductoDisponible[] = [
+    {
       idProducto:1,
+      cantidad:10
+    },
+    {
+      idProducto:2,
       cantidad:10
     }
   ]
