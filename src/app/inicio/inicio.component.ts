@@ -23,7 +23,7 @@ export class InicioComponent implements OnInit {
     var timeout = setTimeout(() => {
       console.log()
       clearInterval(interval);
-      this.router.navigateByUrl('/cliente/promociones');
+      this.router.navigateByUrl('/cliente/tienda');
     }, 2000);
 
 
