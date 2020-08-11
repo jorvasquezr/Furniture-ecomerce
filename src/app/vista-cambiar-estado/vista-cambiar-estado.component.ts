@@ -40,20 +40,51 @@ export class VistaCambiarEstadoComponent implements OnInit {
     { Estado : "Entregado"}
   ]
 
-  foods: any[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  selectedFood = this.foods[2].value;
   selectedPago = "";
   selectedEnvio = "";
 
   setSelectedPago ( numero ){
-    this.selectedPago = this.pago[numero].Estado;
+    return this.pago[numero].Estado;
   }
   setSelectedEnvio( numero ){
-    this.selectedEnvio = this.envio[numero].Estado;
+    return this.envio[numero].Estado;
+  }
+
+  guardarCambios(idPedido: number){
+    var pago = this.cambiarPago();
+    var envio = this.cambiarEnvio();
+    //console.log(idPedido,pago,envio, this.selectedPago, this.selectedEnvio);
+    this.compra.cambiarEstados(idPedido,pago,envio);
+    location.reload()
+  }
+
+  private cambiarPago(){
+    if(this.selectedPago == "Cancelado"){
+      return 0
+    }
+    if(this.selectedPago == "Pendiente"){
+      return 1
+    }
+    else{
+      return 1
+    }
+  }
+  private cambiarEnvio(){
+    if(this.selectedEnvio == "Fabricación"){
+      return 0
+    }
+    if(this.selectedEnvio == "Almacenado"){
+      return 1
+    }
+    if(this.selectedEnvio == "Enviado"){
+      return 2
+    }
+    if(this.selectedEnvio == "Entregado"){
+      return 3
+    }
+    else{
+      return 0
+    }
   }
 
 }

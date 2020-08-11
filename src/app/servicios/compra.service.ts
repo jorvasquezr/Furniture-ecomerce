@@ -109,6 +109,16 @@ export class CompraService {
     return true;
   }
 
+  public cambiarEstados(idPedido:number,estadoPago:number, estadoEnvio:number){
+    var arr=JSON.parse(localStorage.getItem("pedidos")) as Pedido[];
+    var pedido = arr.find(element=>element.id==idPedido)
+    pedido.envio.estado=estadoEnvio;
+    pedido.pago.estado=estadoPago;
+    localStorage.setItem('pedidos',JSON.stringify(arr));
+
+    return true;
+  }
+
 
   
   public registrarPedido():boolean{
