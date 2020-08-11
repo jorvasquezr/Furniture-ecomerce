@@ -40,8 +40,8 @@ export class VistaCambiarEstadoComponent implements OnInit {
     { Estado : "Entregado"}
   ]
 
-  selectedPago = "";
-  selectedEnvio = "";
+  selectedPago : String[] = [];
+  selectedEnvio : String[] = [];
 
   setSelectedPago ( numero ){
     return this.pago[numero].Estado;
@@ -51,35 +51,35 @@ export class VistaCambiarEstadoComponent implements OnInit {
   }
 
   guardarCambios(idPedido: number){
-    var pago = this.cambiarPago();
-    var envio = this.cambiarEnvio();
-    //console.log(idPedido,pago,envio, this.selectedPago, this.selectedEnvio);
+    var pago = this.cambiarPago(idPedido);
+    var envio = this.cambiarEnvio(idPedido);
+    //console.log(idPedido,pago,envio, this.selectedPago[idPedido], this.selectedEnvio[idPedido]);
     this.compra.cambiarEstados(idPedido,pago,envio);
     location.reload()
   }
 
-  private cambiarPago(){
-    if(this.selectedPago == "Cancelado"){
+  private cambiarPago(idPedido: number){
+    if(this.selectedPago[idPedido] == "Cancelado"){
       return 0
     }
-    if(this.selectedPago == "Pendiente"){
+    if(this.selectedPago[idPedido] == "Pendiente"){
       return 1
     }
     else{
       return 1
     }
   }
-  private cambiarEnvio(){
-    if(this.selectedEnvio == "Fabricación"){
+  private cambiarEnvio(idPedido: number){
+    if(this.selectedEnvio[idPedido] == "Fabricación"){
       return 0
     }
-    if(this.selectedEnvio == "Almacenado"){
+    if(this.selectedEnvio[idPedido] == "Almacenado"){
       return 1
     }
-    if(this.selectedEnvio == "Enviado"){
+    if(this.selectedEnvio[idPedido] == "Enviado"){
       return 2
     }
-    if(this.selectedEnvio == "Entregado"){
+    if(this.selectedEnvio[idPedido] == "Entregado"){
       return 3
     }
     else{

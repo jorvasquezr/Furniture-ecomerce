@@ -3,6 +3,7 @@
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
+
       
         <!-- Position Column -->
         <ng-container matColumnDef="Id">
@@ -34,7 +35,7 @@
             <p>Estado Actual: {{setSelectedPago(pedido.pago.estado)}}</p>
             <mat-form-field appearance="fill" >
                 <mat-label>Cambiar estado a</mat-label>
-                <mat-select [(value)]="selectedPago">
+                <mat-select [(value)]="selectedPago[pedido.id]">
                   <mat-option [value]="option.Estado" *ngFor="let option of pago">{{ option.Estado }}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -47,7 +48,7 @@
                 <p>Estado Actual: {{setSelectedEnvio(pedido.envio.estado)}}</p>
                 <mat-form-field appearance="fill" >
                     <mat-label>Cambiar estado a</mat-label>
-                    <mat-select [(value)]="selectedEnvio" disableRipple>
+                    <mat-select [(value)]="selectedEnvio[pedido.id]" disableRipple>
                       <mat-option [value]="option.Estado" *ngFor="let option of envio" [selected]="selectedEnvio === option.Estado">{{ option.Estado }}</mat-option>
                     </mat-select>
                   </mat-form-field>
