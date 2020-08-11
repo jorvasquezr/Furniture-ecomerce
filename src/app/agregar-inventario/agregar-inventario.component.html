@@ -1,5 +1,5 @@
 
-<div class="bg">
+<div>
 
   <div class="content">
     <div class="mat-subheading-2">Agregar inventario</div>
@@ -9,6 +9,7 @@
     </mat-form-field>
     <br>
     <button mat-button (click)="agregar()">Agregar</button>
+    <p></p>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>Seleccionar Producto</th>

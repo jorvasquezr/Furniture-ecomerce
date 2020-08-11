@@ -7,6 +7,8 @@
     <button mat-button  (click)="pageSet('tienda')">Tienda</button>
     <button mat-button  (click)="pageSet('salario')">Salario</button>
     <button mat-button  (click)="pageSet('carrito')">Carrito</button>
+    <button mat-button  (click)="pageSet('pedidos')">Ver pedidos</button>
+    <button mat-button  (click)="pageSet('inventario')">Ver inventario</button>
     <button mat-button  (click)="configuraciones()">Configuraciones</button>
     <button mat-raised-button  color="accent"  (click)="cerrarSesion()" >Cerrar Sesion</button>
     
@@ -19,5 +21,7 @@
   <div><app-vista-salario class = "content" *ngSwitchCase ="'salario'"></app-vista-salario></div>
 <div><app-main-nav class = "content" *ngSwitchCase ="'tienda'"></app-main-nav></div>
 <div><app-carrito class = "content" *ngSwitchCase ="'carrito'"></app-carrito></div>
+<div><app-vista-cambiar-estado class = "content" *ngSwitchCase ="'pedidos'"></app-vista-cambiar-estado></div>
+<div><app-agregar-inventario class = "content" *ngSwitchCase ="'inventario'"></app-agregar-inventario></div>
 </body>
 
