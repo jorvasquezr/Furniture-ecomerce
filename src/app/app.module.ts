@@ -72,6 +72,8 @@ import { RatingStarComponent } from './rating-star/rating-star.component';
 import { DialogoEvaluacionComponent } from './dialogo-evaluacion/dialogo-evaluacion.component';
 import { AgregarInventarioComponent } from './agregar-inventario/agregar-inventario.component';
 import { VistaCambiarEstadoComponent } from './vista-cambiar-estado/vista-cambiar-estado.component';
+import { EmpleadoTiendaComponent } from './empleado-tienda/empleado-tienda.component';
+import { EmpleadoCarritoComponent } from './empleado-carrito/empleado-carrito.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +111,9 @@ import { VistaCambiarEstadoComponent } from './vista-cambiar-estado/vista-cambia
     RatingStarComponent,
     DialogoEvaluacionComponent,
     AgregarInventarioComponent,
-    VistaCambiarEstadoComponent
+    VistaCambiarEstadoComponent,
+    EmpleadoTiendaComponent,
+    EmpleadoCarritoComponent
   ],
   imports: [
     ReactiveFormsModule,

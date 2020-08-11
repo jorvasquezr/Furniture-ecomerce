@@ -29,6 +29,7 @@ export class CompraService {
   private carrito$ = new Subject<Pedido>()
 
   constructor(private promoService:PromoService,private loginService:LoginService, private productoService:ProductoService){
+ 
     if (localStorage.getItem("pedidos") != null) {
       var filtereProducto = JSON.parse(localStorage.getItem("pedidos")) as Pedido[];
       var filtereProducto = filtereProducto.filter(function (el) {return el != null;});
@@ -172,7 +173,7 @@ export class CompraService {
       }
     var precio = this.productoService.getProducto(idProducto).precio;
 
-    var descuento = precio - this.obtenerPrecioDescuento(idProducto);
+    var descuento = (this.obtenerPrecioDescuento(idProducto) == 0)?0:precio - this.obtenerPrecioDescuento(idProducto);
     var carrito: Carrito ={
       idProducto:idProducto,
       cantidad:cantidad,
@@ -203,10 +204,15 @@ export class CompraService {
   public getDescuento(){
     var total=0;
     for (let i = 0; i < this.carrito.carrito.length; i++) {
-      total+=this.obtenerPrecioDescuento(this.carrito.carrito[i].idProducto) *this.carrito.carrito[i].cantidad;
+      const descuento = this.obtenerPrecioDescuento(this.carrito.carrito[i].idProducto);
+      if(descuento !=0){
+
+        const producto = this.getProducto(this.carrito.carrito[i].idProducto);
+        total+=(producto.precio - descuento )*this.carrito.carrito[i].cantidad;
+    }
     }
     return total ;
-  }
+  } 
 
   private obtenerPrecioDescuento(id){
     for (let i = 0; i < this.promoService.datos.length; i++) {

@@ -2,6 +2,7 @@ import { Injectable, ViewChild } from '@angular/core';
 import { User,UserRole } from '../models/user.model'
 import {CompraService} from './compra.service'
 import { elementAt } from 'rxjs/operators';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,8 @@ export class LoginService {
   ]
 
 
-  constructor() {
+  constructor(private router:Router) {
+   
     this.usuarioActual=undefined;
     if (localStorage.getItem("users") == null) {
       localStorage.setItem('users',JSON.stringify(this.usuarios));
@@ -105,9 +107,13 @@ export class LoginService {
         window.location.href = '/vista-gerente';this.usuarioActual=usuario
       }
       if(usuario.tipo == UserRole.EMPLEADO){
-        window.location.href = '/vista-empleado';this.usuarioActual=usuario
+        this.router.navigateByUrl('empleado/salario'); 
+        this.usuarioActual=usuario;
       }
     }
+   // setInterval(() => {
+   //   console.log(this.usuarioActual);
+   // }, 1000);
   }
 
 

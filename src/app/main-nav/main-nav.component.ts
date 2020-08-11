@@ -23,4 +23,11 @@ export class MainNavComponent {
   constructor(private compraService : CompraService,private breakpointObserver: BreakpointObserver) {
     this.productosOfrecidos= this.compraService.productosOfrecidos ;
   }
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + '$';
+    }
+
+    return value;
+  }
 }

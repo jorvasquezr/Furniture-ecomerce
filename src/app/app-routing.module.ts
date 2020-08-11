@@ -59,7 +59,7 @@ const routes: Routes = [
     component:VistaRegisterComponent
    },
    {
-    path: 'vista-empleado',
+    path: 'empleado/:param',
     component: VistaEmpleadoComponent
    },
    {

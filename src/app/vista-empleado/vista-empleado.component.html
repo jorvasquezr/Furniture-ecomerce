@@ -1,16 +1,23 @@
-<div class="toolbar" role="banner">
-    <mat-toolbar-row color="warn">
-      <span>Mueblería Vladimir</span>
-      <div fxLayoutAlign="end end"> 
-      <button mat-button  >Configuraciones</button>
-      <button mat-button (click)="pageSet('Venta')">Ventas</button>
-      <button mat-button (click)="pageSet('Salario')">Mi salario</button>
-      <button mat-raised-button routerLink="../" >Cerrar sesión</button>
-      </div>
-      </mat-toolbar-row>
-</div>
 
-<body>
-<app-vista-salario *ngIf ="[page]=='Salario'"></app-vista-salario>
-<app-vista-venta *ngIf ="[page]=='Venta'"></app-vista-venta>
+
+<mat-toolbar    class = "toolbar" color="primary">
+  <mat-toolbar-row  >
+    <span class ="fontd">Mueblería Vladimir</span>
+    <div class ="spacer"> </div>
+    <button mat-button  (click)="pageSet('tienda')">Tienda</button>
+    <button mat-button  (click)="pageSet('salario')">Salario</button>
+    <button mat-button  (click)="pageSet('carrito')">Carrito</button>
+    <button mat-button  (click)="configuraciones()">Configuraciones</button>
+    <button mat-raised-button  color="accent"  (click)="cerrarSesion()" >Cerrar Sesion</button>
+    
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+<body [ngSwitch]="page" >
+  <div><app-mis-pedidos class = "content" *ngSwitchCase ="'misPedidos'"></app-mis-pedidos></div>
+  <div><app-vista-salario class = "content" *ngSwitchCase ="'salario'"></app-vista-salario></div>
+<div><app-main-nav class = "content" *ngSwitchCase ="'tienda'"></app-main-nav></div>
+<div><app-carrito class = "content" *ngSwitchCase ="'carrito'"></app-carrito></div>
 </body>
+

@@ -4,12 +4,39 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Filtros</mat-toolbar>
-    <mat-accordion>
-      precios
-      <mat-card>hola</mat-card>
-    </mat-accordion>
+      [opened]="(isHandset$ | async) === false" disabled = 'true'>
+      
+
+    <mat-toolbar>Opciones</mat-toolbar>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Buscar</mat-label>
+      <input matInput >
+      <button matSuffix mat-icon-button >
+      <mat-icon >search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div> Precio Maximo</div>
+    <mat-slider style="width: 100%;"
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1000"
+  min="1"
+  max="1000000"></mat-slider>
+
+  <div> Precio Minimo</div>
+  <mat-slider style="width: 100%;"
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1000"
+  min="1"
+  max="1000000"></mat-slider>
+
+
+
+
+    
     
 
   </mat-sidenav>
